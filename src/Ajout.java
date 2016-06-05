@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 
 
 public class Ajout extends JPanel{
@@ -28,7 +28,7 @@ public class Ajout extends JPanel{
 	
 public Ajout(){
 	
-	this.setLayout(new MigLayout());
+	//this.setLayout(new MigLayout());
 	
 	this.add(nom);
 	this.add(labnom);

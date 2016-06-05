@@ -185,6 +185,23 @@ public boolean checkdatabase (){
 			return "false";
 		}
 	}
+	public void changepassuser(String user, String pass){
+		try {
+			 String query= "UPDATE Register SET ultilisateur= "+ user+","+"pass="+pass+"WHERE ID=1" ;
+		        
+		        ResultSet r= this.stmt.executeQuery(query);
+		        
+		         /*user ="";
+		         pass ="";
+				while (r.next() ) {
+					
+		            user = r.getString("Utilisateur");
+		   	    }*/
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public boolean showingPassWindow(){
 	
 	return true;	
