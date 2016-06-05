@@ -101,6 +101,31 @@ private Connection con ;
 		}
 		
 	}
+	//insert Lot
+	public void insertLot(String nom,String Referance,double prixachat,double Prixvente,int qte, Date date){
+	
+			try {
+				String query= "INSERT INTO Lot ( Nom , reference , prixachat , Prixvent , qte , date) VALUES ("+ "'"+ nom+ "'"+ "," + "'"+Referance +"'"+","+ "'"+prixachat +"'"+","+ "'"+Prixvente +"'"+ "'"+qte +"'"+ "'"+date +"'"+")";        	        
+		         ResultSet r= this.stmt.executeQuery(query);
+		         
+		         while (r.next() ) {
+			            nom = r.getString("Nom");
+			            Referance = r.getString("Referance");
+			            prixachat = r.getDouble("Prixachat");
+			            Prixvente = r.getDouble("Prixvent");
+			            qte= r.getInt("qte");
+			            date = r.getDate("date");
+			            
+		        	}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
+				
+			}
+			
+		}
+	
 	public void RechLot(String Nom ){
 		try {
 			String query= "SELECT * from  WHERE Mot= '" +Nom +"'" +" and "+"Prenom"+"'"+"'" ;	         	        
