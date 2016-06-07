@@ -101,6 +101,32 @@ private Connection con ;
 		}
 		
 	}
+	//insert produit 
+
+		public void insertLo(String designation ,String Referance,double prixachat,double Prixvente,int qteglobal, Date date){
+		
+				try {
+					String query= "INSERT INTO Lot ( Nom , reference , prixachat , Prixvent , qte , date) VALUES ("+ "'"+ designation+ "'"+ "," + "'"+Referance +"'"+","+ "'"+prixachat +"'"+","+ "'"+Prixvente +"'"+ "'"+qteglobal +"'"+ "'"+date +"'"+")";        	        
+			         ResultSet r= this.stmt.executeQuery(query);
+			         
+			         while (r.next() ) {
+				            designation = r.getString("Nom");
+				            Referance = r.getString("Referance");
+				            prixachat = r.getDouble("Prixachat");
+				            Prixvente = r.getDouble("Prixvent");
+				            qteglobal= r.getInt("qte");
+				            date = r.getDate("date");
+				            
+			        	}
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(e);
+					
+				}
+				
+			}
+	
 	//insert Lot
 	public void insertLot(String nom,String Referance,double prixachat,double Prixvente,int qte, Date date){
 	
