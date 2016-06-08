@@ -101,7 +101,13 @@ private Connection con ;
 		}
 		
 	}
-	//insert produit 
+	//Search product
+	// used with combobox 
+	public void searchLot(){
+		
+		
+	}
+	//insert product 
 
 		public void insertLo(String designation ,String Referance,double prixachat,double Prixvente,int qteglobal, Date date){
 		
