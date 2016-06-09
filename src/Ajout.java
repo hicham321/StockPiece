@@ -2,9 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 //import net.miginfocom.swing.MigLayout;
 
@@ -25,8 +28,19 @@ public class Ajout extends JPanel{
 	JButton annule = new JButton("الغاء");
 	JButton ok = new JButton("موافقة");
 
-	
+	final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
+	final JComboBox fruitCombo = new JComboBox(fruitsName); 
+	 JScrollPane fruitListScrollPane = new JScrollPane(fruitCombo); 
 public Ajout(){
+
+    fruitsName.addElement("Apple");
+    fruitsName.addElement("Grapes");
+    fruitsName.addElement("Mango");
+    fruitsName.addElement("Peer");
+
+    fruitCombo.setSelectedIndex(0);
+
+   
 	
 	//this.setLayout(new MigLayout());
 	
