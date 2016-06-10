@@ -1,9 +1,19 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import org.apache.commons.lang.UnhandledException;
 
 
 public class model {
@@ -262,6 +272,40 @@ public boolean checkdatabase (){
 	public boolean showingPassWindow(){
 	
 	return true;	
+	}
+	
+	public String loadcurrentdatabase( File f) throws FileNotFoundException,UnsupportedEncodingException,IOException{
+		
+		    
+	        FileInputStream fichierTextStopWord = new FileInputStream(f);
+			
+			InputStreamReader LecteurFichierStopWord = new InputStreamReader(fichierTextStopWord, "UTF-8");
+		    BufferedReader br = new BufferedReader(LecteurFichierStopWord);
+			
+		    ArrayList<String> ListeDesStopWord = new ArrayList<String>();
+		    
+			String ligne = null;
+            String appending = "";
+			while( (ligne = br.readLine())!= null ){
+			        // \\s+ means any number of whitespaces between tokens
+			    String [] tokens = ligne.split("\\s+");
+			    }
+			return "sd";
+		
+	}
+public InputStreamReader LireStopWordFichier() throws UnsupportedEncodingException ,IOException{
+		
+		
+		// needs a field outside for the stop words ArrayListe
+		
+		//must insert the direct file path in the FileInputStream
+	    File f = new File("");
+        FileInputStream fichierTextStopWord = new FileInputStream(f);
+		
+		InputStreamReader LecteurFichierStopWord = new InputStreamReader(fichierTextStopWord, "UTF-8");
+		
+		return LecteurFichierStopWord;
+		
 	}
 	
 }

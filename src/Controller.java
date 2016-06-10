@@ -62,7 +62,6 @@ public class Controller {
 			 try{
 			     model.connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
 			     boolean thereispass= model.checkdatabase();
-			     System.out.println("b oolean :"+thereispass );
 			     System.out.println("database pass "+model.passdatabase());
 			     System.out.println("database user"+model.usernamedatabase());
 			     System.out.println("text pass "+register.getPassText());
@@ -71,7 +70,7 @@ public class Controller {
 			     if(thereispass){
 				    if((model.passdatabase().equals(register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
 					       register.dispose();
-					       frame.dispose();
+					       //frame.dispose();
 				    }	
 				    else{
 				    	JOptionPane.showMessageDialog(null, "Mot de pass ou nom d'utilisateur incorrect");
