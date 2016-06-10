@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.UnhandledException;
+import org.hsqldb.Tokens;
 
 
 public class model {
@@ -273,10 +274,11 @@ public boolean checkdatabase (){
 	
 	return true;	
 	}
-	
+	//this method reads the paths textfile and returns the current utilised database
 	public String loadcurrentdatabase( File f) throws FileNotFoundException,UnsupportedEncodingException,IOException{
 		
-		    
+		    //the file should always have one line representing the database path
+		
 	        FileInputStream fichierTextStopWord = new FileInputStream(f);
 			
 			InputStreamReader LecteurFichierStopWord = new InputStreamReader(fichierTextStopWord, "UTF-8");
@@ -289,10 +291,17 @@ public boolean checkdatabase (){
 			while( (ligne = br.readLine())!= null ){
 			        // \\s+ means any number of whitespaces between tokens
 			    String [] tokens = ligne.split("\\s+");
+			    appending=tokens[0];
 			    }
-			return "sd";
+			return appending;
 		
 	}
+	//this will write the chosen db path in a textfile
+	
+public void writdayabasepath(){
+	
+		
+}
 public InputStreamReader LireStopWordFichier() throws UnsupportedEncodingException ,IOException{
 		
 		
