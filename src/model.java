@@ -2,8 +2,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -298,23 +300,28 @@ public boolean checkdatabase (){
 	}
 	//this will write the chosen db path in a textfile
 	
-public void writdayabasepath(){
-	
+public void writdayabasepath(String dbpath, File f){
+	    FileOutputStream stream = null;
+	    PrintStream out = null;
+	    try {
+	        
+	        stream = new FileOutputStream(f); 
+	        out = new PrintStream(stream);
+	        out.print(dbpath);                  //This will overwrite existing contents
+
+	    } catch (Exception ex) {
+	        //do something
+	    } finally {
+	        try {
+	            if(stream!=null) stream.close();
+	            if(out!=null) out.close();
+	        } catch (Exception ex) {
+	            //do something
+	        }
+	    }	
 		
 }
-public InputStreamReader LireStopWordFichier() throws UnsupportedEncodingException ,IOException{
-		
-		
-		// needs a field outside for the stop words ArrayListe
-		
-		//must insert the direct file path in the FileInputStream
-	    File f = new File("");
-        FileInputStream fichierTextStopWord = new FileInputStream(f);
-		
-		InputStreamReader LecteurFichierStopWord = new InputStreamReader(fichierTextStopWord, "UTF-8");
-		
-		return LecteurFichierStopWord;
-		
-	}
+
+	
 	
 }
