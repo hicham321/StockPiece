@@ -62,7 +62,7 @@ public class Controller {
 			 try{
 			     model.connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
 			     boolean thereispass= model.checkdatabase();
-			     
+			     System.out.println("b oolean :"+thereispass );
 			     System.out.println("database pass "+model.passdatabase());
 			     System.out.println("database user"+model.usernamedatabase());
 			     System.out.println("text pass "+register.getPassText());
