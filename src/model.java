@@ -16,25 +16,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Base64;
 
-import org.apache.commons.lang.UnhandledException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import java.security.SecureRandom;
+import org.apache.commons.codec.binary.Base64;
 import org.hsqldb.Tokens;
 
 
 
 public class model {
-private Connection con ;
+	
+    private Connection con ;
 	
 	private Statement stmt;
 	
-	
-	
+	//fields for hashing the password
+	private static final int iterations = 20*1000;
+	private static final int saltLen = 32;
+	private static final int desiredKeyLen = 256;
 	
 	
 	public void connectio ( String path ){
-		
-		
 		
 	    try {
 	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -43,21 +47,6 @@ private Connection con ;
 
 	        this.stmt = con.createStatement();
 
-	        /*// Returns a ResultSet that contains the data produced by the query;
-	        // never null
-	        String query= "insert query here";
-	        ResultSet rs = stmt.executeQuery(query);
-
-
-	        while (rs.next()) {
-	            String fName = rs.getString("Field1");
-	           String lName = rs.getString("LastName");
-	            int age = rs.getInt("ID");
-	        }
-
-	        stmt.close();
-
-	        con.close();*/
 	    } catch (SQLException ex) {
 	        System.err.println("SQLException: " + ex.getMessage());
 	    } 
@@ -126,7 +115,7 @@ private Connection con ;
 	}
 	//insert product 
 
-		public void insertLo(String designation ,String Referance,double prixachat,double Prixvente,int qteglobal, Date date){
+	public void insertLo(String designation ,String Referance,double prixachat,double Prixvente,int qteglobal, Date date){
 		
 				try {
 					String query= "INSERT INTO Lot ( Nom , reference , prixachat , Prixvent , qte , date) VALUES ("+ "'"+ designation+ "'"+ "," + "'"+Referance +"'"+","+ "'"+prixachat +"'"+","+ "'"+Prixvente +"'"+ "'"+qteglobal +"'"+ "'"+date +"'"+")";        	        
@@ -353,18 +342,18 @@ if (saltAndPass.length != 2) {
 String hashOfInput = hash(password, Base64.decodeBase64(saltAndPass[0]));
 return hashOfInput.equals(saltAndPass[1]);
 }
-
 // using PBKDF2 from Sun, an alternative is https://github.com/wg/scrypt
 // cf. http://www.unlimitednovelty.com/2012/03/dont-use-bcrypt.html
 private static String hash(String password, byte[] salt) throws Exception {
-if (password == null || password.length() == 0)
-    throw new IllegalArgumentException("Empty passwords are not supported.");
-SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-SecretKey key = f.generateSecret(new PBEKeySpec(
-    password.toCharArray(), salt, iterations, desiredKeyLen)
-);
-return Base64.encodeBase64String(key.getEncoded());
+    if (password == null || password.length() == 0)
+        throw new IllegalArgumentException("Empty passwords are not supported.");
+    SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+    SecretKey key = f.generateSecret(new PBEKeySpec(
+        password.toCharArray(), salt, iterations, desiredKeyLen)
+    );
+    return Base64.encodeBase64String(key.getEncoded());
 }
+
 
 	
 }
