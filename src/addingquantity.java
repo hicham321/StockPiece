@@ -19,7 +19,10 @@ public class addingquantity extends JFrame{
 			
 			final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
 			
-			final JComboBox ajoutproduit = new JComboBox(fruitsName);    
+			final JComboBox ajoutproduit = new JComboBox(fruitsName); 
+			
+		//	final JComboBox ajoutref = new JComboBox();    
+
 			
 		    private JScrollPane fruitListScrollPane = new JScrollPane(ajoutproduit); 
 			
@@ -35,7 +38,7 @@ public class addingquantity extends JFrame{
 				setResizable(true);
 		        setSize(400,400);        
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    fruitCombo.setSelectedIndex(0);
+		        ajoutproduit.setSelectedIndex(0);
 
 		        JPanel panel = new JPanel();
 		        
