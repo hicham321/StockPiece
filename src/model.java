@@ -16,10 +16,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Base64;
+
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
 
 import org.apache.commons.lang.UnhandledException;
 import org.hsqldb.Tokens;
+
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 
 
