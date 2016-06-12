@@ -7,5 +7,12 @@
 	<classpathentry kind="lib" path="C:/Users/Hicham/UCanAccess-3.0.4-bin/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/UCanAccess-3.0.4-bin/lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/UCanAccess-3.0.4-bin/lib/jackcess-2.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/commons-codec-1.8.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc4u/UCanAccess-3.0.4-bin/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc4u/UCanAccess-3.0.4-bin/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc4u/UCanAccess-3.0.4-bin/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc4u/UCanAccess-3.0.4-bin/lib/jackcess-2.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc4u/Downloads/commons-codec-1.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

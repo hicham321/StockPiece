@@ -66,7 +66,7 @@ public class Controller {
 			     System.out.println("database user"+model.usernamedatabase());
 			     System.out.println("text pass "+register.getPassText());
 			     System.out.println("text user"+register.getUtilisateurText());
-
+                 //the hashing should be done after  adding the interface for changing the password
 			     if(thereispass){
 				    if((model.passdatabase().equals(register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
 					       register.dispose();
