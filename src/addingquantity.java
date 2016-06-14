@@ -55,6 +55,13 @@ public class addingquantity extends JFrame{
 		        
 				
 			}
+		
+		public void addajoutlistner(ActionListener listner){
+			
+		
+		}
+		
+		
 		    public void platformLook(){
 			 try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -62,38 +69,34 @@ public class addingquantity extends JFrame{
 				    e.printStackTrace();
 				}
 		    }
+			public JButton getAjoutlot() {
+				return ajoutlot;
+			}
+			public void setAjoutlot(JButton ajoutlot) {
+				this.ajoutlot = ajoutlot;
+			}
+			public JButton getModifieLot() {
+				return modifieLot;
+			}
+			public void setModifieLot(JButton modifieLot) {
+				this.modifieLot = modifieLot;
+			}
+			public JScrollPane getFruitListScrollPane() {
+				return fruitListScrollPane;
+			}
+			public void setFruitListScrollPane(JScrollPane fruitListScrollPane) {
+				this.fruitListScrollPane = fruitListScrollPane;
+			}
+			public DefaultComboBoxModel getFruitsName() {
+				return fruitsName;
+			}
+			public JComboBox getAjoutproduit() {
+				return ajoutproduit;
+			}
+		    
+		    
+		    
+}
+		    
 			
-			public void setCheminLabel (String cheminlabel){
-				
-				this.cheminlab.setText(cheminlabel);
-			}
-			public void AddRegisterActionlistner (ActionListener listner ){
-				this.ok.addActionListener(listner);
-				this.annule.addActionListener(listner);
-				
-			}
-
-			public JButton getOk() {
-				return ok;
-			}
-			public JButton getAnnule() {
-				return annule;
-			}
-
-			public void setUtiltext(JTextField utiltext) {
-				this.utiltext = utiltext;
-			}
-
-			public void setMotpasstext(JTextField motpasstext) {
-				this.motpasstext = motpasstext;
-			}
-			public String getPassText(){
-				return this.motpasstext.getText();
-			}
-			public String getUtilisateurText(){
-				return this.utiltext.getText();
-			}
-
-		}
-
-
+			
