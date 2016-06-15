@@ -12,27 +12,32 @@ import javax.swing.UIManager;
 
 public class addingquantity extends JFrame{
 	
-		
+		//for the name of the product 
 		    private JButton ajoutlot = new JButton("ajout");
 			
 			private JButton modifieLot = new JButton("modifie");
 			
-			final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
+			final DefaultComboBoxModel ajoutprodnom = new DefaultComboBoxModel();
 			
-			final JComboBox ajoutproduit = new JComboBox(fruitsName); 
+			final JComboBox ajoutproduit = new JComboBox(ajoutprodnom); 
 			
 		//	final JComboBox ajoutref = new JComboBox();    
 
 			
-		    private JScrollPane fruitListScrollPane = new JScrollPane(ajoutproduit); 
+		    private JScrollPane ProduitNomListScrollPane = new JScrollPane(ajoutproduit); 
 			
 			private JTextField utiltext = new JTextField(10);
 			
 			private JTextField motpasstext = new JTextField(10);
 			
-			//showing path to the database
+			//for the reference of the product
+            final DefaultComboBoxModel ajoutprodref = new DefaultComboBoxModel();
 			
-			private JLabel cheminlab ;
+			final JComboBox ajoutRef = new JComboBox(ajoutprodref); 
+			
+		    private JScrollPane reflistListScrol = new JScrollPane(ajoutRef); 
+
+			
 		public addingquantity(){
 				
 				setResizable(true);
@@ -82,13 +87,13 @@ public class addingquantity extends JFrame{
 				this.modifieLot = modifieLot;
 			}
 			public JScrollPane getFruitListScrollPane() {
-				return fruitListScrollPane;
+				return ProduitNomListScrollPane;
 			}
 			public void setFruitListScrollPane(JScrollPane fruitListScrollPane) {
-				this.fruitListScrollPane = fruitListScrollPane;
+				this.ProduitNomListScrollPane = fruitListScrollPane;
 			}
 			public DefaultComboBoxModel getFruitsName() {
-				return fruitsName;
+				return ajoutprodnom;
 			}
 			public JComboBox getAjoutproduit() {
 				return ajoutproduit;
