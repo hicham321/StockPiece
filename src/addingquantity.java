@@ -17,6 +17,8 @@ public class addingquantity extends JFrame{
 			
 			private JButton modifieLot = new JButton("modifie");
 			
+			private JButton supprimLot = new JButton("supprimé");
+			
 			final DefaultComboBoxModel ajoutprodnom = new DefaultComboBoxModel();
 			
 			final JComboBox ajoutproduit = new JComboBox(ajoutprodnom); 
@@ -25,8 +27,10 @@ public class addingquantity extends JFrame{
 
 			
 		    private JScrollPane ProduitNomListScrollPane = new JScrollPane(ajoutproduit); 
+		    			
+			private JTextField QTE = new JTextField(10);
 			
-			private JTextField utiltext = new JTextField(10);
+		    private JLabel labqte = new JLabel("الكمية");
 			
 			private JTextField motpasstext = new JTextField(10);
 			
@@ -44,7 +48,7 @@ public class addingquantity extends JFrame{
 		        setSize(400,400);        
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        ajoutproduit.setSelectedIndex(0);
-
+                ajoutRef.setSelectedIndex(0);
 		        JPanel panel = new JPanel();
 		        
 		        /*panel.add(bienvenu);
