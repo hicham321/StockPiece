@@ -38,13 +38,13 @@ public class mainFrame extends JFrame {
 	}
 	//Card1
 	public void addFrameActionLisner(ActionListener listner){
-		this.card1.ajoutbase.addActionListener(listner);
-		this.card1.ajoutprodui.addActionListener(listner);
+		this.card1.menu.ajoutbase.addActionListener(listner);
+		this.card1.menu.ajoutprodui.addActionListener(listner);
 		this.card1.but.addActionListener(listner);
-		this.card1.listproduit.addActionListener(listner);
-		this.card1.motpass.addActionListener(listner);
-		this.card1.quiter.addActionListener(listner);
-		this.card1.sortiproduit.addActionListener(listner);
+		this.card1.menu.listproduit.addActionListener(listner);
+		this.card1.menu.motpass.addActionListener(listner);
+		this.card1.menu.quiter.addActionListener(listner);
+		this.card1.menu.sortiproduit.addActionListener(listner);
 		
 		this.card2.annule.addActionListener(listner);
 		this.card2.ok.addActionListener(listner);
@@ -63,62 +63,62 @@ public class mainFrame extends JFrame {
 
 
 	public JMenuItem getAjoutbase() {
-		return card1.ajoutbase;
+		return card1.menu.ajoutbase;
 	}
 
 
 	public void setAjoutbase(JMenuItem ajoutbase) {
-		card1.ajoutbase = ajoutbase;
+		card1.menu.ajoutbase = ajoutbase;
 	}
 
 
 	public JMenuItem getQuiter() {
-		return card1.quiter;
+		return card1.menu.quiter;
 	}
 
 
 	public void setQuiter(JMenuItem quiter) {
-		card1.quiter = quiter;
+		card1.menu.quiter = quiter;
 	}
 
 
 	public JMenuItem getMotpass() {
-		return card1.motpass;
+		return card1.menu.motpass;
 	}
 
 
 	public void setMotpass(JMenuItem motpass) {
-		card1.motpass = motpass;
+		card1.menu.motpass = motpass;
 	}
 
 
 	public JMenuItem getAjoutprodui() {
-		return card1.ajoutprodui;
+		return card1.menu.ajoutprodui;
 	}
 
 
 	public void setAjoutprodui(JMenuItem ajoutprodui) {
-		card1.ajoutprodui = ajoutprodui;
+		card1.menu.ajoutprodui = ajoutprodui;
 	}
 
 
 	public JMenuItem getListproduit() {
-		return card1.listproduit;
+		return card1.menu.listproduit;
 	}
 
 
 	public void setListproduit(JMenuItem listproduit) {
-		card1.listproduit = listproduit;
+		card1.menu.listproduit = listproduit;
 	}
 
 
 	public JMenuItem getSortiproduit() {
-		return card1.sortiproduit;
+		return card1.menu.sortiproduit;
 	}
 
 
 	public void setSortiproduit(JMenuItem sortiproduit) {
-		card1.sortiproduit = sortiproduit;
+		card1.menu.sortiproduit = sortiproduit;
 	}	
 	
 	//card2

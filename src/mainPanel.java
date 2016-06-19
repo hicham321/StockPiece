@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 public class mainPanel extends JPanel {
 	
+	    menubar menu = new menubar();
+	
 //	    JMenuBar menubar = new JMenuBar();
 //		
      	JButton but = new JButton("sdf");
@@ -43,6 +45,8 @@ public class mainPanel extends JPanel {
 			    this.setLayout(null);
 			    
 			    this.add(but);
+			    
+			    this.add(menu);
 			    
 		        but.setBounds(70,70,70,70);
 		        
