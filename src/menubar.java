@@ -1,8 +1,6 @@
-import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.Box;
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -10,9 +8,7 @@ import javax.swing.JMenuItem;
 
 public class menubar extends JMenuBar{
 	
-	//JMenuBar menubar = new JMenuBar();
 	
-	JButton but = new JButton("sdf");
 	
 	JMenu menuouvrir = new JMenu("ملف");
 	

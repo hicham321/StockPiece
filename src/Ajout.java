@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 
 
 public class Ajout extends JPanel{
+	menubar menu = new menubar();
+	//
 	JTextField nom       = new JTextField(10);
 	JLabel labnom        = new JLabel("اسم المنتوج");
 	JTextField referance = new JTextField(10);
@@ -32,7 +34,7 @@ public class Ajout extends JPanel{
 	final JComboBox fruitCombo = new JComboBox(fruitsName); 
 	 JScrollPane fruitListScrollPane = new JScrollPane(fruitCombo); 
 public Ajout(){
-
+    this.add(menu);
     fruitsName.addElement("Apple");
     fruitsName.addElement("Grapes");
     fruitsName.addElement("Mango");
