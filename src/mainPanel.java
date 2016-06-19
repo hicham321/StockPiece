@@ -11,30 +11,30 @@ import javax.swing.JPanel;
 
 public class mainPanel extends JPanel {
 	
-	 JMenuBar menubar = new JMenuBar();
-		
-		JButton but = new JButton("sdf");
-		
-		JMenu menuouvrir = new JMenu("ملف");
-		
-		JMenuItem ajoutbase = new JMenuItem("فتح");
-		
-		JMenuItem quiter = new JMenuItem("خروج ");
-		
-		JMenuItem motpass = new JMenuItem("Changer le mot de passe");
-
-		JMenu menuajout = new JMenu("ادخال ");
-		
-		JMenuItem ajoutprodui = new JMenuItem("ادخال منتوج");
-		
-		JMenuItem listproduit = new JMenuItem("لائحة المنتوجات");
-		
-		JMenu menusortie = new JMenu("اخراج");
-		
-	     JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
-		
-		
-		JMenu menuapropos = new JMenu("?");
+//	    JMenuBar menubar = new JMenuBar();
+//		
+     	JButton but = new JButton("sdf");
+//		
+//		JMenu menuouvrir = new JMenu("ملف");
+//		
+//		JMenuItem ajoutbase = new JMenuItem("فتح");
+//		
+//		JMenuItem quiter = new JMenuItem("خروج ");
+//		
+//		JMenuItem motpass = new JMenuItem("Changer le mot de passe");
+//
+//		JMenu menuajout = new JMenu("ادخال ");
+//		
+//		JMenuItem ajoutprodui = new JMenuItem("ادخال منتوج");
+//		
+//		JMenuItem listproduit = new JMenuItem("لائحة المنتوجات");
+//		
+//		JMenu menusortie = new JMenu("اخراج");
+//		
+//	     JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
+//		
+//		
+//		JMenu menuapropos = new JMenu("?");
 
 		
 		public mainPanel(){
@@ -46,7 +46,8 @@ public class mainPanel extends JPanel {
 			    
 		        but.setBounds(70,70,70,70);
 		        
-		        this.add(menubar);
+		        /*this should be decommented if the menubar class doesn't work
+		         * this.add(menubar);
 		        menubar.setBounds(0, 0, 1370, 30);
 		        menubar.add(Box.createHorizontalGlue());
 		        menubar.setFont(new Font("sans-serif", Font.PLAIN, 12));
@@ -66,7 +67,7 @@ public class mainPanel extends JPanel {
 		        menubar.add(menuapropos);
 		        menubar.add(menusortie);
 		        menubar.add(menuajout);
-		        menubar.add(menuouvrir);
+		        menubar.add(menuouvrir);*/
 
 		        this.setBackground(Color.white);
 		        this.setBounds(0, 0, 400, 400);

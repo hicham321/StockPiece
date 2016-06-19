@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 
 public class mainFrame extends JFrame {
     JPanel cards ;
+    
+    
 	
 	mainPanel card1 = new mainPanel();
 	

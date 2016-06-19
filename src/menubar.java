@@ -1,5 +1,7 @@
 import java.awt.Color;
+import java.awt.Font;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -8,45 +10,44 @@ import javax.swing.JMenuItem;
 
 public class menubar extends JMenuBar{
 	
-	JMenuBar menubar = new JMenuBar();
+	//JMenuBar menubar = new JMenuBar();
 	
 	JButton but = new JButton("sdf");
 	
-	JMenu menuouvrir = new JMenu("Fichier");
+	JMenu menuouvrir = new JMenu("ملف");
 	
-	JMenuItem ajoutbase = new JMenuItem("Ouvrir");
+	JMenuItem ajoutbase = new JMenuItem("فتح");
 	
-	JMenuItem quiter = new JMenuItem("Quitter");
+	JMenuItem quiter = new JMenuItem("خروج ");
 	
 	JMenuItem motpass = new JMenuItem("Changer le mot de passe");
 
-	JMenu menuenf = new JMenu("Enfant");
+	JMenu menuajout = new JMenu("ادخال ");
 	
-	JMenuItem ajoutEnf = new JMenuItem("Ajout Enf");
+	JMenuItem ajoutprodui = new JMenuItem("ادخال منتوج");
 	
-	JMenuItem listeEnf = new JMenuItem("Liste Enf");
+	JMenuItem listproduit = new JMenuItem("لائحة المنتوجات");
+	
+	JMenu menusortie = new JMenu("اخراج");
+	
+     JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
+	
+	
+	JMenu menuapropos = new JMenu("?");
 
-	JMenuItem explore = new JMenuItem("explore");
-	
-	JMenu menuemp = new JMenu("Employ�");
-	
-     JMenuItem ajoutemp = new JMenuItem("Ajout Emp");
-	
-	JMenuItem listeEmp = new JMenuItem("Liste Emp");
-	
-	JMenu menuapropos = new JMenu("A Propos");
 	
 	
 	public menubar (){
 		//modify this when changing to a different layout manager
-	    this.setLayout(null);
+		this.setLayout(null);
 	    
-	    this.add(but);
 	    
-        but.setBounds(70,70,70,70);
         
-        this.add(menubar);
-        menubar.setBounds(0, 0, 400, 30);
+      //  this.add(menubar);
+        this.setBounds(0, 0, 1370, 30);
+        this.add(Box.createHorizontalGlue());
+        this.setFont(new Font("sans-serif", Font.PLAIN, 12));
+
         
         menuouvrir.add(ajoutbase);
         menuouvrir.add(motpass);
@@ -54,21 +55,19 @@ public class menubar extends JMenuBar{
         menuouvrir.add(quiter);
         
         
-        menuenf.add(ajoutEnf);
-        menuenf.add(listeEnf);
-        menuenf.add(explore);
+        menuajout.add(ajoutprodui);
+        menuajout.add(listproduit);
         
-        menuemp.add(ajoutemp);
-        menuemp.add(listeEmp);
+        menusortie.add(sortiproduit);
        
-        menubar.add(menuouvrir);
-        menubar.add(menuenf);
-        menubar.add(menuemp);
-        menubar.add(menuapropos);
-       
-        this.setBackground(Color.white);
-        this.setBounds(0, 0, 400, 400);
-        this.setVisible(true);	
+        this.add(menuapropos);
+        this.add(menusortie);
+        this.add(menuajout);
+        this.add(menuouvrir);
+
+        //this.setBackground(Color.white);
+       // this.setVisible(true);
+	
 		
 	}
 
