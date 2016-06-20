@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -24,7 +25,7 @@ private JButton ok = new JButton("موافقة");
 	
 	private JTextField utiltext = new JTextField(10);
 	
-	private JTextField motpasstext = new JTextField(10);
+	private JPasswordField  motpasstext = new JPasswordField (10);
 	
 	//showing path to the database
 	
@@ -84,11 +85,11 @@ private JButton ok = new JButton("موافقة");
 		this.utiltext = utiltext;
 	}
 
-	public void setMotpasstext(JTextField motpasstext) {
+	public void setMotpasstext(JPasswordField  motpasstext) {
 		this.motpasstext = motpasstext;
 	}
 	public String getPassText(){
-		return this.motpasstext.getText();
+		return this.motpasstext.getPassword().toString();
 	}
 	public String getUtilisateurText(){
 		return this.utiltext.getText();

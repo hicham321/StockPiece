@@ -47,6 +47,8 @@ public class addingquantity extends JFrame{
 				setResizable(true);
 		        setSize(400,400);        
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        setLocationRelativeTo(null);
+
 		        ajoutproduit.setSelectedIndex(0);
                 ajoutRef.setSelectedIndex(0);
 		        JPanel panel = new JPanel();
