@@ -35,7 +35,7 @@ public class menubar extends JMenuBar{
 	
 	public menubar (){
 		//modify this when changing to a different layout manager
-		this.setLayout(null);
+		//this.setLayout(null);
 	    
 	    
         
@@ -62,7 +62,7 @@ public class menubar extends JMenuBar{
         this.add(menuouvrir);
 
         //this.setBackground(Color.white);
-       // this.setVisible(true);
+        this.setVisible(true);
 	
 		
 	}

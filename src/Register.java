@@ -12,7 +12,7 @@ public class Register extends JFrame{
 	
 private JButton ok = new JButton("موافقة");
 	
-	private JButton annule = new JButton("الغاء");
+	private JButton annule = new JButton("الغاءىةببى بى ببىبىب بى");
 	
 	private JLabel bienvenu= new JLabel("!اهلا ");
 	

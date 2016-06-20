@@ -14,19 +14,19 @@ public class mainPanel extends JPanel {
 	    menubar menu = new menubar();
 	
 	
-       JButton but = new JButton("");
+       JButton but = new JButton("ffd");
 
 		
 		public mainPanel(){
 			
 			//modify this when changing to a different layout manager
 			    this.setLayout(null);
-			    
-			    this.add(but);
+			    System.out.println("this gets executed");
+			    //this.add(but);
 			    
 			    this.add(menu);
 			    
-		        but.setBounds(70,70,70,70);
+		        //but.setBounds(70,70,70,70);
 		        
 
 		        this.setBackground(Color.white);
