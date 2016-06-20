@@ -5,6 +5,8 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 
 public class Controller {
@@ -34,6 +36,8 @@ public class Controller {
 	 
 	 this.frame.addFrameActionLisner( new FrameAtionListner());
 	 
+	 this.frame.addFrameMenulistner(new FrameMenuListner());
+	 
  }
  class FrameAtionListner implements ActionListener{
 
@@ -51,10 +55,42 @@ public class Controller {
 			cardLayout.show(frame.cards, "Card 2");	
 		}
 		
+		
 	}
 	 
 	 
  }
+ //this is MenuLisner class
+ class FrameMenuListner implements MenuListener{
+
+	@Override
+	public void menuDeselected(MenuEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void menuSelected(MenuEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==frame.getRetour()){
+			CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+			cardLayout.show(frame.cards, "Card 1");	
+
+		}
+	}
+
+	@Override
+	public void menuCanceled(MenuEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	 
+ }
+ 
+ 
+ 
+ 
+ //this is a separate actionListner class for register logic 
  class RegisterActionListner implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {

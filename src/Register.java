@@ -12,7 +12,7 @@ public class Register extends JFrame{
 	
 private JButton ok = new JButton("موافقة");
 	
-	private JButton annule = new JButton("الغاءىةببى بى ببىبىب بى");
+	private JButton annule = new JButton("الغاء");
 	
 	private JLabel bienvenu= new JLabel("!اهلا ");
 	
@@ -29,14 +29,16 @@ private JButton ok = new JButton("موافقة");
 	//showing path to the database
 	
 	private JLabel cheminlab ;
-public Register(){
+	
+	
+    public Register(){
 		
 		setResizable(true);
         setSize(400,200);        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         
         JPanel panel = new JPanel();
-        
         panel.add(bienvenu);
         panel.add(saisielabel);
         

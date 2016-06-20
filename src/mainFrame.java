@@ -3,15 +3,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.MenuListener;
 
 
 public class mainFrame extends JFrame {
     JPanel cards ;
     
-    
+    menubar menu= new menubar();
 	
 	mainPanel card1 = new mainPanel();
 	
@@ -25,7 +27,7 @@ public class mainFrame extends JFrame {
         setResizable(true);
         //setSize(400,400); 
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
-
+        this.add(menu);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cards = new JPanel(new CardLayout());
         
@@ -38,18 +40,24 @@ public class mainFrame extends JFrame {
 	}
 	//Card1
 	public void addFrameActionLisner(ActionListener listner){
-		this.card1.menu.ajoutbase.addActionListener(listner);
-		this.card1.menu.ajoutprodui.addActionListener(listner);
+		this.menu.ajoutbase.addActionListener(listner);
+		this.menu.ajoutprodui.addActionListener(listner);
 		this.card1.but.addActionListener(listner);
-		this.card1.menu.listproduit.addActionListener(listner);
-		this.card1.menu.motpass.addActionListener(listner);
-		this.card1.menu.quiter.addActionListener(listner);
-		this.card1.menu.sortiproduit.addActionListener(listner);
+		this.menu.listproduit.addActionListener(listner);
+		this.menu.motpass.addActionListener(listner);
+		this.menu.quiter.addActionListener(listner);
+		this.menu.sortiproduit.addActionListener(listner);
+		//this.menu.retour.addActionListener(listner);
 		
 		this.card2.annule.addActionListener(listner);
 		this.card2.ok.addActionListener(listner);
 		
 
+	}
+	//this is a menu listner for menus with no menu items
+	public void addFrameMenulistner(MenuListener menListner){
+		
+		this.menu.retour.addMenuListener(menListner);
 	}
 	
 	public JButton getBut() {
@@ -63,62 +71,66 @@ public class mainFrame extends JFrame {
 
 
 	public JMenuItem getAjoutbase() {
-		return card1.menu.ajoutbase;
+		return menu.ajoutbase;
 	}
 
 
 	public void setAjoutbase(JMenuItem ajoutbase) {
-		card1.menu.ajoutbase = ajoutbase;
+		menu.ajoutbase = ajoutbase;
 	}
-
+	
+	public JMenu getRetour() {
+		return menu.retour;
+	}
+    
 
 	public JMenuItem getQuiter() {
-		return card1.menu.quiter;
+		return menu.quiter;
 	}
 
 
 	public void setQuiter(JMenuItem quiter) {
-		card1.menu.quiter = quiter;
+		menu.quiter = quiter;
 	}
 
 
 	public JMenuItem getMotpass() {
-		return card1.menu.motpass;
+		return menu.motpass;
 	}
 
 
 	public void setMotpass(JMenuItem motpass) {
-		card1.menu.motpass = motpass;
+		menu.motpass = motpass;
 	}
 
 
 	public JMenuItem getAjoutprodui() {
-		return card1.menu.ajoutprodui;
+		return menu.ajoutprodui;
 	}
 
 
 	public void setAjoutprodui(JMenuItem ajoutprodui) {
-		card1.menu.ajoutprodui = ajoutprodui;
+		menu.ajoutprodui = ajoutprodui;
 	}
 
 
 	public JMenuItem getListproduit() {
-		return card1.menu.listproduit;
+		return menu.listproduit;
 	}
 
 
 	public void setListproduit(JMenuItem listproduit) {
-		card1.menu.listproduit = listproduit;
+		menu.listproduit = listproduit;
 	}
 
 
 	public JMenuItem getSortiproduit() {
-		return card1.menu.sortiproduit;
+		return menu.sortiproduit;
 	}
 
 
 	public void setSortiproduit(JMenuItem sortiproduit) {
-		card1.menu.sortiproduit = sortiproduit;
+		menu.sortiproduit = sortiproduit;
 	}	
 	
 	//card2

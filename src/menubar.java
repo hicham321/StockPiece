@@ -19,15 +19,17 @@ public class menubar extends JMenuBar{
 	JMenuItem motpass = new JMenuItem("Changer le mot de passe");
 
 	JMenu menuajout = new JMenu("ادخال ");
-	
+		
 	JMenuItem ajoutprodui = new JMenuItem("ادخال منتوج");
 	
 	JMenuItem listproduit = new JMenuItem("لائحة المنتوجات");
 	
 	JMenu menusortie = new JMenu("اخراج");
 	
-     JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
+    JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
 	
+ 	JMenu retour = new JMenu("عودة ");
+
 	
 	JMenu menuapropos = new JMenu("?");
 
@@ -36,8 +38,6 @@ public class menubar extends JMenuBar{
 	public menubar (){
 		//modify this when changing to a different layout manager
 		//this.setLayout(null);
-	    
-	    
         
       //  this.add(menubar);
         this.setBounds(0, 0, 1370, 30);
@@ -57,6 +57,7 @@ public class menubar extends JMenuBar{
         menusortie.add(sortiproduit);
        
         this.add(menuapropos);
+        this.add(retour);
         this.add(menusortie);
         this.add(menuajout);
         this.add(menuouvrir);
