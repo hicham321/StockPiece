@@ -56,14 +56,7 @@ private JButton ok = new JButton("موافقة");
         
 		
 	}
-    public void platformLook(){
-	 try { 
-		    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-    }
-	
+    
 	public void setCheminLabel (String cheminlabel){
 		
 		this.cheminlab.setText(cheminlabel);
@@ -88,8 +81,8 @@ private JButton ok = new JButton("موافقة");
 	public void setMotpasstext(JPasswordField  motpasstext) {
 		this.motpasstext = motpasstext;
 	}
-	public String getPassText(){
-		return this.motpasstext.getPassword().toString();
+	public char[] getPassText(){
+		return this.motpasstext.getPassword();
 	}
 	public String getUtilisateurText(){
 		return this.utiltext.getText();

@@ -2,11 +2,14 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Arrays;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 
 public class Controller {
@@ -98,13 +101,14 @@ public class Controller {
 			 try{
 			     model.connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
 			     boolean thereispass= model.checkdatabase();
-			     System.out.println("database pass "+model.passdatabase());
-			     System.out.println("database user"+model.usernamedatabase());
+			     System.out.println("database pass "+model.passdatabase().toCharArray());
+			     System.out.println("database user "+model.usernamedatabase());
 			     System.out.println("text pass "+register.getPassText());
 			     System.out.println("text user"+register.getUtilisateurText());
                  //the hashing should be done after  adding the interface for changing the password
 			     if(thereispass){
-				    if((model.passdatabase().equals(register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
+				    //if((model.passdatabase().equals(register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
+			    	 if((Arrays.equals(model.passdatabase().toCharArray(), register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
 					       register.dispose();
 					       //frame.dispose();
 				    }	
