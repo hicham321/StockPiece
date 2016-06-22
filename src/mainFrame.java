@@ -11,6 +11,7 @@ import javax.swing.event.MenuListener;
 
 
 public class mainFrame extends JFrame {
+	
     JPanel cards ;
     
     menubar menu= new menubar();
@@ -27,7 +28,8 @@ public class mainFrame extends JFrame {
         setResizable(true);
         //setSize(400,400); 
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        this.add(menu);
+        //this.add(menu);
+        this.setJMenuBar(menu.menu);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cards = new JPanel(new CardLayout());
         

@@ -6,9 +6,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 
-public class menubar extends JMenuBar{
+public class menubar {
 	
-	
+	JMenuBar menu = new JMenuBar();
 	
 	JMenu menuouvrir = new JMenu("ملف");
 	
@@ -40,9 +40,9 @@ public class menubar extends JMenuBar{
 		//this.setLayout(null);
         
       //  this.add(menubar);
-        this.setBounds(0, 0, 1370, 30);
-        this.add(Box.createHorizontalGlue());
-        this.setFont(new Font("sans-serif", Font.PLAIN, 12));
+        menu.setBounds(0, 0, 1370, 30);
+        menu.add(Box.createHorizontalGlue());
+        menu.setFont(new Font("sans-serif", Font.PLAIN, 12));
 
         
         menuouvrir.add(ajoutbase);
@@ -56,14 +56,14 @@ public class menubar extends JMenuBar{
         
         menusortie.add(sortiproduit);
        
-        this.add(menuapropos);
-        this.add(retour);
-        this.add(menusortie);
-        this.add(menuajout);
-        this.add(menuouvrir);
+        menu.add(menuapropos);
+        menu.add(retour);
+        menu.add(menusortie);
+        menu.add(menuajout);
+        menu.add(menuouvrir);
 
         //this.setBackground(Color.white);
-        this.setVisible(true);
+       // this.setVisible(true);
 	
 		
 	}
