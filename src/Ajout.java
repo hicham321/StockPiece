@@ -58,6 +58,7 @@ public Ajout(){
 
 	this.add(ok);
 	this.add(annule);
+	ok.setBounds(30, 30, 20, 10);
 	
 	
 }
