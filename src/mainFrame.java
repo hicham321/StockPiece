@@ -49,8 +49,8 @@ public class mainFrame extends JFrame {
 		this.menu.sortiproduit.addActionListener(listner);
 		//this.menu.retour.addActionListener(listner);
 		
-		this.card2.annule.addActionListener(listner);
-		this.card2.ok.addActionListener(listner);
+//		this.card2.annule.addActionListener(listner);
+//		this.card2.ok.addActionListener(listner);
 		
 
 	}
@@ -195,13 +195,13 @@ public class mainFrame extends JFrame {
 	}
 */
 
-	public JButton getAnnule() {
-		return card2.annule;
-	}
-
-	public JButton getOk() {
-		return card2.ok;
-	}
+//	public JButton getAnnule() {
+//		return card2.annule;
+//	}
+//
+//	public JButton getOk() {
+//		return card2.ok;
+//	}
 
 
 }

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Label;
 import java.awt.LayoutManager;
 
@@ -13,7 +14,6 @@ import javax.swing.JTextField;
 
 
 public class Ajout extends JPanel{
-	menubar menu = new menubar();
 	//
 	JTextField nom       = new JTextField(10);
 	JLabel labnom        = new JLabel("اسم المنتوج");
@@ -29,20 +29,19 @@ public class Ajout extends JPanel{
 	JLabel labdate       = new JLabel("التاريخ ");
 	 */
 	
-	JButton annule = new JButton("الغاء");
-	JButton ok = new JButton("موافقة");
-	
+//	JButton annule = new JButton("الغاء");
+//	JButton ok = new JButton("موافقة");
+    JButton but = new JButton("dsdffd");
+
 public Ajout(){
-    this.add(menu);
    
 	
-	//this.setLayout(new MigLayout());
-	
-	this.add(nom);
-	this.add(labnom);
-
-	this.add(referance);
-	this.add(labref);
+this.setLayout(null);	
+//	this.add(nom);
+//	this.add(labnom);
+//
+//	this.add(referance);
+//	this.add(labref);
 /*
 	this.add(prixAchat);
 	this.add(labachat);
@@ -55,10 +54,16 @@ public Ajout(){
 
 	this.add(date);
 	this.add(labdate);*/
+this.add(but);
 
-	this.add(ok);
-	this.add(annule);
-	ok.setBounds(30, 30, 20, 10);
+
+but.setBounds(70,500,70,70);
+this.setBackground(Color.white);
+this.setVisible(true);
+
+//	this.add(ok);
+//	this.add(annule);
+//	ok.setBounds(30, 30, 20, 10);
 	
 	
 }
