@@ -19,7 +19,7 @@ public class Ajout extends JPanel{
 	JLabel labnom        = new JLabel("اسم المنتوج");
 	JTextField referance = new JTextField(10);
 	JLabel labref        = new JLabel("علامة المنتوج");
-	JTextField prixAchat = new JTextField(10);
+	/*JTextField prixAchat = new JTextField(10);
 	JLabel labachat      = new JLabel("ثمن الشراء");
 	JTextField prixvente = new JTextField(10);
 	JLabel labvente      = new JLabel("ثمن البيع");
@@ -27,21 +27,13 @@ public class Ajout extends JPanel{
 	JLabel labqte        = new JLabel("الكمية ");
 	JTextField date      = new JTextField(10);
 	JLabel labdate       = new JLabel("التاريخ ");
+	 */
+	
 	JButton annule = new JButton("الغاء");
 	JButton ok = new JButton("موافقة");
-
-	final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
-	final JComboBox fruitCombo = new JComboBox(fruitsName); 
-	 JScrollPane fruitListScrollPane = new JScrollPane(fruitCombo); 
+	
 public Ajout(){
     this.add(menu);
-    fruitsName.addElement("Apple");
-    fruitsName.addElement("Grapes");
-    fruitsName.addElement("Mango");
-    fruitsName.addElement("Peer");
-
-    fruitCombo.setSelectedIndex(0);
-
    
 	
 	//this.setLayout(new MigLayout());
@@ -51,7 +43,7 @@ public Ajout(){
 
 	this.add(referance);
 	this.add(labref);
-
+/*
 	this.add(prixAchat);
 	this.add(labachat);
 
@@ -62,7 +54,7 @@ public Ajout(){
 	this.add(labqte);
 
 	this.add(date);
-	this.add(labdate);
+	this.add(labdate);*/
 
 	this.add(ok);
 	this.add(annule);

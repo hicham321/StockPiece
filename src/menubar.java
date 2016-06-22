@@ -16,7 +16,7 @@ public class menubar extends JMenuBar{
 	
 	JMenuItem quiter = new JMenuItem("خروج ");
 	
-	JMenuItem motpass = new JMenuItem("Changer le mot de passe");
+	JMenuItem motpass = new JMenuItem("تبديل كلمة السر");
 
 	JMenu menuajout = new JMenu("ادخال ");
 		

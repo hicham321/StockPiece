@@ -155,7 +155,7 @@ public class mainFrame extends JFrame {
 	}
 
 
-	public JTextField getPrixAchat() {
+	/*public JTextField getPrixAchat() {
 		return card2.prixAchat;
 	}
 
@@ -193,7 +193,7 @@ public class mainFrame extends JFrame {
 	public void setDate(JTextField date) {
 		card2.date = date;
 	}
-
+*/
 
 	public JButton getAnnule() {
 		return card2.annule;
