@@ -1,14 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Label;
-import java.awt.LayoutManager;
 
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 //import net.miginfocom.swing.MigLayout;
 
@@ -22,23 +17,27 @@ public class Ajout extends JPanel{
 	
 	JButton annule = new JButton("الغاء");
 	JButton ok = new JButton("موافقة");
-    JButton but = new JButton("dsdffd");
 
 public Ajout(){
    
 	
-this.setLayout(null);	
-
-this.add(but);
+this.setLayout(new GroupLayout(this));	
 
 
-but.setBounds(70,500,70,70);
-this.setBackground(Color.white);
+this.add(NomFournisseur);
+this.add(labNomFour);
+this.add(numfact);
+this.add(labnumfact);
+this.add(ok);
+this.add(annule);
+
+
+this.setBackground(Color.blue);
 this.setVisible(true);
 
 //	this.add(ok);
 //	this.add(annule);
-//	ok.setBounds(30, 30, 20, 10);
+	ok.setBounds(30, 30, 100, 30);
 	
 	
 }
