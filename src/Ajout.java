@@ -15,45 +15,20 @@ import javax.swing.JTextField;
 
 public class Ajout extends JPanel{
 	//
-	JTextField nom       = new JTextField(10);
-	JLabel labnom        = new JLabel("اسم المنتوج");
-	JTextField referance = new JTextField(10);
-	JLabel labref        = new JLabel("علامة المنتوج");
-	/*JTextField prixAchat = new JTextField(10);
-	JLabel labachat      = new JLabel("ثمن الشراء");
-	JTextField prixvente = new JTextField(10);
-	JLabel labvente      = new JLabel("ثمن البيع");
-	JTextField qte       = new JTextField(10);
-	JLabel labqte        = new JLabel("الكمية ");
-	JTextField date      = new JTextField(10);
-	JLabel labdate       = new JLabel("التاريخ ");
-	 */
+	JTextField numfact       = new JTextField(10);
+	JLabel labnumfact        = new JLabel("اسم المنتوج");
+	JTextField NomFournisseur = new JTextField(10);
+	JLabel labNomFour        = new JLabel("علامة المنتوج");
 	
-//	JButton annule = new JButton("الغاء");
-//	JButton ok = new JButton("موافقة");
+	JButton annule = new JButton("الغاء");
+	JButton ok = new JButton("موافقة");
     JButton but = new JButton("dsdffd");
 
 public Ajout(){
    
 	
 this.setLayout(null);	
-//	this.add(nom);
-//	this.add(labnom);
-//
-//	this.add(referance);
-//	this.add(labref);
-/*
-	this.add(prixAchat);
-	this.add(labachat);
 
-	this.add(prixvente);
-	this.add(labvente);
-
-	this.add(qte);
-	this.add(labqte);
-
-	this.add(date);
-	this.add(labdate);*/
 this.add(but);
 
 

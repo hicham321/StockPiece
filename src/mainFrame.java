@@ -16,29 +16,29 @@ public class mainFrame extends JFrame {
     
     menubar menu= new menubar();
 	
-	mainPanel card1 = new mainPanel();
-	
-	Ajout card2= new Ajout();
-	
-	//ViewAjoutEnf card3= new ViewAjoutEnf();
-	
+    mainPanel card1 = new mainPanel();
+
+    Ajout card2= new Ajout();
+
+    //ViewAjoutEnf card3= new ViewAjoutEnf();
+
 	
 	public mainFrame(){
-		
-        setResizable(true);
-        //setSize(400,400); 
-        setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        //this.add(menu);
-        this.setJMenuBar(menu.menu);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        cards = new JPanel(new CardLayout());
-        
-        cards.add(card1, "Card 1");
-        cards.add(card2, "Card 2");
-//        cards.add(card3, "Card 3");
-        
-        getContentPane().add(cards); 
-	
+
+		setResizable(true);
+		//setSize(400,400); 
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//this.add(menu);
+		this.setJMenuBar(menu.menu);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cards = new JPanel(new CardLayout());
+
+		cards.add(card1, "Card 1");
+		cards.add(card2, "Card 2");
+		//        cards.add(card3, "Card 3");
+
+		getContentPane().add(cards); 
+
 	}
 	//Card1
 	public void addFrameActionLisner(ActionListener listner){
@@ -50,15 +50,15 @@ public class mainFrame extends JFrame {
 		this.menu.quiter.addActionListener(listner);
 		this.menu.sortiproduit.addActionListener(listner);
 		//this.menu.retour.addActionListener(listner);
-		
-//		this.card2.annule.addActionListener(listner);
-//		this.card2.ok.addActionListener(listner);
-		
+
+		//		this.card2.annule.addActionListener(listner);
+		//		this.card2.ok.addActionListener(listner);
+
 
 	}
 	//this is a menu listner for menus with no menu items
 	public void addFrameMenulistner(MenuListener menListner){
-		
+
 		this.menu.retour.addMenuListener(menListner);
 	}
 	
@@ -138,22 +138,22 @@ public class mainFrame extends JFrame {
 	//card2
 	
 	public JTextField getNom() {
-		return card2.nom;
+		return card2.numfact;
 	}
 
 
 	public void setNom(JTextField nom) {
-		card2.nom = nom;
+		card2.numfact = nom;
 	}
 
 
 	public JTextField getReferance() {
-		return card2.referance;
+		return card2.NomFournisseur;
 	}
 
 
 	public void setReferance(JTextField referance) {
-		card2.referance = referance;
+		card2.NomFournisseur = referance;
 	}
 
 
