@@ -20,6 +20,8 @@ public class Controller {
 	
 	private Register register = new Register();
 	
+	private addingquantity addingquantity;
+	
 	private File file ;
 	
 	private int returnVal;
@@ -56,6 +58,11 @@ public class Controller {
 		if(e.getSource()== frame.getAjoutprodui()){
 			CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 			cardLayout.show(frame.cards, "Card 2");	
+		}
+		if(e.getSource()==frame.getAjoutproduitButton()){
+			addingquantity=new addingquantity();
+			addingquantity.setVisible(true);
+			
 		}
 		
 		

@@ -19,6 +19,7 @@ public class Ajout extends JPanel {
 
 	JButton annule = new JButton("الغاء");
 	JButton ok = new JButton("موافقة");
+	JButton ajoutproduit = new JButton();
 	
 	JLabel prixTotalLab = new JLabel("المجموع الكلي");
 	JLabel prixTotal = new JLabel(" ");
@@ -35,6 +36,7 @@ public class Ajout extends JPanel {
 		this.add(ok);
 		this.add(annule);
         this.add(prixTotalLab);
+        this.add(ajoutproduit);
         //this is the total price label
         this.add(prixTotal);
         
@@ -49,11 +51,7 @@ public class Ajout extends JPanel {
         prixTotal.setBounds(1150, 630, 100, 20);
         annule.setBounds(1230, 580, 100, 30);
 		ok.setBounds(1100, 580, 100, 30);
+		ajoutproduit.setBounds(300, 300, 100, 30);
 
 	}
-
-
-	
-	
-
 }
