@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -154,6 +155,14 @@ public class mainFrame extends JFrame {
 
 	public void setReferance(JTextField referance) {
 		card2.NomFournisseur = referance;
+	}
+	public JLabel getPrixTotalLab() {
+		return card2.prixTotalLab;
+	}
+
+   //this is the total price for the products 
+	public void setPrixTotalLab(JLabel prixTotalLab) {
+		this.card2.prixTotalLab = prixTotalLab;
 	}
 
 
