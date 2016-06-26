@@ -30,11 +30,27 @@ public class addingquantity extends JFrame{
 			
 		    private JScrollPane ProduitNomListScrollPane = new JScrollPane(ajoutproduit); 
 		    			
-			private JTextField QTE = new JTextField(10);
+			private JTextField qte = new JTextField(10);
 			
 		    private JLabel labqte = new JLabel("الكمية");
 			
 			private JTextField motpasstext = new JTextField(10);
+			
+			private JButton annule = new JButton("الغاء");
+			
+			private JButton ok = new JButton("موافقة");
+			
+			//lower end of jpanel will contain labels for Lot quantity, global quantity and price
+		    private JLabel labQteLot = new JLabel("الكمية الجزئية");
+		    private JLabel labQteGlobal = new JLabel("الكمية الكلية");
+		    private JLabel labprixAchat = new JLabel("ثمن الشراء");
+		    private JLabel labprixVente = new JLabel("ثمن البيع");
+		    //these are modified labels to be set to the buy and sell prices
+		    private JLabel prixAchat = new JLabel(" ");
+		    private JLabel prixVente = new JLabel(" ");
+
+
+
 			
 			//for the reference of the product
 			//the model's only job is to hold information
@@ -88,6 +104,10 @@ public class addingquantity extends JFrame{
 		        
 		        JPanel panel = new JPanel();
 		        
+		        panel.add(qte);
+		        panel.add(labqte);
+		        panel.add(ok);
+		        panel.add(annule);
 		        panel.add(ajoutProduitComboBox);
 		        panel.add(ajoutRefComboBox);
 		        this.add(panel);
@@ -126,6 +146,17 @@ public class addingquantity extends JFrame{
 			public JComboBox getAjoutproduit() {
 				return ajoutproduit;
 			}
+
+			public JButton getAnnule() {
+				return annule;
+			}
+
+
+			public JButton getOk() {
+				return ok;
+			}
+
+			
 		    
 		    
 		    
