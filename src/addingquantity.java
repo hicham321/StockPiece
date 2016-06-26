@@ -14,7 +14,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class addingquantity extends JFrame{
 	
-		//for the name of the product 
+		    //for the name of the product 
 		    private JButton ajoutlot = new JButton("ajout");
 			
 			private JButton modifieLot = new JButton("modifie");
@@ -25,7 +25,7 @@ public class addingquantity extends JFrame{
 			
 			final JComboBox ajoutproduit = new JComboBox(ajoutprodnom); 
 			
-		//	final JComboBox ajoutref = new JComboBox();    
+		    //	final JComboBox ajoutref = new JComboBox();    
 
 			
 		    private JScrollPane ProduitNomListScrollPane = new JScrollPane(ajoutproduit); 
@@ -45,13 +45,13 @@ public class addingquantity extends JFrame{
 		    private JLabel labQteGlobal = new JLabel("الكمية الكلية");
 		    private JLabel labprixAchat = new JLabel("ثمن الشراء");
 		    private JLabel labprixVente = new JLabel("ثمن البيع");
-		    //these are modified labels to be set to the buy and sell prices
+		    
+		    //these are modified labels to be set to the buy and sell prices and qte Lot and qte globale
 		    private JLabel prixAchat = new JLabel(" ");
 		    private JLabel prixVente = new JLabel(" ");
+		    private JLabel qteLot  = new JLabel(" ");
+		    private JLabel qteGlobal = new JLabel(" ");
 
-
-
-			
 			//for the reference of the product
 			//the model's only job is to hold information
             final DefaultComboBoxModel ajoutprodmodel = new DefaultComboBoxModel();
@@ -63,7 +63,6 @@ public class addingquantity extends JFrame{
 		    
 		    //this is for the product type
             final DefaultComboBoxModel ajoutRefmodel = new DefaultComboBoxModel();
-            
             
         	final JComboBox ajoutRefComboBox  = new JComboBox(ajoutRefmodel);    
 						
@@ -106,6 +105,16 @@ public class addingquantity extends JFrame{
 		        
 		        panel.add(qte);
 		        panel.add(labqte);
+		        panel.add(labQteLot);
+		        panel.add(labQteGlobal);
+		        panel.add(labprixAchat);
+		        panel.add(labprixVente);
+		        panel.add(prixAchat);
+		        panel.add(prixVente);
+		        panel.add(qteGlobal);
+		        panel.add(qteLot);
+
+
 		        panel.add(ok);
 		        panel.add(annule);
 		        panel.add(ajoutProduitComboBox);
@@ -151,11 +160,26 @@ public class addingquantity extends JFrame{
 				return annule;
 			}
 
-
 			public JButton getOk() {
 				return ok;
 			}
 
+			public void setPrixAchat(JLabel prixAchat) {
+				this.prixAchat = prixAchat;
+			}
+
+			public void setPrixVente(JLabel prixVente) {
+				this.prixVente = prixVente;
+			}
+
+			public void setQteLot(JLabel qteLot) {
+				this.qteLot = qteLot;
+			}
+
+			public void setQteGlobal(JLabel qteGlobal) {
+				this.qteGlobal = qteGlobal;
+			}
+            
 			
 		    
 		    
