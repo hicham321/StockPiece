@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="C:/Users/Hicham/UCanAccess-3.0.4-bin/lib/jackcess-2.1.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/commons-codec-1.8.jar.zip"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/swingx-core-1.6.2-AutoCompletition.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

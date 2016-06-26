@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 public class addingquantity extends JFrame{
 	
 		//for the name of the product 
@@ -35,11 +37,21 @@ public class addingquantity extends JFrame{
 			private JTextField motpasstext = new JTextField(10);
 			
 			//for the reference of the product
-            final DefaultComboBoxModel ajoutprodref = new DefaultComboBoxModel();
-			
-			final JComboBox ajoutRef = new JComboBox(ajoutprodref); 
-			
-		    private JScrollPane reflistListScrol = new JScrollPane(ajoutRef); 
+			//the model's only job is to hold information
+            final DefaultComboBoxModel ajoutprodmodel = new DefaultComboBoxModel();
+            
+            
+        	final JComboBox ajoutProduitComboBox  = new JComboBox(ajoutprodmodel);    
+						
+		    private JScrollPane ajoutProduitListScrol = new JScrollPane(ajoutProduitComboBox); 
+		    
+		    //this is for the product type
+            final DefaultComboBoxModel ajoutRefmodel = new DefaultComboBoxModel();
+            
+            
+        	final JComboBox ajoutRefComboBox  = new JComboBox(ajoutRefmodel);    
+						
+		    private JScrollPane ajoutRefListScrol = new JScrollPane(ajoutRefComboBox); 
 
 			
 		public addingquantity(){
@@ -48,20 +60,36 @@ public class addingquantity extends JFrame{
 		        setSize(400,400);        
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        setLocationRelativeTo(null);
-
-		        //ajoutproduit.setSelectedIndex(0);
-                ajoutRef.setSelectedIndex(0);
+		        
+		        this.ajoutprodmodel.addElement("dcd");
+		        this.ajoutprodmodel.addElement("fgfg");
+		        this.ajoutprodmodel.addElement("dfcvbbcd");
+		        this.ajoutprodmodel.addElement("qsdqsd");
+		        this.ajoutprodmodel.addElement("klmkjlm");
+		        this.ajoutprodmodel.addElement("uioio");
+		        this.ajoutprodmodel.addElement("azee");
+		        this.ajoutprodmodel.addElement("xwxcxw");
+                
+		        AutoCompleteDecorator.decorate(ajoutProduitComboBox);
+		        ajoutProduitComboBox.setSelectedIndex(0);
+		        
+		        this.ajoutRefmodel.addElement("34");
+		        this.ajoutRefmodel.addElement("84784");
+		        this.ajoutRefmodel.addElement("8747");
+		        this.ajoutRefmodel.addElement("12132");
+		        this.ajoutRefmodel.addElement("1200998");
+		        this.ajoutRefmodel.addElement("3626");
+		        this.ajoutRefmodel.addElement("5343");
+		        this.ajoutRefmodel.addElement("2346544");
+		        
+		        AutoCompleteDecorator.decorate(ajoutRefComboBox);
+		        ajoutRefComboBox.setSelectedIndex(0);
+		        
+		        
 		        JPanel panel = new JPanel();
 		        
-		        /*panel.add(bienvenu);
-		        panel.add(saisielabel);
-		        panel.add(utilisateurlab);
-		        panel.add(utiltext);
-		        panel.add(motpasslab);
-		        panel.add(motpasstext);
-		        panel.add(ok);
-		        panel.add(annule);*/
-		        
+		        panel.add(ajoutProduitComboBox);
+		        panel.add(ajoutRefComboBox);
 		        this.add(panel);
 		        
 				
@@ -73,13 +101,7 @@ public class addingquantity extends JFrame{
 		}
 		
 		
-		    public void platformLook(){
-			 try { 
-				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-				    e.printStackTrace();
-				}
-		    }
+		   
 			public JButton getAjoutlot() {
 				return ajoutlot;
 			}
