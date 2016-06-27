@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.text.View;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -22,20 +23,10 @@ public class addingquantity extends JFrame{
 
 	private JButton supprimLot = new JButton("supprimé");
 
-	final DefaultComboBoxModel ajoutprodnom = new DefaultComboBoxModel();
-
-	final JComboBox ajoutproduit = new JComboBox(ajoutprodnom); 
-
-	//	final JComboBox ajoutref = new JComboBox();    
-
-
-	private JScrollPane ProduitNomListScrollPane = new JScrollPane(ajoutproduit); 
 
 	private JTextField qte = new JTextField(10);
 
 	private JLabel labqte = new JLabel("الكمية");
-
-	private JTextField motpasstext = new JTextField(10);
 
 	private JButton annule = new JButton("الغاء");
 
@@ -48,10 +39,10 @@ public class addingquantity extends JFrame{
 	private JLabel labprixVente = new JLabel("ثمن البيع");
 
 	//these are modified labels to be set to the buy and sell prices and qte Lot and qte globale
-	private JLabel prixAchat = new JLabel("3");
-	private JLabel prixVente = new JLabel("4");
-	private JLabel qteLot  = new JLabel("1");
-	private JLabel qteGlobal = new JLabel("2");
+	private JLabel prixAchat = new JLabel("");
+	private JLabel prixVente = new JLabel("");
+	private JLabel qteLot  = new JLabel("");
+	private JLabel qteGlobal = new JLabel("");
 
 	//for the reference of the product
 	//the model's only job is to hold information
@@ -77,7 +68,6 @@ public class addingquantity extends JFrame{
 		setSize(400,400);        
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-        setBackground(Color.white);
 
 		this.ajoutprodmodel.addElement("dcd");
 		this.ajoutprodmodel.addElement("fgfg");
@@ -107,6 +97,7 @@ public class addingquantity extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 
+        panel.setBackground(Color.decode("#d2fdf9"));
 		panel.add(qte);
 		panel.add(labqte);
 		panel.add(labQteLot);
@@ -127,7 +118,6 @@ public class addingquantity extends JFrame{
 		//
 		qte.setBounds(30, 100, 90, 20);
 		labqte.setBounds(130, 100, 90, 20);
-		
 		labQteLot.setBounds(300, 250, 90, 20);
 		labQteGlobal.setBounds(300, 280, 90, 20);
 		labprixAchat.setBounds(110, 250, 90, 20);
@@ -138,7 +128,6 @@ public class addingquantity extends JFrame{
 		qteLot.setBounds(250, 250, 90, 20);
 		ok.setBounds(120, 330, 90, 20);
 		annule.setBounds(230, 330, 90, 20);
-		//
 		ajoutProduitComboBox.setBounds(100, 20, 180, 20);
 		ajoutRefComboBox.setBounds(100, 50, 180, 20);
 
@@ -168,18 +157,7 @@ public class addingquantity extends JFrame{
 	public void setModifieLot(JButton modifieLot) {
 		this.modifieLot = modifieLot;
 	}
-	public JScrollPane getFruitListScrollPane() {
-		return ProduitNomListScrollPane;
-	}
-	public void setFruitListScrollPane(JScrollPane fruitListScrollPane) {
-		this.ProduitNomListScrollPane = fruitListScrollPane;
-	}
-	public DefaultComboBoxModel getFruitsName() {
-		return ajoutprodnom;
-	}
-	public JComboBox getAjoutproduit() {
-		return ajoutproduit;
-	}
+	
 
 	public JButton getAnnule() {
 		return annule;
