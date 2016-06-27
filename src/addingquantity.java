@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
@@ -47,10 +48,10 @@ public class addingquantity extends JFrame{
 	private JLabel labprixVente = new JLabel("ثمن البيع");
 
 	//these are modified labels to be set to the buy and sell prices and qte Lot and qte globale
-	private JLabel prixAchat = new JLabel(" ");
-	private JLabel prixVente = new JLabel(" ");
-	private JLabel qteLot  = new JLabel(" ");
-	private JLabel qteGlobal = new JLabel(" ");
+	private JLabel prixAchat = new JLabel("3");
+	private JLabel prixVente = new JLabel("4");
+	private JLabel qteLot  = new JLabel("1");
+	private JLabel qteGlobal = new JLabel("2");
 
 	//for the reference of the product
 	//the model's only job is to hold information
@@ -76,7 +77,7 @@ public class addingquantity extends JFrame{
 		setSize(400,400);        
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		//setLayout(null);
+        setBackground(Color.white);
 
 		this.ajoutprodmodel.addElement("dcd");
 		this.ajoutprodmodel.addElement("fgfg");
@@ -104,6 +105,7 @@ public class addingquantity extends JFrame{
 
 
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
 
 		panel.add(qte);
 		panel.add(labqte);
@@ -121,6 +123,27 @@ public class addingquantity extends JFrame{
 		panel.add(annule);
 		panel.add(ajoutProduitComboBox);
 		panel.add(ajoutRefComboBox);
+		
+		//
+		qte.setBounds(30, 100, 90, 20);
+		labqte.setBounds(130, 100, 90, 20);
+		
+		labQteLot.setBounds(300, 250, 90, 20);
+		labQteGlobal.setBounds(300, 280, 90, 20);
+		labprixAchat.setBounds(110, 250, 90, 20);
+		labprixVente.setBounds(110, 280, 90, 20);
+		prixAchat.setBounds(70, 250, 90, 20);
+		prixVente.setBounds(70, 280, 90, 20);
+		qteGlobal.setBounds(250, 280, 90, 20);
+		qteLot.setBounds(250, 250, 90, 20);
+		ok.setBounds(120, 330, 90, 20);
+		annule.setBounds(230, 330, 90, 20);
+		//
+		ajoutProduitComboBox.setBounds(100, 20, 180, 20);
+		ajoutRefComboBox.setBounds(100, 50, 180, 20);
+
+		
+		
 		this.add(panel);
 
 
