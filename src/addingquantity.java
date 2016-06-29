@@ -66,7 +66,7 @@ public class addingquantity extends JFrame{
 		setResizable(true);
 		setTitle("ادخال منتوج");
 		setSize(400,400);        
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 
 		this.ajoutprodmodel.addElement("dcd");
@@ -97,7 +97,7 @@ public class addingquantity extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 
-        panel.setBackground(Color.decode("#d2fdf9"));
+		panel.setBackground(Color.decode("#d2fdf9"));
 		panel.add(qte);
 		panel.add(labqte);
 		panel.add(labQteLot);
@@ -114,7 +114,7 @@ public class addingquantity extends JFrame{
 		panel.add(annule);
 		panel.add(ajoutProduitComboBox);
 		panel.add(ajoutRefComboBox);
-		
+
 		//
 		qte.setBounds(30, 100, 90, 20);
 		labqte.setBounds(130, 100, 90, 20);
@@ -131,14 +131,12 @@ public class addingquantity extends JFrame{
 		ajoutProduitComboBox.setBounds(100, 20, 180, 20);
 		ajoutRefComboBox.setBounds(100, 50, 180, 20);
 
-		
-		
 		this.add(panel);
 
-
 	}
-
 	public void addajoutlistner(ActionListener listner){
+		this.ok.addActionListener(listner);
+		this.annule.addActionListener(listner);
 
 
 	}
@@ -182,8 +180,6 @@ public class addingquantity extends JFrame{
 	public void setQteGlobal(JLabel qteGlobal) {
 		this.qteGlobal = qteGlobal;
 	}
-
-
 
 
 

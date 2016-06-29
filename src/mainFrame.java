@@ -12,18 +12,18 @@ import javax.swing.event.MenuListener;
 
 
 public class mainFrame extends JFrame {
-	
-    JPanel cards ;
-    
-    menubar menu= new menubar();
-	
-    mainPanel card1 = new mainPanel();
 
-    Ajout card2= new Ajout();
+	JPanel cards ;
 
-    //ViewAjoutEnf card3= new ViewAjoutEnf();
+	menubar menu= new menubar();
 
-	
+	mainPanel card1 = new mainPanel();
+
+	Ajout card2= new Ajout();
+
+	//ViewAjoutEnf card3= new ViewAjoutEnf();
+
+
 	public mainFrame(){
 
 		setResizable(true);
@@ -50,9 +50,9 @@ public class mainFrame extends JFrame {
 		this.menu.motpass.addActionListener(listner);
 		this.menu.quiter.addActionListener(listner);
 		this.menu.sortiproduit.addActionListener(listner);
-		
+
 		//this.menu.retour.addActionListener(listner);
-        this.card2.ajoutproduit.addActionListener(listner);
+		this.card2.ajoutproduit.addActionListener(listner);
 		this.card2.annule.addActionListener(listner);
 		this.card2.ok.addActionListener(listner);
 
@@ -63,7 +63,7 @@ public class mainFrame extends JFrame {
 
 		this.menu.retour.addMenuListener(menListner);
 	}
-	
+
 	public JButton getBut() {
 		return card1.but;
 	}
@@ -82,11 +82,11 @@ public class mainFrame extends JFrame {
 	public void setAjoutbase(JMenuItem ajoutbase) {
 		menu.ajoutbase = ajoutbase;
 	}
-	
+
 	public JMenu getRetour() {
 		return menu.retour;
 	}
-    
+
 
 	public JMenuItem getQuiter() {
 		return menu.quiter;
@@ -136,9 +136,9 @@ public class mainFrame extends JFrame {
 	public void setSortiproduit(JMenuItem sortiproduit) {
 		menu.sortiproduit = sortiproduit;
 	}	
-	
+
 	//card2
-	
+
 	public JTextField getNom() {
 		return card2.numfact;
 	}
@@ -161,7 +161,7 @@ public class mainFrame extends JFrame {
 		return card2.prixTotalLab;
 	}
 
-   //this is the total price for the products 
+	//this is the total price for the products 
 	public void setPrixTotalLab(JLabel prixTotalLab) {
 		this.card2.prixTotalLab = prixTotalLab;
 	}
@@ -205,7 +205,7 @@ public class mainFrame extends JFrame {
 	public void setDate(JTextField date) {
 		card2.date = date;
 	}
-*/
+	 */
 
 	public JButton getAnnule() {
 		return card2.annule;
@@ -214,7 +214,7 @@ public class mainFrame extends JFrame {
 	public JButton getOk() {
 		return card2.ok;
 	}
-	
+
 	public JButton getAjoutproduitButton() {
 		return card2.ajoutproduit;
 	}
