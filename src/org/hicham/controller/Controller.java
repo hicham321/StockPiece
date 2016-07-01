@@ -36,7 +36,7 @@ public class Controller {
 	private addingquantity addingquantity ;
 
 
-	public Controller(mainFrame frame, model model,Register register){
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity){
 
 		this.frame= frame;
 
@@ -44,13 +44,13 @@ public class Controller {
 
 		this.register = register;
 
+		this.addingquantity= addingquantity;
+
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
 		this.frame.addFrameActionLisner( new FrameAtionListner());
 
 		this.frame.addFrameMenulistner(new FrameMenuListner());
-
-		addingquantity= new addingquantity();
 
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
 
@@ -71,7 +71,7 @@ public class Controller {
 				cardLayout.show(frame.cards, "Card 2");	
 			}
 			if(e.getSource()==frame.getAjoutproduitButton()){
-				addingquantity=new addingquantity();
+				//addingquantity=new addingquantity();
 				addingquantity.setVisible(true);
 
 			}
@@ -128,6 +128,7 @@ public class Controller {
 
 						if((Arrays.equals(model.passdatabase().toCharArray(), register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
 							register.dispose();
+							frame.setEnabled(true);
 							//frame.dispose();
 						}	
 						else{
