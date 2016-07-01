@@ -1,5 +1,10 @@
 import javax.swing.UIManager;
 
+import org.hicham.controller.Controller;
+import org.hicham.model.model;
+import org.hicham.view.Register;
+import org.hicham.view.mainFrame;
+
 
 public class main {
 	 public static void main(String[] arguments) {
