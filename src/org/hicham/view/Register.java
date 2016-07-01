@@ -41,6 +41,17 @@ private JButton ok = new JButton("موافقة");
         setLocationRelativeTo(null);
         
         JPanel panel = new JPanel();
+        panel.setLayout(null);
+        
+        bienvenu.setBounds(180, 10, 100, 20);
+        saisielabel.setBounds(130, 20, 150, 20);
+        utilisateurlab.setBounds(300, 45, 100, 20);
+        utiltext.setBounds(100, 50, 170, 20);
+        motpasslab.setBounds(300, 75, 100, 20);
+        motpasstext.setBounds(100, 75, 170, 20);
+        ok.setBounds(80, 120, 100, 20);
+        annule.setBounds(200, 120, 100, 20);
+
         panel.add(bienvenu);
         panel.add(saisielabel);
         
