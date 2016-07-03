@@ -71,7 +71,7 @@ public class Controller {
 				cardLayout.show(frame.cards, "Card 2");	
 			}
 			if(e.getSource()==frame.getAjoutproduitButton()){
-				//addingquantity=new addingquantity();
+				frame.setEnabled(false);
 				addingquantity.setVisible(true);
 
 			}
@@ -161,6 +161,13 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==addingquantity.getAnnule()) {
 				addingquantity.dispose();
+				frame.setEnabled(true);
+			}
+			if (e.getSource()==addingquantity.getOk()) {
+				addingquantity.dispose();
+				//code for database insertions
+				frame.setEnabled(true);
+
 			}
 
 		}

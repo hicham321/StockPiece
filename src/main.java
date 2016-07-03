@@ -19,10 +19,9 @@ public class main {
 		Register r = new Register();
 		addingquantity a= new addingquantity();
 		Controller c = new Controller(frame, m, r,a);
-		frame.setEnabled(false);
 		frame.setVisible(true);
-
 		r.setVisible(true);
+		frame.setEnabled(false);
 
 	}
 
