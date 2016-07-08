@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/commons-codec-1.8.jar.zip"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/commons-codec-1.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/swingx-core-1.6.2-AutoCompletition.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
