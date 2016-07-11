@@ -1,5 +1,7 @@
 package org.hicham.view;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -26,6 +28,10 @@ public class mainFrame extends JFrame {
 
 
 	public mainFrame(){
+		
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			    setBounds(0,0,screenSize.width, screenSize.height);
+		//	    setVisible(true);
 
 		setResizable(true);
 		//setSize(400,400); 
