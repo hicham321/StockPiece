@@ -352,6 +352,12 @@ to a stored salted hash of the password. */
 				);
 		return Base64.encodeBase64String(key.getEncoded());
 	}
+	
+	//generation a random number 
+	public int generateRandomNumber(){
+		
+		return 3;
+	}
 
 
 

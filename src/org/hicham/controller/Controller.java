@@ -55,6 +55,8 @@ public class Controller {
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
 
 	}
+	//this is teh MainFrame action lisner it contains listners for all the panels inside the main frame
+	
 	class FrameAtionListner implements ActionListener{
 
 		@Override
@@ -167,6 +169,7 @@ public class Controller {
 				addingquantity.dispose();
 				//code for database insertions
 				frame.setEnabled(true);
+				//chacking if the input is a number or something else
 
 			}
 
