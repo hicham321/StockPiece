@@ -18,6 +18,7 @@ import org.hicham.view.mainFrame;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
+//This is the controller class of the project
 
 public class Controller {
 
@@ -55,7 +56,7 @@ public class Controller {
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
 
 	}
-	//this is teh MainFrame action lisner it contains listners for all the panels inside the main frame
+	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
 	
 	class FrameAtionListner implements ActionListener{
 
@@ -113,7 +114,7 @@ public class Controller {
 
 
 
-	//this is a separate actionListner class for register logic 
+	//This is a separate actionListner class for register logic 
 	class RegisterActionListner implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -131,6 +132,7 @@ public class Controller {
 						if((Arrays.equals(model.passdatabase().toCharArray(), register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
 							register.dispose();
 							frame.setEnabled(true);
+							frame.toFront();
 							//frame.dispose();
 						}	
 						else{
@@ -150,6 +152,8 @@ public class Controller {
 
 				register.dispose();
 				frame.setEnabled(true);
+				frame.toFront();
+
 			}
 
 		}
@@ -164,11 +168,15 @@ public class Controller {
 			if (e.getSource()==addingquantity.getAnnule()) {
 				addingquantity.dispose();
 				frame.setEnabled(true);
+				frame.toFront();
+
 			}
 			if (e.getSource()==addingquantity.getOk()) {
 				addingquantity.dispose();
 				//code for database insertions
 				frame.setEnabled(true);
+				frame.toFront();
+
 				//chacking if the input is a number or something else
 
 			}

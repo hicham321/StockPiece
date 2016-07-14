@@ -29,10 +29,9 @@ public class mainFrame extends JFrame {
 
 	public mainFrame(){
 		
-				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			    setBounds(0,0,screenSize.width, screenSize.height);
-		//	    setVisible(true);
-
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    setBounds(0,0,screenSize.width, screenSize.height);
+     
 		setResizable(true);
 		//setSize(400,400); 
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -46,7 +45,7 @@ public class mainFrame extends JFrame {
 		//        cards.add(card3, "Card 3");
 
 		getContentPane().add(cards); 
-
+        setEnabled(false);
 	}
 	//Card1
 	public void addFrameActionLisner(ActionListener listner){
