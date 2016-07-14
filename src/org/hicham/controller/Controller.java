@@ -12,6 +12,7 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 import org.hicham.model.model;
+import org.hicham.view.ChangePass;
 import org.hicham.view.Register;
 import org.hicham.view.addingquantity;
 import org.hicham.view.mainFrame;
@@ -35,9 +36,10 @@ public class Controller {
 	private JFileChooser filechooser = new JFileChooser();
 
 	private addingquantity addingquantity ;
+    
+	private ChangePass changePass= new ChangePass();
 
-
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity){
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass){
 
 		this.frame= frame;
 
@@ -46,6 +48,8 @@ public class Controller {
 		this.register = register;
 
 		this.addingquantity= addingquantity;
+		
+		this.changePass= changePass;
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
@@ -54,6 +58,8 @@ public class Controller {
 		this.frame.addFrameMenulistner(new FrameMenuListner());
 
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
+		
+		this.changePass.addChangePassListener(new ChangePassActionListener());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -77,6 +83,9 @@ public class Controller {
 				frame.setEnabled(false);
 				addingquantity.setVisible(true);
 
+			}
+			if (e.getSource()==frame.getMotpass()) {
+				changePass.setVisible(true);
 			}
 
 
@@ -178,6 +187,30 @@ public class Controller {
 				frame.toFront();
 
 				//chacking if the input is a number or something else
+
+			}
+
+		}
+
+	}
+
+	class ChangePassActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (arg0.getSource()==changePass.getOk()) {
+
+
+				changePass.dispose();
+				frame.setEnabled(true);
+				frame.toFront();
+
+			}
+			if (arg0.getSource()==changePass.getAnnule()) {
+
+				changePass.dispose();
+				frame.setEnabled(true);
+				frame.toFront();
 
 			}
 

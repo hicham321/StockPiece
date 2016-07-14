@@ -1,6 +1,7 @@
 package org.hicham.view;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,8 +32,7 @@ public class ChangePass extends JFrame {
 		
 		setTitle("تبديل كلمة السر");
 		setSize(400, 600);
-		setBackground(Color.white);
-		setLayout(null);
+		//setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -51,8 +51,16 @@ public class ChangePass extends JFrame {
 		
 		panel.add(ok);
 		panel.add(annule);
+		
+		panel.setBackground(Color.white);
+
         add(panel);
 
+	}
+	
+	public void addChangePassListener(ActionListener listener){
+		annule.addActionListener(listener);
+		ok.addActionListener(listener);
 	}
 
 

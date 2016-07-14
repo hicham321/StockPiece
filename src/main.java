@@ -2,6 +2,7 @@ import javax.swing.UIManager;
 
 import org.hicham.controller.Controller;
 import org.hicham.model.model;
+import org.hicham.view.ChangePass;
 import org.hicham.view.Register;
 import org.hicham.view.addingquantity;
 import org.hicham.view.mainFrame;
@@ -18,8 +19,8 @@ public class main {
 		model m = new model();
 		Register r = new Register();
 		addingquantity a= new addingquantity();
-		Controller c = new Controller(frame, m, r,a);
-		//frame.setEnabled(false);
+		ChangePass ch= new ChangePass();
+		Controller c = new Controller(frame, m, r,a,ch);
 		frame.setVisible(true);
 		r.setVisible(true);
 
