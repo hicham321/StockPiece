@@ -86,12 +86,12 @@ public class Register extends JFrame{
 		return annule;
 	}
 
-	public void setUtiltext(JTextField utiltext) {
-		this.utiltext = utiltext;
+	public void setUtiltext(String utiltext) {
+		this.utiltext.setText(utiltext);
 	}
 
-	public void setMotpasstext(JPasswordField  motpasstext) {
-		this.motpasstext = motpasstext;
+	public void setMotpasstext(String  motpasstext) {
+		this.motpasstext.setText(motpasstext);
 	}
 	public char[] getPassText(){
 		return this.motpasstext.getPassword();

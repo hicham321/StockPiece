@@ -85,6 +85,7 @@ public class Controller {
 
 			}
 			if (e.getSource()==frame.getMotpass()) {
+				frame.setEnabled(false);
 				changePass.setVisible(true);
 			}
 
@@ -146,7 +147,10 @@ public class Controller {
 							//frame.dispose();
 						}	
 						else{
+							register.setUtiltext("");
+							register.setMotpasstext("");
 							JOptionPane.showMessageDialog(null, "Mot de pass ou nom d'utilisateur incorrect");
+							
 						}
 
 					}
