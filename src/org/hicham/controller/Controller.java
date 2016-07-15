@@ -130,6 +130,7 @@ public class Controller {
 			if(e.getSource()== register.getOk()){
 				try{
 					model.connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+					//model.connectio("jdbc:ucanaccess://C:/Users/pc4u/ddd.accdb");
 					boolean thereispass= model.checkdatabase();
 					System.out.println("database pass "+model.passdatabase().toCharArray());
 					System.out.println("database user "+model.usernamedatabase());
