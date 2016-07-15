@@ -31,11 +31,23 @@ public class ChangePass extends JFrame {
 	public ChangePass(){
 		
 		setTitle("تبديل كلمة السر");
-		setSize(400, 600);
-		//setLayout(null);
+		setSize(350, 460);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
+		oldPassTextLabel.setBounds(200, 50, 120, 20);
+		oldPassText.setBounds(50, 50, 120, 20);
+		oldUserTextLabel.setBounds(200, 120, 120, 20);
+		oldUserText.setBounds(	50, 120, 120, 20);
+		newPassTextLabel.setBounds(200, 190, 120, 20);
+		newPassText.setBounds(50, 190, 120, 20);
+		newUserTextLabel.setBounds(200, 260, 120, 20);
+		newUserText.setBounds(50, 260, 120, 20);
+
+		ok.setBounds(200, 350, 120, 20);
+		annule.setBounds(30, 350, 120, 20);
+
 		
 		panel.add(oldPassTextLabel);
 		panel.add(oldPassText);
@@ -53,6 +65,7 @@ public class ChangePass extends JFrame {
 		panel.add(annule);
 		
 		panel.setBackground(Color.white);
+		panel.setLayout(null);
 
         add(panel);
         
