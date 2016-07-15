@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
+//this is  a view for changing the password
 public class ChangePass extends JFrame {
 	
 	JLabel oldPassTextLabel= new JLabel("كلمة السر القديمة");
@@ -55,7 +55,7 @@ public class ChangePass extends JFrame {
 		panel.setBackground(Color.white);
 
         add(panel);
-
+        
 	}
 	
 	public void addChangePassListener(ActionListener listener){
