@@ -114,19 +114,15 @@ public class model {
 	}
 	//insert product 
 
-	public void insertLo(String designation ,String Referance,double prixachat,double Prixvente,int qteglobal, Date date){
+	public void insertProd(String designation,int qteglobal){
 
 		try {
-			String query= "INSERT INTO Lot ( Nom , reference , prixachat , Prixvent , qte , date) VALUES ("+ "'"+ designation+ "'"+ "," + "'"+Referance +"'"+","+ "'"+prixachat +"'"+","+ "'"+Prixvente +"'"+ "'"+qteglobal +"'"+ "'"+date +"'"+")";        	        
+			String query= "INSERT INTO Lot ( designationProduit , QteGlobal) VALUES ("+ "'"+ designation+ "'"+ "," + "'"+qteglobal +"'"+")";        	        
 			ResultSet r= this.stmt.executeQuery(query);
 
 			while (r.next() ) {
-				designation = r.getString("Nom");
-				Referance = r.getString("Referance");
-				prixachat = r.getDouble("Prixachat");
-				Prixvente = r.getDouble("Prixvent");
+				designation = r.getString("designationProduit");
 				qteglobal= r.getInt("qte");
-				date = r.getDate("date");
 
 			}
 
@@ -137,12 +133,13 @@ public class model {
 		}
 
 	}
+	
 
 	//insert Lot
-	public void insertLot(String nom,String Referance,double prixachat,double Prixvente,int qte, Date date){
+	public void insertLot(String nom,String Referance,double prixachat,double Prixvente,int qte){
 
 		try {
-			String query= "INSERT INTO Lot ( Nom , reference , prixachat , Prixvent , qte , date) VALUES ("+ "'"+ nom+ "'"+ "," + "'"+Referance +"'"+","+ "'"+prixachat +"'"+","+ "'"+Prixvente +"'"+ "'"+qte +"'"+ "'"+date +"'"+")";        	        
+			String query= "INSERT INTO Lot ( Nom , reference , prixachat , Prixvent , qte ) VALUES ("+ "'"+ nom+ "'"+ "," + "'"+Referance +"'"+","+ "'"+prixachat +"'"+","+ "'"+Prixvente +"'"+ "'"+qte +"'"+")";        	        
 			ResultSet r= this.stmt.executeQuery(query);
 
 			while (r.next() ) {
@@ -151,7 +148,6 @@ public class model {
 				prixachat = r.getDouble("Prixachat");
 				Prixvente = r.getDouble("Prixvent");
 				qte= r.getInt("qte");
-				date = r.getDate("date");
 
 			}
 
