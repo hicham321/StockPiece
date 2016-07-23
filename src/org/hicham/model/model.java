@@ -154,6 +154,22 @@ public class model {
 		}
 
 	}
+	//delete product
+	public void deleteProd( int ID){
+
+		try {
+			String query= "DELETE FROM Produit WHERE IDprod = "+"'"+ ID+"'";
+        	        
+			ResultSet r= this.stmt.executeQuery(query);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+
+		}
+
+	}
+	
 	
 
 	//insert Lot
