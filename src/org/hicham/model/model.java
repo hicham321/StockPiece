@@ -133,6 +133,27 @@ public class model {
 		}
 
 	}
+	//update product (updating should only allow designation to be modified, Global quantity should be updated automatically)
+	
+	public void updateProd(String designation, int ID){
+
+		try {
+			String query= "UPDATE Produit SET designationProduit ='"+ designation +"'" + "WHERE IDprod= "+"'"+ ID+"'";
+        	        
+			ResultSet r= this.stmt.executeQuery(query);
+
+			/*while (r.next() ) {
+				designation = r.getString("designationProduit");
+
+			}*/
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+
+		}
+
+	}
 	
 
 	//insert Lot
