@@ -1,6 +1,7 @@
 package org.hicham.view;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.MenuItem;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
@@ -9,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -62,6 +65,18 @@ public class addingquantity extends JFrame{
 	final JComboBox ajoutRefComboBox  = new JComboBox(ajoutRefmodel);    
 
 	private JScrollPane ajoutRefListScrol = new JScrollPane(ajoutRefComboBox); 
+	
+	//adding Jlist Item
+	
+	private JButton choixBtn = new JButton();
+	
+	private JPopupMenu  popmenu= new JPopupMenu();
+	
+	JMenuItem ajouItem = new JMenuItem("اضافة");
+	
+	JMenuItem modifieItem = new JMenuItem("تغيير");
+
+	JMenuItem supItem = new JMenuItem("الغاء");
 
 
 	public addingquantity(){
@@ -120,7 +135,13 @@ public class addingquantity extends JFrame{
 		panel.add(ajoutProduitComboBox);
 		panel.add(ajoutRefComboBox);
 
-		//
+		//adding popupmenu
+		panel.add(choixBtn);
+		this.popmenu.add(ajouItem);
+		this.popmenu.add(modifieItem);
+		this.popmenu.add(supItem);
+
+		
 		qte.setBounds(30, 100, 90, 20);
 		labqte.setBounds(130, 100, 90, 20);
 		labQteLot.setBounds(300, 250, 90, 20);
@@ -135,6 +156,7 @@ public class addingquantity extends JFrame{
 		annule.setBounds(230, 330, 90, 20);
 		ajoutProduitComboBox.setBounds(100, 20, 180, 20);
 		ajoutRefComboBox.setBounds(100, 50, 180, 20);
+		choixBtn.setBounds(330, 50, 20, 20);
 
 		this.add(panel);
 
@@ -142,7 +164,7 @@ public class addingquantity extends JFrame{
 	public void addajoutlistner(ActionListener listner){
 		this.ok.addActionListener(listner);
 		this.annule.addActionListener(listner);
-
+        this.choixBtn.addActionListener(listner);
 
 	}
 
@@ -184,6 +206,15 @@ public class addingquantity extends JFrame{
 
 	public void setQteGlobal(JLabel qteGlobal) {
 		this.qteGlobal = qteGlobal;
+	}
+	
+	
+	public JButton getChoixBtn() {
+		return this.choixBtn;
+	}
+	
+	public JPopupMenu getPopmenu() {
+		return this.popmenu;
 	}
 
 

@@ -194,6 +194,10 @@ public class Controller {
 				//chacking if the input is a number or something else
 
 			}
+			if (e.getSource()==addingquantity.getChoixBtn()) {
+				//the show method uses the position of a component as a parameter in a gui, here it's used to show the popup menu according to the position of the chouxbtn
+				addingquantity.getPopmenu().show(addingquantity.getChoixBtn(), addingquantity.getChoixBtn().getBounds().x-312, addingquantity.getChoixBtn().getBounds().y-65 + addingquantity.getChoixBtn().getBounds().height);
+			}
 
 		}
 
