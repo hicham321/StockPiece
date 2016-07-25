@@ -66,7 +66,7 @@ public class addingquantity extends JFrame{
 
 	private JScrollPane ajoutRefListScrol = new JScrollPane(ajoutRefComboBox); 
 	
-	//adding Jlist Item
+	//adding popup menu for lot
 	
 	private JButton choixBtn = new JButton();
 	
@@ -77,6 +77,18 @@ public class addingquantity extends JFrame{
 	JMenuItem modifieItem = new JMenuItem("تغيير");
 
 	JMenuItem supItem = new JMenuItem("الغاء");
+	
+	//adding popup menu for lot
+
+	private JButton choixBtnDesignation = new JButton();
+
+	private JPopupMenu  popmenuProduit= new JPopupMenu();
+
+	JMenuItem ajouItemProd = new JMenuItem("اضافة");
+
+	JMenuItem modifieItemProd = new JMenuItem("تغيير");
+
+	JMenuItem supItemProd = new JMenuItem("الغاء");
 
 
 	public addingquantity(){
@@ -135,11 +147,16 @@ public class addingquantity extends JFrame{
 		panel.add(ajoutProduitComboBox);
 		panel.add(ajoutRefComboBox);
 
-		//adding popupmenu
+		//adding popupmenu for Lot
 		panel.add(choixBtn);
 		this.popmenu.add(ajouItem);
 		this.popmenu.add(modifieItem);
 		this.popmenu.add(supItem);
+		// adding popupmenu for product
+        panel.add(choixBtnDesignation);
+        this.popmenuProduit.add(ajouItemProd);
+        this.popmenuProduit.add(modifieItemProd);
+        this.popmenuProduit.add(supItemProd);
 
 		
 		qte.setBounds(30, 100, 90, 20);
@@ -157,6 +174,8 @@ public class addingquantity extends JFrame{
 		ajoutProduitComboBox.setBounds(100, 20, 180, 20);
 		ajoutRefComboBox.setBounds(100, 50, 180, 20);
 		choixBtn.setBounds(330, 50, 20, 20);
+		choixBtnDesignation.setBounds(330, 20, 20, 20);
+
 
 		this.add(panel);
 
@@ -165,6 +184,7 @@ public class addingquantity extends JFrame{
 		this.ok.addActionListener(listner);
 		this.annule.addActionListener(listner);
         this.choixBtn.addActionListener(listner);
+        this.choixBtnDesignation.addActionListener(listner);
 
 	}
 
@@ -216,7 +236,15 @@ public class addingquantity extends JFrame{
 	public JPopupMenu getPopmenu() {
 		return this.popmenu;
 	}
-
+	public JButton getChoixBtnDesignation() {
+		return choixBtnDesignation;
+	}
+	
+	public JPopupMenu getPopmenuProduit() {
+		return popmenuProduit;
+	}
+	
+    
 
 
 }
