@@ -12,6 +12,7 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 import org.hicham.model.model;
+import org.hicham.view.AjoutDonneInterface;
 import org.hicham.view.ChangePass;
 import org.hicham.view.Register;
 import org.hicham.view.addingquantity;
@@ -36,10 +37,12 @@ public class Controller {
 	private JFileChooser filechooser = new JFileChooser();
 
 	private addingquantity addingquantity ;
-    
+
 	private ChangePass changePass= new ChangePass();
 
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass){
+	private AjoutDonneInterface ajoutDonneInterface= new AjoutDonneInterface();
+
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface){
 
 		this.frame= frame;
 
@@ -48,8 +51,10 @@ public class Controller {
 		this.register = register;
 
 		this.addingquantity= addingquantity;
-		
+
 		this.changePass= changePass;
+
+		this.ajoutDonneInterface=ajoutDonneInterface;
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
@@ -58,12 +63,14 @@ public class Controller {
 		this.frame.addFrameMenulistner(new FrameMenuListner());
 
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
-		
+
 		this.changePass.addChangePassListener(new ChangePassActionListener());
+
+		this.ajoutDonneInterface.addAjoutDonneInterface(new AjoutDonneInterfaceListner());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
-	
+
 	class FrameAtionListner implements ActionListener{
 
 		@Override
@@ -150,7 +157,7 @@ public class Controller {
 							register.setUtiltext("");
 							register.setMotpasstext("");
 							JOptionPane.showMessageDialog(null, "Mot de pass ou nom d'utilisateur incorrect");
-							
+
 						}
 
 					}
@@ -199,7 +206,7 @@ public class Controller {
 				addingquantity.getPopmenu().show(addingquantity.getChoixBtn(), addingquantity.getChoixBtn().getBounds().x-312, addingquantity.getChoixBtn().getBounds().y-65 + addingquantity.getChoixBtn().getBounds().height);
 			}
 			if (e.getSource()==addingquantity.getChoixBtnDesignation()) {
-			    addingquantity.getPopmenuProduit().show(addingquantity.getChoixBtnDesignation(), addingquantity.getChoixBtnDesignation().getBounds().x-312, addingquantity.getChoixBtnDesignation().getBounds().y-65 + addingquantity.getChoixBtnDesignation().getBounds().height);
+				addingquantity.getPopmenuProduit().show(addingquantity.getChoixBtnDesignation(), addingquantity.getChoixBtnDesignation().getBounds().x-312, addingquantity.getChoixBtnDesignation().getBounds().y-65 + addingquantity.getChoixBtnDesignation().getBounds().height);
 			}
 
 		}
@@ -223,6 +230,21 @@ public class Controller {
 				changePass.dispose();
 				frame.setEnabled(true);
 				frame.toFront();
+
+			}
+
+		}
+
+	}
+	class AjoutDonneInterfaceListner implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (e.getSource()==ajoutDonneInterface.getOk()) {
+
+			}
+			if (e.getSource()==ajoutDonneInterface.getAnnule()) {
 
 			}
 
