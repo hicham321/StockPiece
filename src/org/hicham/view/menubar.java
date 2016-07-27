@@ -29,7 +29,7 @@ public class menubar {
 	
     JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
 	
- 	JMenu retour = new JMenu("عودة    ");
+ 	JMenu retour = new JMenu("الرئيسية    ");
 
 	
 	JMenu menuapropos = new JMenu("?");

@@ -84,11 +84,11 @@ public class addingquantity extends JFrame{
 
 	private JPopupMenu  popmenuProduit= new JPopupMenu();
 
-	JMenuItem ajouItemProd = new JMenuItem("اضافة");
+	private JMenuItem ajouItemProd = new JMenuItem("اضافة");
 
-	JMenuItem modifieItemProd = new JMenuItem("تغيير");
+	private JMenuItem modifieItemProd = new JMenuItem("تغيير");
 
-	JMenuItem supItemProd = new JMenuItem("الغاء");
+	private JMenuItem supItemProd = new JMenuItem("الغاء");
 
 
 	public addingquantity(){
@@ -185,6 +185,7 @@ public class addingquantity extends JFrame{
 		this.annule.addActionListener(listner);
         this.choixBtn.addActionListener(listner);
         this.choixBtnDesignation.addActionListener(listner);
+        this.ajouItem.addActionListener(listner);
 
 	}
 
@@ -243,6 +244,32 @@ public class addingquantity extends JFrame{
 	public JPopupMenu getPopmenuProduit() {
 		return popmenuProduit;
 	}
+	//
+	public JMenuItem getAjouItem() {
+		return ajouItem;
+	}
+	
+	public JMenuItem getModifieItem() {
+		return modifieItem;
+	}
+	
+	public JMenuItem getSupItem() {
+		return supItem;
+	}
+	
+	public JMenuItem getAjouItemProd() {
+		return ajouItemProd;
+	}
+	
+	public JMenuItem getModifieItemProd() {
+		return modifieItemProd;
+	}
+	
+	public JMenuItem getSupItemProd() {
+		return supItemProd;
+	}
+	
+	
 	
     
 

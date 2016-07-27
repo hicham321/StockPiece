@@ -50,6 +50,7 @@ public class AjoutDonneInterface extends JFrame {
 		this.ok.addActionListener(listner);
 		this.annule.addActionListener(listner);
 	}
+	
 
 	public JButton getOk() {
 		return ok;

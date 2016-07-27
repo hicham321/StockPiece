@@ -216,6 +216,13 @@ public class Controller {
 			if (e.getSource()==addingquantity.getChoixBtnDesignation()) {
 				addingquantity.getPopmenuProduit().show(addingquantity.getChoixBtnDesignation(), addingquantity.getChoixBtnDesignation().getBounds().x-312, addingquantity.getChoixBtnDesignation().getBounds().y-65 + addingquantity.getChoixBtnDesignation().getBounds().height);
 			}
+			if(e.getSource()==addingquantity.getAjouItem()){
+				
+				ajoutDonneInterface.setVisible(true);
+				frame.setEnabled(false);
+				addingquantity.setEnabled(false);
+				
+			}
 
 		}
 
@@ -250,10 +257,17 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if (e.getSource()==ajoutDonneInterface.getOk()) {
+				ajoutDonneInterface.dispose();
+				frame.setEnabled(true);
+				addingquantity.setEnabled(true);
+				frame.toFront();
 
 			}
 			if (e.getSource()==ajoutDonneInterface.getAnnule()) {
-
+				ajoutDonneInterface.dispose();
+				frame.setEnabled(true);
+				addingquantity.setEnabled(true);
+				frame.toFront();
 			}
 
 		}
