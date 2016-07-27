@@ -4,7 +4,9 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -33,6 +35,8 @@ public class Controller {
 	private File file ;
 
 	private int returnVal;
+	
+	private List<Integer> panelList = new ArrayList<>();
 
 	private JFileChooser filechooser = new JFileChooser();
 
@@ -85,6 +89,8 @@ public class Controller {
 			if(e.getSource()== frame.getAjoutprodui()){
 				CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 				cardLayout.show(frame.cards, "Card 2");	
+				//for navigating through panels 
+				panelList.add(2);
 			}
 			if(e.getSource()==frame.getAjoutproduitButton()){
 				frame.setEnabled(false);
@@ -116,6 +122,8 @@ public class Controller {
 			if(e.getSource()==frame.getRetour()){
 				CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 				cardLayout.show(frame.cards, "Card 1");	
+				//for going back and forth between layouts
+				panelList.add(1);
 
 			}
 		}
@@ -251,6 +259,45 @@ public class Controller {
 		}
 
 	}
+	//a method for navigating through the panels Uses a list of panel indexes
+
+	public void NavigatePanel(boolean back, boolean forth){
+		
+		//forth is only true if back is true at least once 
+		int dernierElementList= panelList.get(panelList.size()-1);
+		if(back){
+			switch (dernierElementList) {
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+
+
+			}
+		}
+		if(forth){
+			switch (dernierElementList) {
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+
+
+			}
+		}
+
+
+	} 
 
 }
 

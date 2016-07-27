@@ -2,6 +2,7 @@ import javax.swing.UIManager;
 
 import org.hicham.controller.Controller;
 import org.hicham.model.model;
+import org.hicham.view.AjoutDonneInterface;
 import org.hicham.view.ChangePass;
 import org.hicham.view.Register;
 import org.hicham.view.addingquantity;
@@ -20,7 +21,8 @@ public class main {
 		Register r = new Register();
 		addingquantity a= new addingquantity();
 		ChangePass ch= new ChangePass();
-		Controller c = new Controller(frame, m, r,a,ch);
+		AjoutDonneInterface ai= new AjoutDonneInterface();
+		Controller c = new Controller(frame, m, r,a,ch,ai);
 		frame.setVisible(true);
 		r.setVisible(true);
 
