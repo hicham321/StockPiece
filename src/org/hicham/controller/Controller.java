@@ -282,13 +282,13 @@ public class Controller {
 		if(back){
 			switch (dernierElementList) {
 			case 1:
-
+                showFirstCard();
 				break;
 			case 2:
-
+                showSecondCard();
 				break;
 			case 3:
-
+                showThirdCard();
 				break;
 
 
@@ -297,13 +297,13 @@ public class Controller {
 		if(forth){
 			switch (dernierElementList) {
 			case 1:
-
+                showFirstCard();
 				break;
 			case 2:
-
+                showSecondCard();
 				break;
 			case 3:
-
+                showThirdCard();
 				break;
 
 
@@ -312,6 +312,20 @@ public class Controller {
 
 
 	} 
+	public void showFirstCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 1");	
+	}
+	
+	public void showSecondCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 2");	
+	}
+	//to be implemented when third card is ready
+	public void showThirdCard(){
+		/*CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 3");	*/	
+	}
 
 }
 
