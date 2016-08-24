@@ -167,7 +167,7 @@ public class model {
     		}
 		
 	}
-
+    //this query is for getting Lot info after executing a search via the combobox
 	public void RechLot(String Nom ){
 		try {
 			String query= "SELECT * from  WHERE Mot= '" +Nom +"'" +" and "+"Prenom"+"'"+"'" ;	         	        
@@ -295,9 +295,9 @@ public class model {
 		return appending;
 
 	}
-	//this will write the chosen db path in a textfile
+	//this will write the chosen db path in a textfile for the next execution  
 
-	public void writdayabasepath(String dbpath, File f){
+	public void writdatabasepath(String dbpath, File f){
 		FileOutputStream stream = null;
 		PrintStream out = null;
 		try {
