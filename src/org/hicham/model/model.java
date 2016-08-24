@@ -55,57 +55,9 @@ public class model {
 
 			System.err.println("classnotfoundException: " + e.getMessage());
 		}
-	}
+	}	
 
-	//SQL pour insirer un enfant dans la base
-	public void InsirerEnfant (String Nom , String Prenom,int age, Date naissance,Date joindre, double prixconv, double prixpaye, Date datepay){
-
-		try{
-			String query= "INSERT INTO Enfant (Nom,Prenom ,age, Naissance,Date Joindre,Prix Conventioné,Prix Paye, Date Payment) VALUES("+ "'"+Nom +"'"+","+ "'"+Prenom +"'"+"," + "'"+ age+"'" +","+ "'"+naissance+"'"+ ","+"'"+joindre+ "'"+","+"'"+ prixconv+"'"+","+ "'"+prixpaye+"'" + "," +"'"+datepay +"'" +")" ;
-
-			ResultSet r= this.stmt.executeQuery(query);
-		}catch ( SQLException e) {
-			System.out.println("sql exception : "+ e);
-		}
-
-
-
-
-	}
-
-	//SQL pour insirer un employe dans la base 
-	public void InsirerEmploye(String nom , String prenom , boolean payment , double prix ){
-
-		try{
-			String query= "INSERT INTO Employe ( Nom , Prenom , Payement , Prix ) VALUES ("+ "'"+ nom+ "'"+ "," + "'"+prenom +"'"+","+ "'"+payment +"'"+","+ "'"+prix +"'"+")";
-
-			ResultSet r= this.stmt.executeQuery(query);
-		}catch ( SQLException e) {
-			System.out.println("sql exception : "+ e);
-		}
-
-
-	}
-	public void rechEmployer(String nom , String prenom){
-		try {
-			String query= "SELECT * from  WHERE Mot= '" +nom +"'" +" and "+"Prenom"+"'"+prenom+"'" ;	         	        
-			ResultSet r= this.stmt.executeQuery(query);
-
-			while (r.next() ) {
-				String Nom = r.getString("Nom");
-				String Prenom = r.getString("Prenom");
-				String Payement = r.getString("Payement");
-				String Prix = r.getString("Prix");
-
-			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-
-		}
-
-	}
+	
 	//Search product
 	// used with combobox 
 	public void searchLot(){
@@ -172,7 +124,7 @@ public class model {
 	
 	
 
-	//insert Lot
+	//insert Lot(ajouté Lot)
 	public void insertLot(String nom,String Referance,double prixachat,double Prixvente,int qte){
 
 		try {
@@ -194,6 +146,26 @@ public class model {
 
 		}
 
+	}
+	//to add quantity or subtract it from LOT one should write an update query to an already inserted LOt 
+	//it should also modify the global quantity accordingly:
+	public void addQteLot(int qte, int idLot){
+		try{
+		String query= "UPDATE Lot SET qte =qte + '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
+		ResultSet r= stmt.executeQuery(query);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	//this query is for substracting quantity
+    public void substractQteLot(int qte, int idLot ){
+    	try{
+    		String query= "UPDATE Lot SET qte =qte - '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
+    		ResultSet r= stmt.executeQuery(query);
+    		}catch(Exception e){
+    			System.out.println(e);
+    		}
+		
 	}
 
 	public void RechLot(String Nom ){

@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="C:/Users/Hicham/commons-codec-1.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/swingx-core-1.6.2-AutoCompletition.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/seaglasslookandfeel-0.1.7.3.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/seaglasslookandfeel-0.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
