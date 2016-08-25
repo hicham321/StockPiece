@@ -87,8 +87,7 @@ public class Controller {
 			}
 
 			if(e.getSource()== frame.getAjoutprodui()){
-				CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
-				cardLayout.show(frame.cards, "Card 2");	
+				showSecondCard();	
 				//for navigating through panels 
 				panelList.add(2);
 			}
@@ -120,8 +119,7 @@ public class Controller {
 		public void menuSelected(MenuEvent e) {
 			// TODO Auto-generated method stub
 			if(e.getSource()==frame.getRetour()){
-				CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
-				cardLayout.show(frame.cards, "Card 1");	
+				showFirstCard();
 				//for going back and forth between layouts
 				panelList.add(1);
 
