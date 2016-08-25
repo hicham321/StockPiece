@@ -13,5 +13,12 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/seaglasslookandfeel-0.1.7.3.jar.zip"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/seaglasslookandfeel-0.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/commons-collections-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/commons-digester-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/commons-logging-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/itext-2.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/jasperreports-3.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/jdt-compiler-3.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
