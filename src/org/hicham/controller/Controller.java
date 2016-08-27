@@ -165,8 +165,7 @@ public class Controller {
 
 						if((Arrays.equals(model.passdatabase().toCharArray(), register.getPassText()))&(model.usernamedatabase().equals(register.getUtilisateurText()))){
 							register.dispose();
-							frame.setEnabled(true);
-							frame.toFront();
+							enableFrame();
 							//frame.dispose();
 						}	
 						else{
@@ -188,8 +187,7 @@ public class Controller {
 			if(e.getSource()== register.getAnnule()){
 
 				register.dispose();
-				frame.setEnabled(true);
-				frame.toFront();
+				enableFrame();
 
 			}
 
@@ -204,15 +202,13 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==addingquantity.getAnnule()) {
 				addingquantity.dispose();
-				frame.setEnabled(true);
-				frame.toFront();
+				enableFrame();
 
 			}
 			if (e.getSource()==addingquantity.getOk()) {
 				addingquantity.dispose();
 				//code for database insertions
-				frame.setEnabled(true);
-				frame.toFront();
+				enableFrame();
 
 				//chacking if the input is a number or something else
 
@@ -301,15 +297,13 @@ public class Controller {
 
 
 				changePass.dispose();
-				frame.setEnabled(true);
-				frame.toFront();
+				enableFrame();
 
 			}
 			if (arg0.getSource()==changePass.getAnnule()) {
 
 				changePass.dispose();
-				frame.setEnabled(true);
-				frame.toFront();
+				enableFrame();
 
 			}
 
@@ -323,16 +317,13 @@ public class Controller {
 			// TODO Auto-generated method stub
 			if (e.getSource()==ajoutDonneInterface.getOk()) {
 				ajoutDonneInterface.dispose();
-				frame.setEnabled(true);
 				addingquantity.setEnabled(true);
-				frame.toFront();
-
+				enableFrame();
 			}
 			if (e.getSource()==ajoutDonneInterface.getAnnule()) {
 				ajoutDonneInterface.dispose();
-				frame.setEnabled(true);
 				addingquantity.setEnabled(true);
-				frame.toFront();
+				enableFrame();
 			}
 
 		}
@@ -390,7 +381,11 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 3");	
 	}
-
+	public void enableFrame(){
+		frame.setEnabled(true);
+		frame.toFront();
+	}
+   
 }
 
 
