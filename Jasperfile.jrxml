@@ -5,10 +5,10 @@
  
 <jasperReport name="HelloJasper_report">
  <detail>
-    <band height="20">
+    <band height="70">
       <staticText>
-        <reportElement x="220" y="0" width="200" height="20"/>
-        <text><![CDATA[Hello Sensei!]]></text>
+        <reportElement x="240" y="0" width="200" height="60"/>
+        <text><![CDATA[Hello Sensein efkl,gnggjfn!]]></text>
       </staticText>
     </band>
   </detail>

@@ -3,6 +3,8 @@ package org.hicham.controller;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +69,8 @@ public class Controller {
 		this.frame.addFrameMenulistner(new FrameMenuListner());
 
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
+		
+		this.addingquantity	.addWindowListnerToAddingquantity(new WindowListenerForAddingquantity());
 
 		this.changePass.addChangePassListener(new ChangePassActionListener());
 
@@ -224,6 +228,63 @@ public class Controller {
 
 		}
 
+	}
+	class WindowListenerForAddingquantity implements WindowListener{
+
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+
+		}
+
+		@Override
+		public void windowOpened(WindowEvent e) {
+			// TODO Auto-generated method stub
+			frame.setEnabled(true);
+            System.out.println("this shit executes");
+
+		}
 	}
 
 	class ChangePassActionListener implements ActionListener{

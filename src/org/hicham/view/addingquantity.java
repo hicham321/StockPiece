@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.MenuItem;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -98,7 +100,7 @@ public class addingquantity extends JFrame{
 		setResizable(true);
 		setTitle("ادخال منتوج");
 		setSize(400,400);        
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 
 		this.ajoutprodmodel.addElement("dcd");
@@ -268,12 +270,11 @@ public class addingquantity extends JFrame{
 	public JMenuItem getSupItemProd() {
 		return supItemProd;
 	}
+    //window listners
+	public void addWindowListnerToAddingquantity(WindowListener winddowListner){
+		
+	}
 	
-	
-	
-    
-
-
 }
 
 
