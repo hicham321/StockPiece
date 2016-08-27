@@ -104,6 +104,12 @@ public class Controller {
 				frame.setEnabled(false);
 				changePass.setVisible(true);
 			}
+			if(e.getSource()== frame.getSortiproduit()){
+				showThirdCard();
+				panelList.add(3);
+
+
+			}
 
 
 		}
@@ -380,10 +386,9 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 2");	
 	}
-	//to be implemented when third card is ready
 	public void showThirdCard(){
-		/*CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
-		cardLayout.show(frame.cards, "Card 3");	*/	
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 3");	
 	}
 
 }

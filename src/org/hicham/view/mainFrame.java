@@ -23,6 +23,9 @@ public class mainFrame extends JFrame {
 	mainPanel card1 = new mainPanel();
 
 	Ajout card2= new Ajout();
+	
+	Destockage card3= new Destockage();
+	
 
 	//ViewAjoutEnf card3= new ViewAjoutEnf();
 
@@ -42,7 +45,7 @@ public class mainFrame extends JFrame {
 
 		cards.add(card1, "Card 1");
 		cards.add(card2, "Card 2");
-		//        cards.add(card3, "Card 3");
+		cards.add(card3, "Card 3");
 
 		getContentPane().add(cards); 
         setEnabled(false);
@@ -61,6 +64,7 @@ public class mainFrame extends JFrame {
 		this.card2.ajoutproduit.addActionListener(listner);
 		this.card2.annule.addActionListener(listner);
 		this.card2.ok.addActionListener(listner);
+		
 
 
 	}
