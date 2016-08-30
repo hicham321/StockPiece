@@ -37,7 +37,7 @@ public class Controller {
 	private File file ;
 
 	private int returnVal;
-	
+
 	private List<Integer> panelList = new ArrayList<>();
 
 	private JFileChooser filechooser = new JFileChooser();
@@ -69,7 +69,7 @@ public class Controller {
 		this.frame.addFrameMenulistner(new FrameMenuListner());
 
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
-		
+
 		this.addingquantity	.addWindowListnerToAddingquantity(new WindowListenerForAddingquantity());
 
 		this.changePass.addChangePassListener(new ChangePassActionListener());
@@ -221,11 +221,11 @@ public class Controller {
 				addingquantity.getPopmenuProduit().show(addingquantity.getChoixBtnDesignation(), addingquantity.getChoixBtnDesignation().getBounds().x-312, addingquantity.getChoixBtnDesignation().getBounds().y-65 + addingquantity.getChoixBtnDesignation().getBounds().height);
 			}
 			if(e.getSource()==addingquantity.getAjouItem()){
-				
+
 				ajoutDonneInterface.setVisible(true);
 				frame.setEnabled(false);
 				addingquantity.setEnabled(false);
-				
+
 			}
 
 		}
@@ -237,7 +237,7 @@ public class Controller {
 		public void windowActivated(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 
 		}
 
@@ -245,7 +245,7 @@ public class Controller {
 		public void windowClosed(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 
 		}
 
@@ -253,7 +253,7 @@ public class Controller {
 		public void windowClosing(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 
 		}
 
@@ -261,7 +261,7 @@ public class Controller {
 		public void windowDeactivated(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 
 		}
 
@@ -269,14 +269,14 @@ public class Controller {
 		public void windowDeiconified(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 		}
 
 		@Override
 		public void windowIconified(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 
 		}
 
@@ -284,7 +284,7 @@ public class Controller {
 		public void windowOpened(WindowEvent e) {
 			// TODO Auto-generated method stub
 			frame.setEnabled(true);
-            System.out.println("this shit executes");
+			System.out.println("this shit executes");
 
 		}
 	}
@@ -332,19 +332,19 @@ public class Controller {
 	//a method for navigating through the panels Uses a list of panel indexes
 
 	public void NavigatePanel(boolean back, boolean forth){
-		
+
 		//forth is only true if back is true at least once 
 		int dernierElementList= panelList.get(panelList.size()-1);
 		if(back){
 			switch (dernierElementList) {
 			case 1:
-                showFirstCard();
+				showFirstCard();
 				break;
 			case 2:
-                showSecondCard();
+				showSecondCard();
 				break;
 			case 3:
-                showThirdCard();
+				showThirdCard();
 				break;
 
 
@@ -353,13 +353,13 @@ public class Controller {
 		if(forth){
 			switch (dernierElementList) {
 			case 1:
-                showFirstCard();
+				showFirstCard();
 				break;
 			case 2:
-                showSecondCard();
+				showSecondCard();
 				break;
 			case 3:
-                showThirdCard();
+				showThirdCard();
 				break;
 
 
@@ -372,7 +372,7 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 1");	
 	}
-	
+
 	public void showSecondCard(){
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 2");	
@@ -385,7 +385,7 @@ public class Controller {
 		frame.setEnabled(true);
 		frame.toFront();
 	}
-   
+
 }
 
 

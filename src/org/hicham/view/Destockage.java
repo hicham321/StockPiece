@@ -20,7 +20,7 @@ public class Destockage extends JPanel{
 	JButton ajoutproduit = new JButton();
 	
 	JLabel prixTotalLab = new JLabel("المجموع الكلي");
-	JLabel prixTotal = new JLabel(" ");
+	JLabel prixTotal = new JLabel("0");
 
      
 	public Destockage() {

@@ -133,15 +133,9 @@ public class mainFrame extends JFrame {
 	}
 
 
-	public void setListproduit(JMenuItem listproduit) {
-		menu.listproduit = listproduit;
-	}
-
-
 	public JMenuItem getSortiproduit() {
 		return menu.sortiproduit;
 	}
-
 
 	public void setSortiproduit(JMenuItem sortiproduit) {
 		menu.sortiproduit = sortiproduit;

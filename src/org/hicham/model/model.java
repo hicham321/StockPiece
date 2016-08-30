@@ -14,12 +14,16 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
+
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.codec.binary.Base64;
 import org.hsqldb.Tokens;
@@ -57,7 +61,7 @@ public class model {
 		}
 	}	
 
-	
+
 	//Search product
 	// used with combobox 
 	public void searchLot(){
@@ -86,12 +90,12 @@ public class model {
 
 	}
 	//update product (updating should only allow designation to be modified, Global quantity should be updated automatically)
-	
+
 	public void updateProd(String designation, int ID){
 
 		try {
 			String query= "UPDATE Produit SET designationProduit ='"+ designation +"'" + "WHERE IDprod= "+"'"+ ID+"'";
-        	        
+
 			ResultSet r= this.stmt.executeQuery(query);
 
 			/*while (r.next() ) {
@@ -111,7 +115,7 @@ public class model {
 
 		try {
 			String query= "DELETE FROM Produit WHERE IDprod = "+"'"+ ID+"'";
-        	        
+
 			ResultSet r= this.stmt.executeQuery(query);
 
 		} catch (Exception e) {
@@ -121,8 +125,8 @@ public class model {
 		}
 
 	}
-	
-	
+
+
 
 	//insert Lot(ajouté Lot)
 	public void insertLot(String nom,String Referance,double prixachat,double Prixvente,int qte){
@@ -151,23 +155,23 @@ public class model {
 	//it should also modify the global quantity accordingly:
 	public void addQteLot(int qte, int idLot){
 		try{
-		String query= "UPDATE Lot SET qte =qte + '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
-		ResultSet r= stmt.executeQuery(query);
+			String query= "UPDATE Lot SET qte =qte + '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
+			ResultSet r= stmt.executeQuery(query);
 		}catch(Exception e){
 			System.out.println(e);
 		}
 	}
 	//this query is for substracting quantity
-    public void substractQteLot(int qte, int idLot ){
-    	try{
-    		String query= "UPDATE Lot SET qte =qte - '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
-    		ResultSet r= stmt.executeQuery(query);
-    		}catch(Exception e){
-    			System.out.println(e);
-    		}
-		
+	public void substractQteLot(int qte, int idLot ){
+		try{
+			String query= "UPDATE Lot SET qte =qte - '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
+			ResultSet r= stmt.executeQuery(query);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
 	}
-    //this query is for getting Lot info after executing a search via the combobox
+	//this query is for getting Lot info after executing a search via the combobox
 	public void RechLot(String Nom ){
 		try {
 			String query= "SELECT * from  WHERE Mot= '" +Nom +"'" +" and "+"Prenom"+"'"+"'" ;	         	        
@@ -190,6 +194,34 @@ public class model {
 		}
 
 	}
+	//this method is to create a table model for the Jtables
+	public static DefaultTableModel buildTableModel(ResultSet rs)
+			throws SQLException {
+
+		ResultSetMetaData metaData = rs.getMetaData();
+
+		// names of columns
+		Vector<String> columnNames = new Vector<String>();
+		int columnCount = metaData.getColumnCount();
+		for (int column = 1; column <= columnCount; column++) {
+			columnNames.add(metaData.getColumnName(column));
+		}
+
+		// data of the table
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		while (rs.next()) {
+			Vector<Object> vector = new Vector<Object>();
+			for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+				vector.add(rs.getObject(columnIndex));
+			}
+			data.add(vector);
+		}
+
+		return new DefaultTableModel(data, columnNames);
+
+	}
+
+
 	//verify if the register table is empty to allow 
 
 	public boolean checkdatabase (){
@@ -359,33 +391,33 @@ to a stored salted hash of the password. */
 	}
 	//is Integer method **checks if a given String is an Integer** 
 	public static boolean isInteger(String str) {
-	    if (str == null) {
-	        return false;
-	    }
-	    int length = str.length();
-	    if (length == 0) {
-	        return false;
-	    }
-	    int i = 0;
-	    if (str.charAt(0) == '-') {
-	        if (length == 1) {
-	            return false;
-	        }
-	        i = 1;
-	    }
-	    for (; i < length; i++) {
-	        char c = str.charAt(i);
-	        if (c < '0' || c > '9') {
-	            return false;
-	        }
-	    }
-	    return true;
+		if (str == null) {
+			return false;
+		}
+		int length = str.length();
+		if (length == 0) {
+			return false;
+		}
+		int i = 0;
+		if (str.charAt(0) == '-') {
+			if (length == 1) {
+				return false;
+			}
+			i = 1;
+		}
+		for (; i < length; i++) {
+			char c = str.charAt(i);
+			if (c < '0' || c > '9') {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	
+
 	//generation a random number 
 	public int generateRandomNumber(){
-		
+
 		return 3;
 	}
 
