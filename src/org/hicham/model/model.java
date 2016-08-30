@@ -220,8 +220,20 @@ public class model {
 		return new DefaultTableModel(data, columnNames);
 
 	}
+	//quries to execute for Jtable model listProduit
+    public ResultSet listProduitToutResultat()throws SQLException{
+    	
+        ResultSet rs = stmt.executeQuery("select * from Lot");
 
+    	return rs;
+    }
+    public ResultSet listProduitDisponibleResultat()throws SQLException{
+    	
+        ResultSet rs = stmt.executeQuery("select * from Lot Where lot.qte > 0");
 
+    	return rs;
+    }
+    
 	//verify if the register table is empty to allow 
 
 	public boolean checkdatabase (){
