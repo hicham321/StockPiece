@@ -21,7 +21,7 @@ public class ListProduit extends JPanel{
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
 		this.add(buttt);
-		//this.add(ListProduitTable);
+		this.add(ListProduitTable);
 		//this.ListProduitTable.setBounds(20,60 , 400, 400);
 		this.setVisible(true);
 

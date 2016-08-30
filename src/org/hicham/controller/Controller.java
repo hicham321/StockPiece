@@ -112,15 +112,15 @@ public class Controller {
 				panelList.add(3);
 			}
 			if(e.getSource()==frame.getListproduit()){
-				//try{
-					/*ResultSet rs= model.listProduitToutResultat();
+				try{
+					ResultSet rs= model.listProduitToutResultat();
                     DefaultTableModel dtm = model.buildTableModel(rs);
-					frame.setListProduitTablemodel(dtm);*/
+					frame.setListProduitTablemodel(dtm);
 					showFourthCard();
 					panelList.add(4);
-				/*}catch(SQLException ex){
+				}catch(SQLException ex){
 					ex.printStackTrace();
-				}*/
+				}
 			}
 
 
