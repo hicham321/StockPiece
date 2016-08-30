@@ -4,30 +4,29 @@ package org.hicham.view;
 import java.awt.Color;
 
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 //this contains the Jtable for teh list of products
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class ListProduit extends JFrame {
 
-	JTable ListProduitTable;
-
+public class ListProduit extends JPanel{
+	
+	JTable ListProduitTable=new JTable();
+    JButton buttt = new JButton("dsdfdf");
+    
 	public ListProduit(){
-		this.setLayout(null);
+		
+		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
-		this.add(ListProduitTable);
+		this.add(buttt);
+		//this.add(ListProduitTable);
+		//this.ListProduitTable.setBounds(20,60 , 400, 400);
 		this.setVisible(true);
 
 	} 
-	//set and get for ListProduitTable
-	public JTable getListProduitTable() {
-		return ListProduitTable;
-	}
-
-	public void setListProduitTable(JTable listProduitTable) {
-		ListProduitTable = listProduitTable;
-	}
+	
 	//to keep the Jtable separate from the model you can call the Jtable from the controller once you click the view 
 	/*this is how to sort a Jtable (without needing to create other queries)
 JTable table = new JTable(tableModel);

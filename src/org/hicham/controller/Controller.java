@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+import javax.swing.table.DefaultTableModel;
 
 import org.hicham.model.model;
 import org.hicham.view.AjoutDonneInterface;
@@ -64,7 +67,7 @@ public class Controller {
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
-		this.frame.addFrameActionLisner( new FrameAtionListner());
+		this.frame.addFrameActionLisner( new FrameActionListner());
 
 		this.frame.addFrameMenulistner(new FrameMenuListner());
 
@@ -79,10 +82,10 @@ public class Controller {
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
 
-	class FrameAtionListner implements ActionListener{
+	class FrameActionListner implements ActionListener{
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e)   {
 			if(e.getSource()==frame.getAjoutbase()){
 				returnVal = filechooser.showOpenDialog(null);
 				if(returnVal == JFileChooser.APPROVE_OPTION){
@@ -107,8 +110,17 @@ public class Controller {
 			if(e.getSource()== frame.getSortiproduit()){
 				showThirdCard();
 				panelList.add(3);
-
-
+			}
+			if(e.getSource()==frame.getListproduit()){
+				//try{
+					/*ResultSet rs= model.listProduitToutResultat();
+                    DefaultTableModel dtm = model.buildTableModel(rs);
+					frame.setListProduitTablemodel(dtm);*/
+					showFourthCard();
+					panelList.add(4);
+				/*}catch(SQLException ex){
+					ex.printStackTrace();
+				}*/
 			}
 
 
@@ -381,6 +393,11 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 3");	
 	}
+	public void showFourthCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 4");	
+	}
+	
 	public void enableFrame(){
 		frame.setEnabled(true);
 		frame.toFront();

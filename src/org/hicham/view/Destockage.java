@@ -1,6 +1,5 @@
 package org.hicham.view;
 import java.awt.Color;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;

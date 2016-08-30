@@ -10,22 +10,25 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.MenuListener;
+import javax.swing.table.DefaultTableModel;
 
 
 public class mainFrame extends JFrame {
 
 	public JPanel cards ;
 
-	menubar menu= new menubar();
+	private menubar menu= new menubar();
 
-	mainPanel card1 = new mainPanel();
+	private mainPanel card1 = new mainPanel();
 
-	Ajout card2= new Ajout();
+	private Ajout card2= new Ajout();
 	
-	Destockage card3= new Destockage();
+	private Destockage card3= new Destockage();
 	
+	private ListProduit card4= new ListProduit();
 
 	//ViewAjoutEnf card3= new ViewAjoutEnf();
 
@@ -46,6 +49,7 @@ public class mainFrame extends JFrame {
 		cards.add(card1, "Card 1");
 		cards.add(card2, "Card 2");
 		cards.add(card3, "Card 3");
+		cards.add(card4, "Card 4");
 
 		getContentPane().add(cards); 
         setEnabled(false);
@@ -221,6 +225,15 @@ public class mainFrame extends JFrame {
 
 	public JButton getAjoutproduitButton() {
 		return card2.ajoutproduit;
+	}
+	//card4
+	//set and get for ListProduitTable
+	public JTable getListProduitTable() {
+		return card4.ListProduitTable;
+	}
+
+	public void setListProduitTablemodel (DefaultTableModel tb) {
+		card4.ListProduitTable = new JTable(tb);
 	}
 
 
