@@ -174,7 +174,7 @@ public class model {
 	//this query is for getting Lot info after executing a search via the combobox
 	public void RechLot(String Nom ){
 		try {
-			String query= "SELECT * from  WHERE Mot= '" +Nom +"'" +" and "+"Prenom"+"'"+"'" ;	         	        
+			String query= "SELECT * from Lot WHERE Mot= '" +Nom +"'" +" and "+"Prenom"+"'"+"'" ;	         	        
 			ResultSet r= this.stmt.executeQuery(query);
 
 			while (r.next() ) {
@@ -222,8 +222,8 @@ public class model {
 	}
 	//quries to execute for Jtable model listProduit
     public ResultSet listProduitToutResultat()throws SQLException{
-    	
-        ResultSet rs = stmt.executeQuery("select * from Lot");
+    	connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+        ResultSet rs = stmt.executeQuery("SELECT * from Lot");
 
     	return rs;
     }
