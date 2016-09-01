@@ -228,28 +228,12 @@ public class mainFrame extends JFrame {
 	}
 	//card4
 	//set and get for ListProduitTable
-	
-
-	public void setListProduitTablemodel (DefaultTableModel tb) {
-		card4.ListProduitTable = new JTable(tb);
-	}
-	public DefaultTableModel getDt() {
-		return card4.dt;
-	}
-
-	public void setDt(DefaultTableModel dt) {
-		card4.dt = dt;
-		card4.dt.fireTableDataChanged();
-	}
+	//to  set JTable for a new Table model there is embedded method (setModel()) for this
 	
 	public JTable getListProduitTable() {
 		return card4.ListProduitTable;
 	}
-	public void setTableDt(DefaultTableModel dt) {
-		card4.dt = dt;
-		card4.dt.fireTableDataChanged();
-		card4.ListProduitTable= new JTable(dt);
-	}
+	
 	
 	
 	
