@@ -115,7 +115,8 @@ public class Controller {
 				try{
 					ResultSet rs= model.listProduitToutResultat();
                     DefaultTableModel dtm = model.buildTableModel(rs);
-                    frame.setListProduitTablemodel(dtm);
+                    //frame.setDt(dtm);
+                    frame.getListProduitTable().setModel(dtm);
 					showFourthCard();
 					panelList.add(4);
 				}catch(SQLException ex){

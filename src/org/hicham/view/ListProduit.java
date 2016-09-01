@@ -21,44 +21,40 @@ import org.hicham.model.model;
 public class ListProduit extends JPanel{
 	
 	
-	private DefaultTableModel dt= new DefaultTableModel();
+	public  DefaultTableModel dt;
 	
-	private JTable ListProduitTable=new JTable(dt);
+	public  JTable ListProduitTable;
 	
 	private JScrollPane scrolPane;
-	
-    private JButton buttt = new JButton("dsdfdf");
-    
+	    
 	public ListProduit(){
-		//try{
 		
-
-//	    Vector rowData = new Vector<String>();
-//	    rowData.addElement("sdds");
-//	    dtm.addRow(rowData);
-
-        //this.ListProduitTable = new JTable(dtm);
+		ListProduitTable =new JTable(dt);
         
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
-		this.add(buttt);
+		
 		ListProduitTable.setPreferredScrollableViewportSize(new Dimension(500,50));
 		ListProduitTable.setFillsViewportHeight(true);
-		ListProduitTable.setFillsViewportHeight( true );
+		
 		scrolPane= new JScrollPane(ListProduitTable);
 		scrolPane.setBounds(100, 100, 500, 500);
-        this.add(scrolPane);	
+		this.add(scrolPane);
+		
 		this.setVisible(true);
-//		}catch(SQLException ex){
-//			ex.printStackTrace();
-//		}
+
 
 	} 
 //This here should be the setter for the table model to relate this view dynamically to the	model class
+
 	
+
+	public void setListProduitTable(JTable listProduitTable) {
+		ListProduitTable = listProduitTable;
+	}
+
 	
-	
-	
+
 	
 	
 	
