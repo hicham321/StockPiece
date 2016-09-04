@@ -254,6 +254,14 @@ public class mainFrame extends JFrame {
 	public JTable getListProduitTable() {
 		return card4.listProduitTable;
 	}
+	//card5
+	public JTable getListFactureEntreTable() {
+		return card5.listFactureFournis;
+	}
+	//card6
+	public JTable getListFactureSortieTable() {
+		return card6.listFactureClient;
+	}
 	
 	
 	

@@ -123,9 +123,26 @@ public class Controller {
 				}
 			}
 			if(e.getSource()==frame.getListFactureEntre()){
-				
+				try{
+					ResultSet rs= model.listFactureEntre();
+                    DefaultTableModel dtm = model.buildTableModel(rs);
+                    frame.getListFactureEntreTable().setModel(dtm);
+					showFifthCard();
+					panelList.add(5);
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				}	
 			}
 			if (e.getSource()==frame.getListFactureSortie()) {
+				try{
+					ResultSet rs= model.listFactureSortie();
+                    DefaultTableModel dtm = model.buildTableModel(rs);
+                    frame.getListFactureSortieTable().setModel(dtm);
+					showSixthCard();
+					panelList.add(6);
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				}
 				
 			}
 
