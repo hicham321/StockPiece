@@ -67,9 +67,9 @@ public class Controller {
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
-		this.frame.addFrameActionLisner( new FrameActionListner());
+		this.frame.addFrameActionListener( new FrameActionListener());
 
-		this.frame.addFrameMenulistner(new FrameMenuListner());
+		this.frame.addFrameMenulistner(new FrameMenuListener());
 
 		this.addingquantity.addajoutlistner(new AjoutActionListner());
 
@@ -82,7 +82,7 @@ public class Controller {
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
 
-	class FrameActionListner implements ActionListener{
+	class FrameActionListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e)   {
@@ -122,6 +122,12 @@ public class Controller {
 					ex.printStackTrace();
 				}
 			}
+			if(e.getSource()==frame.getListFactureEntre()){
+				
+			}
+			if (e.getSource()==frame.getListFactureSortie()) {
+				
+			}
 
 
 		}
@@ -129,7 +135,7 @@ public class Controller {
 
 	}
 	//this is MenuLisner class
-	class FrameMenuListner implements MenuListener{
+	class FrameMenuListener implements MenuListener{
 
 		@Override
 		public void menuDeselected(MenuEvent e) {

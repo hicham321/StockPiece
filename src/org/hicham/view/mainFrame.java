@@ -55,7 +55,7 @@ public class mainFrame extends JFrame {
         setEnabled(false);
 	}
 	//Card1
-	public void addFrameActionLisner(ActionListener listner){
+	public void addFrameActionListener(ActionListener listner){
 		this.menu.ajoutbase.addActionListener(listner);
 		this.menu.ajoutprodui.addActionListener(listner);
 		this.card1.but.addActionListener(listner);
@@ -63,6 +63,8 @@ public class mainFrame extends JFrame {
 		this.menu.motpass.addActionListener(listner);
 		this.menu.quiter.addActionListener(listner);
 		this.menu.sortiproduit.addActionListener(listner);
+		this.menu.listFactureEntre.addActionListener(listner);
+		this.menu.listFactureSortie.addActionListener(listner);
 
 		//this.menu.retour.addActionListener(listner);
 		this.card2.ajoutproduit.addActionListener(listner);
@@ -114,6 +116,16 @@ public class mainFrame extends JFrame {
 
 	public JMenuItem getMotpass() {
 		return menu.motpass;
+	}
+
+
+	public JMenuItem getListFactureEntre() {
+		return menu.listFactureEntre;
+	}
+
+
+	public JMenuItem getListFactureSortie() {
+		return menu.listFactureSortie;
 	}
 
 

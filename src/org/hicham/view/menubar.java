@@ -24,10 +24,14 @@ public class menubar {
 	JMenuItem ajoutprodui = new JMenuItem("ادخال منتوج");
 
 	JMenuItem listproduit = new JMenuItem("لائحة المنتوجات");
+	
+	JMenuItem listFactureEntre = new JMenuItem("فاتورات الممولين");
 
 	JMenu menusortie = new JMenu("اخراج");
 
 	JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
+	
+	JMenuItem listFactureSortie = new JMenuItem("فاتورات االزبائن");
 
 	JMenu retour = new JMenu("الرئيسية    ");
 
@@ -55,8 +59,10 @@ public class menubar {
 
 		menuajout.add(ajoutprodui);
 		menuajout.add(listproduit);
+		menuajout.add(listFactureEntre);
 
 		menusortie.add(sortiproduit);
+		menusortie.add(listFactureSortie);
 
 		menu.add(menuapropos);
 		menu.add(retour);
@@ -66,7 +72,6 @@ public class menubar {
 
 		//this.setBackground(Color.white);
 		// this.setVisible(true);
-
 
 	}
 
