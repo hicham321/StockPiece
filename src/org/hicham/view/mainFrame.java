@@ -29,6 +29,12 @@ public class mainFrame extends JFrame {
 	private Destockage card3= new Destockage();
 	
 	private ListProduit card4= new ListProduit();
+	
+	private ListeFactureFournis card5= new ListeFactureFournis();
+	
+	private ListFactureClient card6= new ListFactureClient();
+
+
 
 	//ViewAjoutEnf card3= new ViewAjoutEnf();
 
@@ -50,6 +56,9 @@ public class mainFrame extends JFrame {
 		cards.add(card2, "Card 2");
 		cards.add(card3, "Card 3");
 		cards.add(card4, "Card 4");
+		cards.add(card5, "Card 5");
+		cards.add(card6, "Card 6");
+
 
 		getContentPane().add(cards); 
         setEnabled(false);
@@ -243,7 +252,7 @@ public class mainFrame extends JFrame {
 	//to  set JTable for a new Table model there is embedded method (setModel()) for this
 	
 	public JTable getListProduitTable() {
-		return card4.ListProduitTable;
+		return card4.listProduitTable;
 	}
 	
 	

@@ -403,6 +403,14 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 4");	
 	}
+	public void showFifthCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 5");	
+	}
+	public void showSixthCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 6");	
+	}
 	
 	public void enableFrame(){
 		frame.setEnabled(true);

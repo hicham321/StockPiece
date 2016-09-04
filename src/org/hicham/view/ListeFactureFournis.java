@@ -13,21 +13,21 @@ public class ListeFactureFournis extends JPanel {
 	
 public  DefaultTableModel dt;
 	
-	public  JTable ListFactureFournis;
+	public  JTable listFactureFournis;
 	
 	private JScrollPane scrolPane;
 	    
 	public ListeFactureFournis(){
 		
-		ListFactureFournis =new JTable(dt);
+		listFactureFournis =new JTable(dt);
         
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
 		
-		ListFactureFournis.setPreferredScrollableViewportSize(new Dimension(500,50));
-		ListFactureFournis.setFillsViewportHeight(true);
+		listFactureFournis.setPreferredScrollableViewportSize(new Dimension(500,50));
+		listFactureFournis.setFillsViewportHeight(true);
 		
-		scrolPane= new JScrollPane(ListFactureFournis);
+		scrolPane= new JScrollPane(listFactureFournis);
 		scrolPane.setBounds(100, 100, 500, 500);
 		this.add(scrolPane);
 		

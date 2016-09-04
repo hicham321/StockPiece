@@ -23,21 +23,21 @@ public class ListProduit extends JPanel{
 	
 	public  DefaultTableModel dt;
 	
-	public  JTable ListProduitTable;
+	public  JTable listProduitTable;
 	
 	private JScrollPane scrolPane;
 	    
 	public ListProduit(){
 		
-		ListProduitTable =new JTable(dt);
+		listProduitTable =new JTable(dt);
         
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
 		
-		ListProduitTable.setPreferredScrollableViewportSize(new Dimension(500,50));
-		ListProduitTable.setFillsViewportHeight(true);
+		listProduitTable.setPreferredScrollableViewportSize(new Dimension(500,50));
+		listProduitTable.setFillsViewportHeight(true);
 		
-		scrolPane= new JScrollPane(ListProduitTable);
+		scrolPane= new JScrollPane(listProduitTable);
 		scrolPane.setBounds(100, 100, 500, 500);
 		this.add(scrolPane);
 		
