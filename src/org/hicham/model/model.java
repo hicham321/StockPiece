@@ -222,17 +222,32 @@ public class model {
 	}
 	//quries to execute for Jtable model listProduit
     public ResultSet listProduitToutResultat()throws SQLException{
-    	connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+    	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
         ResultSet rs = stmt.executeQuery("SELECT * from Lot");
 
     	return rs;
     }
+    
     public ResultSet listProduitDisponibleResultat()throws SQLException{
     	
-        ResultSet rs = stmt.executeQuery("select * from Lot Where lot.qte > 0");
+        ResultSet rs = stmt.executeQuery("SELECT * from Lot Where lot.qte > 0");
 
     	return rs;
     }
+    public ResultSet listFactureSortie()throws SQLException{
+    	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+        ResultSet rs = stmt.executeQuery("SELECT * from Facture WHERE Facture.Type= client");
+
+    	return rs;
+    }
+    public ResultSet listFactureEntre()throws SQLException{
+    	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+        ResultSet rs = stmt.executeQuery("SELECT * from Facture WHERE Facture.Type= Fournisseur");
+
+    	return rs;
+    }
+    
+    
     
 	//verify if the register table is empty to allow 
 

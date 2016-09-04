@@ -45,24 +45,6 @@ public class ListProduit extends JPanel{
 
 
 	} 
-//This here should be the setter for the table model to relate this view dynamically to the	model class
-
-	
-
-	public void setListProduitTable(JTable listProduitTable) {
-		ListProduitTable = listProduitTable;
-	}
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//to keep the Jtable separate from the model you can call the Jtable from the controller once you click the view 
 	/*this is how to sort a Jtable (without needing to create other queries)
