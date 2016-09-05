@@ -29,14 +29,15 @@ public class ListProduit extends JPanel{
 	    
 	public ListProduit(){
 		
-		listProduitTable =new JTable(dt);
         
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
 		
+		
 		listProduitTable.setPreferredScrollableViewportSize(new Dimension(500,50));
 		listProduitTable.setFillsViewportHeight(true);
 		
+		listProduitTable =new JTable(dt);
 		scrolPane= new JScrollPane(listProduitTable);
 		scrolPane.setBounds(100, 100, 500, 500);
 		this.add(scrolPane);

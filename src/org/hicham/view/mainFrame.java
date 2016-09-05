@@ -179,12 +179,12 @@ public class mainFrame extends JFrame {
 
 
 	public JTextField getReferance() {
-		return card2.NomFournisseur;
+		return card2.nomFournisseur;
 	}
 
 
 	public void setReferance(JTextField referance) {
-		card2.NomFournisseur = referance;
+		card2.nomFournisseur = referance;
 	}
 	public JLabel getPrixTotalLab() {
 		return card2.prixTotalLab;
@@ -247,6 +247,13 @@ public class mainFrame extends JFrame {
 	public JButton getAjoutproduitButton() {
 		return card2.ajoutproduit;
 	}
+
+
+	public JTable getListProduitAjoutTable() {
+		return card2.listProduitAjoutTable;
+	}
+
+	
 	//card4
 	//set and get for ListProduitTable
 	//to  set JTable for a new Table model there is embedded method (setModel()) for this

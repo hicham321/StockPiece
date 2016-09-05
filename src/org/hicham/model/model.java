@@ -236,13 +236,13 @@ public class model {
     }
     public ResultSet listFactureSortie()throws SQLException{
     	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
-        ResultSet rs = stmt.executeQuery("SELECT * from Facture WHERE Facture.Type= client");
+        ResultSet rs = stmt.executeQuery("SELECT * from Facture WHERE Facture.Type= 'client'");
 
     	return rs;
     }
     public ResultSet listFactureEntre()throws SQLException{
     	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
-        ResultSet rs = stmt.executeQuery("SELECT * from Facture WHERE Facture.Type= Fournisseur");
+        ResultSet rs = stmt.executeQuery("SELECT * from Facture WHERE Facture.Type= 'fournisseur'");
 
     	return rs;
     }

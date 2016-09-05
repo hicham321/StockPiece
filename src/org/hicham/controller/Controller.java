@@ -241,11 +241,20 @@ public class Controller {
 
 			}
 			if (e.getSource()==addingquantity.getOk()) {
+				try{
 				addingquantity.dispose();
-				//code for database insertions
+				//code for Jtable insertions
+				ResultSet rs= model.listFactureSortie();
+                DefaultTableModel dtm = model.buildTableModel(rs);
+                frame.getListProduitAjoutTable().setModel(dtm);
+				
+				
 				enableFrame();
 
 				//chacking if the input is a number or something else
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
 
 			}
 			if (e.getSource()==addingquantity.getChoixBtn()) {
