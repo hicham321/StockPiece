@@ -33,7 +33,9 @@ public class menubar {
 	
 	JMenuItem listFactureSortie = new JMenuItem("فاتورات االزبائن");
 	
-	JMenu listFactureTout = new JMenu("فاتورات");
+	JMenu listFactureTout = new JMenu("فاتورات  ");
+	
+	JMenu zakatMenu = new JMenu("اياربرب");
 
 	JMenu retour = new JMenu("الرئيسية    ");
 
@@ -68,6 +70,7 @@ public class menubar {
 
 		menu.add(menuapropos);
 		menu.add(retour);
+		menu.add(zakatMenu);
 		menu.add(listFactureTout);
 		menu.add(menusortie);
 		menu.add(menuajout);
@@ -75,7 +78,6 @@ public class menubar {
 
 		//this.setBackground(Color.white);
 		// this.setVisible(true);
-
 	}
 
 }

@@ -35,6 +35,8 @@ public class mainFrame extends JFrame {
 	private ListFactureClient card6= new ListFactureClient();
 	
 	private ListFactureTout card7= new ListFactureTout();
+	
+	private Zakat card8= new Zakat();
 
 	//ViewAjoutEnf card3= new ViewAjoutEnf();
 
@@ -59,6 +61,7 @@ public class mainFrame extends JFrame {
 		cards.add(card5, "Card 5");
 		cards.add(card6, "Card 6");
 		cards.add(card7, "Card 7");
+		cards.add(card8, "Card 8");
 
 
 		getContentPane().add(cards); 
@@ -89,6 +92,7 @@ public class mainFrame extends JFrame {
 
 		this.menu.retour.addMenuListener(menListner);
 		this.menu.listFactureTout.addMenuListener(menListner);
+		this.menu.zakatMenu.addMenuListener(menListner);
 	}
 
 	public JButton getBut() {
@@ -118,6 +122,10 @@ public class mainFrame extends JFrame {
 		return menu.listFactureTout;
 	}
 
+	public JMenu getZakatMenu() {
+		return menu.zakatMenu;
+	}
+	
 	public JMenuItem getQuiter() {
 		return menu.quiter;
 	}
@@ -279,12 +287,8 @@ public class mainFrame extends JFrame {
 	public JTable getListFactureToutTable() {
 		return card7.listFactureToutTable;
 	} 
-
-	
-	
-	
-	
-	
-
-
+    //card8
+	public JTable getListProduitZakatTable() {
+		return card8.listProduitZakatTable;
+	}
 }

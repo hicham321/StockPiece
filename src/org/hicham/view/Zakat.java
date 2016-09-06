@@ -9,33 +9,30 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ListFactureTout extends JPanel {
-
+public class Zakat extends JPanel {
+	
 	public  DefaultTableModel dt;
 
-	public  JTable listFactureToutTable;
+	public  JTable listProduitZakatTable;
 
 	private JScrollPane scrolPane;
 
-	public ListFactureTout() {
+	public Zakat() {
 
-
-		listFactureToutTable =new JTable(dt);
+		listProduitZakatTable =new JTable(dt);
 
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
 
-		listFactureToutTable.setPreferredScrollableViewportSize(new Dimension(500,50));
-		listFactureToutTable.setFillsViewportHeight(true);
+		listProduitZakatTable.setPreferredScrollableViewportSize(new Dimension(500,50));
+		listProduitZakatTable.setFillsViewportHeight(true);
 
-		scrolPane= new JScrollPane(listFactureToutTable);
+		scrolPane= new JScrollPane(listProduitZakatTable);
 		scrolPane.setBounds(100, 100, 500, 500);
 		this.add(scrolPane);
 
 		this.setVisible(true);
 
-
 	}
-
 
 }

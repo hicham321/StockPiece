@@ -181,6 +181,18 @@ public class Controller {
 				}
 				
 			}
+			if (e.getSource()==frame.getZakatMenu()) {
+				try{
+					ResultSet rs= model.listProduitZakat();
+                    DefaultTableModel dtm = model.buildTableModel(rs);
+                    frame.getListProduitZakatTable().setModel(dtm);
+                    showEighCard();
+					panelList.add(8);
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				}
+				
+			}
 		}
 
 		@Override
@@ -451,6 +463,10 @@ public class Controller {
 	public void showSeventhCard(){
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 7");	
+	}
+	public void showEighCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 8");	
 	}
 	
 	public void enableFrame(){
