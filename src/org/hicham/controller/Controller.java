@@ -169,6 +169,9 @@ public class Controller {
 				panelList.add(1);
 
 			}
+			if (e.getSource()==frame.getListFactureTout()) {
+				
+			}
 		}
 
 		@Override
@@ -433,6 +436,10 @@ public class Controller {
 		cardLayout.show(frame.cards, "Card 5");	
 	}
 	public void showSixthCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 6");	
+	}
+	public void showSeventhCard(){
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 6");	
 	}

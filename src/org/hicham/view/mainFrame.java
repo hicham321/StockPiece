@@ -33,8 +33,8 @@ public class mainFrame extends JFrame {
 	private ListeFactureFournis card5= new ListeFactureFournis();
 	
 	private ListFactureClient card6= new ListFactureClient();
-
-
+	
+	private ListFactureTout card7= new ListFactureTout();
 
 	//ViewAjoutEnf card3= new ViewAjoutEnf();
 
@@ -58,6 +58,7 @@ public class mainFrame extends JFrame {
 		cards.add(card4, "Card 4");
 		cards.add(card5, "Card 5");
 		cards.add(card6, "Card 6");
+		cards.add(card7, "Card 7");
 
 
 		getContentPane().add(cards); 
@@ -273,6 +274,13 @@ public class mainFrame extends JFrame {
 	public JTable getListFactureSortieTable() {
 		return card6.listFactureClient;
 	}
+	//card7
+
+	public JTable getListFactureToutTable() {
+		return card7.listFactureToutTable;
+	} 
+
+	
 	
 	
 	
