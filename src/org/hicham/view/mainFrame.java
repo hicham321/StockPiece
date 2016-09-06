@@ -87,6 +87,7 @@ public class mainFrame extends JFrame {
 	public void addFrameMenulistner(MenuListener menListner){
 
 		this.menu.retour.addMenuListener(menListner);
+		this.menu.listFactureTout.addMenuListener(menListner);
 	}
 
 	public JButton getBut() {
@@ -111,7 +112,10 @@ public class mainFrame extends JFrame {
 	public JMenu getRetour() {
 		return menu.retour;
 	}
-
+	
+	public JMenu getListFactureTout() {
+		return menu.listFactureTout;
+	}
 
 	public JMenuItem getQuiter() {
 		return menu.quiter;

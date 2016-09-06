@@ -33,7 +33,7 @@ public class ListProduit extends JPanel{
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));
 		
-		
+		listProduitTable= new JTable();
 		listProduitTable.setPreferredScrollableViewportSize(new Dimension(500,50));
 		listProduitTable.setFillsViewportHeight(true);
 		

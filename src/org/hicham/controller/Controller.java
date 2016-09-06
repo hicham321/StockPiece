@@ -244,8 +244,7 @@ public class Controller {
 				try{
 				addingquantity.dispose();
 				//code for Jtable insertions
-				ResultSet rs= model.listFactureSortie();
-                DefaultTableModel dtm = model.buildTableModel(rs);
+                DefaultTableModel dtm = new DefaultTableModel();
                 frame.getListProduitAjoutTable().setModel(dtm);
 				
 				

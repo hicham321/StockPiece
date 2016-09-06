@@ -32,6 +32,8 @@ public class menubar {
 	JMenuItem sortiproduit = new JMenuItem("اخراج منتوج");
 	
 	JMenuItem listFactureSortie = new JMenuItem("فاتورات االزبائن");
+	
+	JMenu listFactureTout = new JMenu("فاتورات");
 
 	JMenu retour = new JMenu("الرئيسية    ");
 
@@ -66,6 +68,7 @@ public class menubar {
 
 		menu.add(menuapropos);
 		menu.add(retour);
+		menu.add(listFactureTout);
 		menu.add(menusortie);
 		menu.add(menuajout);
 		menu.add(menuouvrir);
