@@ -170,6 +170,15 @@ public class Controller {
 
 			}
 			if (e.getSource()==frame.getListFactureTout()) {
+				try{
+					ResultSet rs= model.listFactureTout();
+                    DefaultTableModel dtm = model.buildTableModel(rs);
+                    frame.getListFactureToutTable().setModel(dtm);
+					showSeventhCard();
+					panelList.add(7);
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				}
 				
 			}
 		}
@@ -441,7 +450,7 @@ public class Controller {
 	}
 	public void showSeventhCard(){
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
-		cardLayout.show(frame.cards, "Card 6");	
+		cardLayout.show(frame.cards, "Card 7");	
 	}
 	
 	public void enableFrame(){

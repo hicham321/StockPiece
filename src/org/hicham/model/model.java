@@ -246,6 +246,12 @@ public class model {
 
     	return rs;
     }
+    public ResultSet listFactureTout()throws SQLException{
+    	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+        ResultSet rs = stmt.executeQuery("SELECT * from Facture ");
+
+    	return rs;
+    }
     
     
     
