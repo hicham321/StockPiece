@@ -266,9 +266,6 @@ public class model {
     	for(int i=0;i<columnArray.length;i++){
     		TableColumn tcol = table.getColumnModel().getColumn(columnArray[i]);
     		table.getColumnModel().removeColumn(tcol);
-    		/*for(int j=0;j<columnArray.length;j++){
-    			columnArray[j]=columnArray[j]-1;
-    		}*/
     	}
     }
 
