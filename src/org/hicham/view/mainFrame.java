@@ -84,8 +84,8 @@ public class mainFrame extends JFrame {
 		this.card2.annule.addActionListener(listner);
 		this.card2.ok.addActionListener(listner);
 		
-
-
+		//card8(zakat)	
+		this.card8.zakatCalcButton.addActionListener(listner);
 	}
 	//this is a menu listner for menus with no menu items
 	public void addFrameMenulistner(MenuListener menListner){
@@ -303,8 +303,10 @@ public class mainFrame extends JFrame {
 		card8.zakatTotal = zakatTotal;
 	}
 
-
 	public void setZakatFinal(JLabel zakatFinal) {
 		card8.zakatFinal = zakatFinal;
+	}
+	public JButton getZakatCalcButton() {
+		return card8.zakatCalcButton;
 	}
 }

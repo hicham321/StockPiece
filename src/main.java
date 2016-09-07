@@ -30,7 +30,7 @@ public class main {
 		Controller c = new Controller(frame, m, r,a,ch,ai);
 		frame.setVisible(true);
 		r.setVisible(true);
-
+		
 	}
 
 }

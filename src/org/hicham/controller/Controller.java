@@ -146,6 +146,9 @@ public class Controller {
 				}
 				
 			}
+			if (e.getSource()==frame.getZakatCalcButton()) {
+				
+			}
 
 
 		}
