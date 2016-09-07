@@ -291,4 +291,20 @@ public class mainFrame extends JFrame {
 	public JTable getListProduitZakatTable() {
 		return card8.listProduitZakatTable;
 	}
+	public JTextField getZakatText() {
+		return card8.zakatText;
+	}
+
+	public void setZakatText(JTextField zakatText) {
+		card8.zakatText = zakatText;
+	}
+
+	public void setZakatTotal(JLabel zakatTotal) {
+		card8.zakatTotal = zakatTotal;
+	}
+
+
+	public void setZakatFinal(JLabel zakatFinal) {
+		card8.zakatFinal = zakatFinal;
+	}
 }

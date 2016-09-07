@@ -254,7 +254,7 @@ public class model {
     }
     public ResultSet listProduitZakat()throws SQLException{
     	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
-        ResultSet rs = stmt.executeQuery("SELECT * from Produit,Lot WHERE Produit.IDprod= Lot.IDProduit & Lot.qte > 0 ");
+        ResultSet rs = stmt.executeQuery("SELECT * from Produit,Lot WHERE Produit.IDprod= Lot.IDProduit and  Lot.qte > 0 ");
 
     	return rs;
     }
