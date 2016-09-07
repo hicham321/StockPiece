@@ -190,7 +190,8 @@ public class Controller {
                     //TableColumn tcol = frame.getListProduitZakatTable().getColumnModel().getColumn(0);
                     //frame.getListProduitZakatTable().getColumnModel().removeColumn(tcol);
                     int[]columnsToBeDeleted= {0,2,2,5};
-                    model.deleteMultipleCulumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
+                    model.deleteMultipleColumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
+                    //frame.getListProduitZakatTable().setAutoCreateColumnsFromModel(false);
                     showEighCard();
 					panelList.add(8);
 				}catch(SQLException ex){

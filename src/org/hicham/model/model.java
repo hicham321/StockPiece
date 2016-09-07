@@ -261,9 +261,9 @@ public class model {
     	return rs;
     }
     //delete multiple columns from Jtable
-    public void deleteMultipleCulumns(JTable table, int[] columnArray){
+    public void deleteMultipleColumns(JTable table, int[] columnArray){
 
-    	for(int i=0;i<columnArray.length;i++){
+    	for(int i=0;i <columnArray.length;i++){
     		TableColumn tcol = table.getColumnModel().getColumn(columnArray[i]);
     		table.getColumnModel().removeColumn(tcol);
     	}

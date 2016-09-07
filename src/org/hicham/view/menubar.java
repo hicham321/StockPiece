@@ -35,7 +35,7 @@ public class menubar {
 	
 	JMenu listFactureTout = new JMenu("فاتورات  ");
 	
-	JMenu zakatMenu = new JMenu("اياربرب");
+	JMenu zakatMenu = new JMenu("الزكاة");
 
 	JMenu retour = new JMenu("الرئيسية    ");
 

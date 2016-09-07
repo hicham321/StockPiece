@@ -2,6 +2,7 @@ package org.hicham.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -21,7 +22,7 @@ public class Zakat extends JPanel {
 	
 	//labels buttons and fields
 	
-	JLabel zakatProduitLab = new JLabel("المنتوجات المزكى عليها");
+	JLabel zakatProduitLab = new JLabel(":المنتوجات المزكى عليها");
 
 	JLabel zakatLabel= new JLabel("ادخل نسبة الزكاة");
 	
@@ -46,6 +47,7 @@ public class Zakat extends JPanel {
 
 		listProduitZakatTable.setPreferredScrollableViewportSize(new Dimension(500,50));
 		listProduitZakatTable.setFillsViewportHeight(true);
+		//listProduitZakatTable.setAutoCreateColumnsFromModel(false);
 
 		scrolPane= new JScrollPane(listProduitZakatTable);
 		scrolPane.setBounds(100, 100, 500, 500);
@@ -58,6 +60,9 @@ public class Zakat extends JPanel {
 		this.add(zakatText);
 		this.add(zakatTotalLab);
 		this.add(zakatTotal);
+		
+		this.zakatProduitLab.setBounds(1250,30,190,20);
+		this.zakatProduitLab.setFont(new Font("",Font.BOLD, 100));
 
 
 
