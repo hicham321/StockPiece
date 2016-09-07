@@ -23,7 +23,9 @@ import java.util.Vector;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.apache.commons.codec.binary.Base64;
 import org.hsqldb.Tokens;
@@ -258,8 +260,18 @@ public class model {
 
     	return rs;
     }
-    
-    
+    //delete multiple columns from Jtable
+    public void deleteMultipleCulumns(JTable table, int[] columnArray){
+
+    	for(int i=0;i<columnArray.length;i++){
+    		TableColumn tcol = table.getColumnModel().getColumn(columnArray[i]);
+    		table.getColumnModel().removeColumn(tcol);
+    		/*for(int j=0;j<columnArray.length;j++){
+    			columnArray[j]=columnArray[j]-1;
+    		}*/
+    	}
+    }
+
  
 	//verify if the register table is empty to allow 
 

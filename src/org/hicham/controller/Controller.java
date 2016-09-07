@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.hicham.model.model;
 import org.hicham.view.AjoutDonneInterface;
@@ -186,6 +187,10 @@ public class Controller {
 					ResultSet rs= model.listProduitZakat();
                     DefaultTableModel dtm = model.buildTableModel(rs);
                     frame.getListProduitZakatTable().setModel(dtm);
+                    //TableColumn tcol = frame.getListProduitZakatTable().getColumnModel().getColumn(0);
+                    //frame.getListProduitZakatTable().getColumnModel().removeColumn(tcol);
+                    int[]columnsToBeDeleted= {0,2,2,5};
+                    model.deleteMultipleCulumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
                     showEighCard();
 					panelList.add(8);
 				}catch(SQLException ex){
