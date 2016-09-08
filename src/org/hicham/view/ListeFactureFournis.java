@@ -32,7 +32,7 @@ public class ListeFactureFournis extends JPanel {
 		listFactureFournis.setFillsViewportHeight(true);
 
 		scrolPane= new JScrollPane(listFactureFournis);
-		scrolPane.setBounds(100, 100, 500, 500);
+		scrolPane.setBounds(50, 70, 1250, 470);
 		this.add(listFactureFournisLabel);
 		this.listFactureFournisLabel.setBounds(1250,30,190,20);
 		this.add(scrolPane);

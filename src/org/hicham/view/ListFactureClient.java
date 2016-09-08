@@ -37,7 +37,7 @@ public class ListFactureClient extends JPanel {
 		this.listFactureClientLabel.setBounds(1250,30,190,20);
 
 		scrolPane= new JScrollPane(listFactureClient);
-		scrolPane.setBounds(100, 100, 500, 500);
+		scrolPane.setBounds(50, 70, 1250, 470);
 		this.add(scrolPane);
 
 		this.setVisible(true);

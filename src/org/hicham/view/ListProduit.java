@@ -45,7 +45,7 @@ public class ListProduit extends JPanel{
 
 		listProduitTable =new JTable(dt);
 		scrolPane= new JScrollPane(listProduitTable);
-		scrolPane.setBounds(100, 100, 500, 500);
+		scrolPane.setBounds(50, 70, 1250, 470);
 		this.add(scrolPane);
 
 		this.setVisible(true);

@@ -28,6 +28,8 @@ import org.hicham.view.mainFrame;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
+import net.sf.jasperreports.crosstabs.fill.JRPercentageCalculatorFactory.IntegerPercentageCalculator;
+
 //This is the controller class of the project
 
 public class Controller {
@@ -147,7 +149,14 @@ public class Controller {
 				
 			}
 			if (e.getSource()==frame.getZakatCalcButton()) {
-				
+				if(Double.parseDouble(frame.getZakatText().getText())<100 && Double.parseDouble(frame.getZakatText().getText())>0 ){
+					//calculate zakat total
+					
+				}
+				else{
+					frame.getZakatText().setText("");
+					JOptionPane.showMessageDialog(null, "غلط في الفورمة,ادخل رقم ما بين 0 و 100");
+				}
 			}
 
 
