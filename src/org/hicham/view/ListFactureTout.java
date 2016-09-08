@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,6 +18,9 @@ public class ListFactureTout extends JPanel {
 
 	private JScrollPane scrolPane;
 
+	JLabel listFactureToutLabel = new JLabel("لائحة جميع الفواتير");
+
+
 	public ListFactureTout() {
 
 
@@ -27,6 +31,9 @@ public class ListFactureTout extends JPanel {
 
 		listFactureToutTable.setPreferredScrollableViewportSize(new Dimension(500,50));
 		listFactureToutTable.setFillsViewportHeight(true);
+
+		this.add(listFactureToutLabel);
+		this.listFactureToutLabel.setBounds(1250,30,190,20);
 
 		scrolPane= new JScrollPane(listFactureToutTable);
 		scrolPane.setBounds(100, 100, 500, 500);
