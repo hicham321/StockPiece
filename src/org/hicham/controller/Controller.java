@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.MenuEvent;
@@ -106,9 +107,15 @@ public class Controller {
 				//for navigating through panels 
 				panelList.add(2);
 			}
-			if(e.getSource()==frame.getAjoutproduitButton()){
-				frame.setEnabled(false);
-				addingquantity.setVisible(true);
+			if(e.getSource()==frame.getAjoutproduitButton()) {
+				try{
+					DefaultComboBoxModel dcm= model.buildComboModel();
+                    addingquantity.getAjoutProduitComboBox().setModel(dcm);
+					frame.setEnabled(false);
+					addingquantity.setVisible(true);
+				}catch(Exception ex ){
+					ex.printStackTrace();
+				}
 
 			}
 			if (e.getSource()==frame.getMotpass()) {

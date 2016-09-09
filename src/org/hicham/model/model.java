@@ -18,11 +18,13 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -268,7 +270,25 @@ public class model {
     		table.getColumnModel().removeColumn(tcol);
     	}
     }
-
+    
+    
+    //this part if for the JCombobox Model
+    
+    //this should return a mode that contains each product designation:
+    public DefaultComboBoxModel buildComboModel() throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT designationProduit from Produit ");
+    	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
+        String designationProd="";
+        List<String> listProd= new ArrayList<>();
+        while (rs.next()) {
+        	designationProd = rs.getString("designationProduit");
+            listProd.add(designationProd);
+		}
+    	for (int i = 0; i < listProd.size(); i++) {
+		       v.addElement(listProd.get(i));	
+		}
+    	return v;
+    }
  
 	//verify if the register table is empty to allow 
 
