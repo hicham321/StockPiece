@@ -187,7 +187,15 @@ public class addingquantity extends JFrame{
 		this.annule.addActionListener(listner);
         this.choixBtn.addActionListener(listner);
         this.choixBtnDesignation.addActionListener(listner);
+        //lot
         this.ajouItem.addActionListener(listner);
+        this.modifieItem.addActionListener(listner);
+        this.supItem.addActionListener(listner);
+        //produit
+        this.ajouItemProd.addActionListener(listner);
+        this.modifieItemProd.addActionListener(listner);
+        this.supItemProd.addActionListener(listner);
+
 
 	}
 

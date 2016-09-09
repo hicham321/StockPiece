@@ -21,6 +21,7 @@ import javax.swing.table.TableColumn;
 
 import org.hicham.model.model;
 import org.hicham.view.AjoutDonneInterface;
+import org.hicham.view.AjoutProdInterface;
 import org.hicham.view.ChangePass;
 import org.hicham.view.Register;
 import org.hicham.view.addingquantity;
@@ -53,8 +54,10 @@ public class Controller {
 	private ChangePass changePass= new ChangePass();
 
 	private AjoutDonneInterface ajoutDonneInterface= new AjoutDonneInterface();
+	
+	private AjoutProdInterface ajoutProdInterface= new AjoutProdInterface();
 
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface){
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface ){
 
 		this.frame= frame;
 
@@ -81,6 +84,8 @@ public class Controller {
 		this.changePass.addChangePassListener(new ChangePassActionListener());
 
 		this.ajoutDonneInterface.addAjoutDonneInterface(new AjoutDonneInterfaceListner());
+		
+	    this.ajoutProdInterface.addAjoutProdInterfaceListener(new AjoutProdInterfaceListener());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -305,13 +310,37 @@ public class Controller {
 			if (e.getSource()==addingquantity.getChoixBtnDesignation()) {
 				addingquantity.getPopmenuProduit().show(addingquantity.getChoixBtnDesignation(), addingquantity.getChoixBtnDesignation().getBounds().x-312, addingquantity.getChoixBtnDesignation().getBounds().y-65 + addingquantity.getChoixBtnDesignation().getBounds().height);
 			}
+			
+			//adding Lot
 			if(e.getSource()==addingquantity.getAjouItem()){
 
 				ajoutDonneInterface.setVisible(true);
-				frame.setEnabled(false);
-				addingquantity.setEnabled(false);
-
+				disableAddingQuantity();
 			}
+			if(e.getSource()==addingquantity.getSupItem()){
+                //delete the corresponding lot 
+				disableAddingQuantity();
+			}
+			if(e.getSource()==addingquantity.getModifieItem()){
+				//modify he corresponding lot
+				disableAddingQuantity();
+			}
+			
+			//adding product
+			if (e.getSource()== addingquantity.getAjouItemProd()) {
+				ajoutProdInterface.setVisible(true);
+				disableAddingQuantity();
+			}
+			if (e.getSource()== addingquantity.getModifieItemProd()) {
+				
+				ajoutProdInterface.setVisible(true);
+				disableAddingQuantity();
+			}
+			if (e.getSource()== addingquantity.getSupItemProd()) {
+				//deleting a product from database
+				disableAddingQuantity();
+			}
+
 
 		}
 
@@ -414,6 +443,24 @@ public class Controller {
 		}
 
 	}
+	class AjoutProdInterfaceListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()== ajoutProdInterface.getOk()){
+
+				ajoutProdInterface.dispose();
+				addingquantity.setEnabled(true);
+			}
+			if(e.getSource()== ajoutProdInterface.getAnnule()){
+
+				ajoutProdInterface.dispose();
+				addingquantity.setEnabled(true);
+			}
+		}
+		
+		
+	}
 	//a method for navigating through the panels Uses a list of panel indexes
 
 	public void NavigatePanel(boolean back, boolean forth){
@@ -490,6 +537,10 @@ public class Controller {
 	public void enableFrame(){
 		frame.setEnabled(true);
 		frame.toFront();
+	}
+	public void disableAddingQuantity(){
+		frame.setEnabled(false);
+		addingquantity.setEnabled(false);
 	}
 
 }
