@@ -289,6 +289,21 @@ public class model {
 		}
     	return v;
     }
+    
+    public DefaultComboBoxModel buildComboModelLot(int idProd) throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'");
+    	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
+        String prixAchat="";
+        List<String> listProd= new ArrayList<>();
+        while (rs.next()) {
+        	prixAchat = rs.getString("designationProduit");
+            listProd.add(prixAchat);
+		}
+    	for (int i = 0; i < listProd.size(); i++) {
+		       v.addElement(listProd.get(i));	
+		}
+    	return v;
+    }
  
 	//verify if the register table is empty to allow 
 

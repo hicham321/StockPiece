@@ -458,6 +458,8 @@ public class Controller {
 
 				ajoutProdInterface.dispose();
 				addingquantity.setEnabled(true);
+				frame.toFront();
+				addingquantity.toFront();
 			}
 			if(e.getSource()== ajoutProdInterface.getAnnule()){
 
