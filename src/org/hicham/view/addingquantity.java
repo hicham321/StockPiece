@@ -64,9 +64,9 @@ public class addingquantity extends JFrame{
 	//this is for the product type
 	final DefaultComboBoxModel ajoutRefmodel = new DefaultComboBoxModel();
 
-	final JComboBox ajoutRefComboBox  = new JComboBox(ajoutRefmodel);    
+	final JComboBox ajoutLotComboBox  = new JComboBox(ajoutRefmodel);    
 
-	private JScrollPane ajoutRefListScrol = new JScrollPane(ajoutRefComboBox); 
+	private JScrollPane ajoutRefListScrol = new JScrollPane(ajoutLotComboBox); 
 	
 	//adding popup menu for lot
 	
@@ -124,8 +124,8 @@ public class addingquantity extends JFrame{
 		this.ajoutRefmodel.addElement("5343");
 		this.ajoutRefmodel.addElement("2346544");
 
-		AutoCompleteDecorator.decorate(ajoutRefComboBox);
-		ajoutRefComboBox.setSelectedIndex(0);
+		AutoCompleteDecorator.decorate(ajoutLotComboBox);
+		ajoutLotComboBox.setSelectedIndex(0);
 
 
 		JPanel panel = new JPanel();
@@ -147,7 +147,7 @@ public class addingquantity extends JFrame{
 		panel.add(ok);
 		panel.add(annule);
 		panel.add(ajoutProduitComboBox);
-		panel.add(ajoutRefComboBox);
+		panel.add(ajoutLotComboBox);
 
 		//adding popupmenu for Lot
 		panel.add(choixBtn);
@@ -174,7 +174,7 @@ public class addingquantity extends JFrame{
 		ok.setBounds(120, 330, 90, 20);
 		annule.setBounds(230, 330, 90, 20);
 		ajoutProduitComboBox.setBounds(100, 20, 180, 20);
-		ajoutRefComboBox.setBounds(100, 50, 180, 20);
+		ajoutLotComboBox.setBounds(100, 50, 180, 20);
 		choixBtn.setBounds(330, 50, 20, 20);
 		choixBtnDesignation.setBounds(330, 20, 20, 20);
 
@@ -195,6 +195,7 @@ public class addingquantity extends JFrame{
         this.ajouItemProd.addActionListener(listner);
         this.modifieItemProd.addActionListener(listner);
         this.supItemProd.addActionListener(listner);
+        this.ajoutProduitComboBox.addActionListener(listner);
 
 
 	}
@@ -284,6 +285,9 @@ public class addingquantity extends JFrame{
 	}
 	public JComboBox getAjoutProduitComboBox() {
 		return ajoutProduitComboBox;
+	}
+	public JComboBox getAjoutLotComboBox() {
+		return ajoutLotComboBox;
 	}
 	
 	

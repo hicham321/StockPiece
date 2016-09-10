@@ -10,9 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.MenuEvent;
@@ -47,6 +50,8 @@ public class Controller {
 	private int returnVal;
 
 	private List<Integer> panelList = new ArrayList<>();
+	
+	private Map<String,Integer> idDesignationProdList= new HashMap<>();
 
 	private JFileChooser filechooser = new JFileChooser();
 
@@ -111,6 +116,7 @@ public class Controller {
 				try{
 					DefaultComboBoxModel dcm= model.buildComboModel();
                     addingquantity.getAjoutProduitComboBox().setModel(dcm);
+                    idDesignationProdList= model.getIDproductDesignation();
 					frame.setEnabled(false);
 					addingquantity.setVisible(true);
 				}catch(Exception ex ){
@@ -346,6 +352,19 @@ public class Controller {
 			if (e.getSource()== addingquantity.getSupItemProd()) {
 				//deleting a product from database
 				disableAddingQuantity();
+			}
+			
+			if(e.getSource()== addingquantity.getAjoutProduitComboBox()){
+				try{
+				//action when a product gets selected:
+                JComboBox comboBox = (JComboBox) e.getSource();
+                Object selected = comboBox.getSelectedItem();
+				int id = idDesignationProdList.get(selected.toString());
+                DefaultComboBoxModel dcm= model.buildComboModelLot(id);
+                addingquantity.getAjoutLotComboBox().setModel(dcm);
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
 			}
 
 

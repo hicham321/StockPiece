@@ -18,7 +18,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.crypto.SecretKey;
@@ -289,14 +291,30 @@ public class model {
 		}
     	return v;
     }
+    //method for getting selected product Id from product table
+    
+    public Map<String, Integer> getIDproductDesignation() throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT designationProduit,IDprod from Produit ");
+    	Map<String,Integer> l= new HashMap();
+
+        int idprod= 0;
+        String desProd="";
+        while (rs.next()) {
+        	idprod = rs.getInt("IDprod");
+        	desProd = rs.getString("designationProduit");
+            l.put(desProd, idprod);
+		}
+
+    	return l;
+    }
     
     public DefaultComboBoxModel buildComboModelLot(int idProd) throws SQLException {
         ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'");
     	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
-        String prixAchat="";
-        List<String> listProd= new ArrayList<>();
+        double prixAchat=0;
+        List<Double> listProd= new ArrayList<>();
         while (rs.next()) {
-        	prixAchat = rs.getString("designationProduit");
+        	prixAchat = rs.getDouble("prixAchat");
             listProd.add(prixAchat);
 		}
     	for (int i = 0; i < listProd.size(); i++) {
