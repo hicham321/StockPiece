@@ -474,16 +474,14 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== ajoutProdInterface.getOk()){
-
-				ajoutProdInterface.dispose();
-				addingquantity.setEnabled(true);
+				//adding designation of product to database
+                model.insertProd(ajoutProdInterface.getTextProd().getText());
+				enableAddingQuantity();
 				frame.toFront();
 				addingquantity.toFront();
 			}
 			if(e.getSource()== ajoutProdInterface.getAnnule()){
-
-				ajoutProdInterface.dispose();
-				addingquantity.setEnabled(true);
+				enableAddingQuantity();
 			}
 		}
 		
@@ -569,6 +567,10 @@ public class Controller {
 	public void disableAddingQuantity(){
 		frame.setEnabled(false);
 		addingquantity.setEnabled(false);
+    }
+	public void enableAddingQuantity(){
+		ajoutProdInterface.dispose();
+		addingquantity.setEnabled(true);
 	}
 
 }

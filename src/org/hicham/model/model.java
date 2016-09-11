@@ -76,17 +76,15 @@ public class model {
 	}
 	//insert product 
 
-	public void insertProd(String designation,int qteglobal){
+	public void insertProd(String designation){
 
 		try {
-			String query= "INSERT INTO Lot ( designationProduit , QteGlobal) VALUES ("+ "'"+ designation+ "'"+ "," + "'"+qteglobal +"'"+")";        	        
-			ResultSet r= this.stmt.executeQuery(query);
+			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+ designation+ "'"+","+"'"+ 0+ "'"+","+"'"+ 1+ "'"+")";        	        
+			stmt.execute(query);
 
-			while (r.next() ) {
-				designation = r.getString("designationProduit");
-				qteglobal= r.getInt("qte");
-
-			}
+//			while (r.next() ) {
+//				designation = r.getString("designationProduit");
+//			}
 
 		} catch (Exception e) {
 			// TODO: handle exception
