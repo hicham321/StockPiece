@@ -20,11 +20,12 @@ public class AjoutDonneInterface extends JFrame {
 
 	private JButton ok = new JButton("موافقة");
 	private JButton annule = new JButton("الغاء");
+	private JButton calc= new JButton("calc");
 
 	public AjoutDonneInterface(){
 
 		setResizable(true);
-		setSize(400,200);        
+		setSize(400,300);        
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -38,8 +39,8 @@ public class AjoutDonneInterface extends JFrame {
 		panel.add(margeText);
 
 		panel.add(prixAchatTextalbl);
-		panel.add(prixAchatTextalbl);
-		panel.add(prixAchatTextalbl);
+		panel.add(prixVenteTextlbl);
+		panel.add(margeTextlbl);
 
 		this.add(panel);
 

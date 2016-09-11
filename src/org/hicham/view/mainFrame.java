@@ -249,11 +249,11 @@ public class mainFrame extends JFrame {
 	}
 	 */
 
-	public JButton getAnnule() {
+	public JButton getAnnuleAjout() {
 		return card2.annule;
 	}
 
-	public JButton getOk() {
+	public JButton getOkAjout() {
 		return card2.ok;
 	}
 

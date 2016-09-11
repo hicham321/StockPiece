@@ -114,9 +114,7 @@ public class Controller {
 			}
 			if(e.getSource()==frame.getAjoutproduitButton()) {
 				try{
-					DefaultComboBoxModel dcm= model.buildComboModel();
-                    addingquantity.getAjoutProduitComboBox().setModel(dcm);
-                    idDesignationProdList= model.getIDproductDesignation();
+					refreshProductComboBox();
 					frame.setEnabled(false);
 					addingquantity.setVisible(true);
 				}catch(Exception ex ){
@@ -175,6 +173,12 @@ public class Controller {
 					frame.getZakatText().setText("");
 					JOptionPane.showMessageDialog(null, "غلط في الفورمة,ادخل رقم ما بين 0 و 100");
 				}
+			}
+			if (e.getSource()==frame.getOkAjout()) {
+				//insertion from Jtable code here 
+				
+				//settig the JTable to disabled
+				
 			}
 
 
@@ -303,6 +307,7 @@ public class Controller {
 			if (e.getSource()==addingquantity.getOk()) {
 				try{
 				addingquantity.dispose();
+				
 				//code for Jtable insertions
                 DefaultTableModel dtm = new DefaultTableModel();
                 frame.getListProduitAjoutTable().setModel(dtm);
@@ -474,14 +479,30 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== ajoutProdInterface.getOk()){
-				//adding designation of product to database
-                model.insertProd(ajoutProdInterface.getTextProd().getText());
-				enableAddingQuantity();
-				frame.toFront();
-				addingquantity.toFront();
+				try{
+					//check if the product exists in the database
+					List<String> allProducts= model.allProducts();
+					if(model.checkProdAlreadyInserted(allProducts, ajoutProdInterface.getTextProd().getText())){
+						JOptionPane.showMessageDialog(null, "هذا المنتوج موجود في لائحة المنتوجات");
+
+					}
+					else{
+						//adding designation of product to database
+						model.insertProd(ajoutProdInterface.getTextProd().getText());
+						refreshProductComboBox();
+						enableAddingQuantity();
+						frame.toFront();
+						addingquantity.toFront();
+					}
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+
 			}
 			if(e.getSource()== ajoutProdInterface.getAnnule()){
 				enableAddingQuantity();
+				frame.toFront();
+				addingquantity.toFront();
 			}
 		}
 		
@@ -571,6 +592,11 @@ public class Controller {
 	public void enableAddingQuantity(){
 		ajoutProdInterface.dispose();
 		addingquantity.setEnabled(true);
+	}
+	public void refreshProductComboBox()throws SQLException{
+		DefaultComboBoxModel dcm= model.buildComboModel();
+        addingquantity.getAjoutProduitComboBox().setModel(dcm);
+        idDesignationProdList= model.getIDproductDesignation();
 	}
 
 }

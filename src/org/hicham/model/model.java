@@ -306,6 +306,27 @@ public class model {
     	return l;
     }
     
+    public List<String> allProducts()throws SQLException{
+    	ResultSet rs = stmt.executeQuery("SELECT designationProduit from Produit ");
+    	List<String> listOfAllProducts= new ArrayList<>();
+    	String product= "";
+    	while(rs.next()){
+          product= rs.getString("designationProduit");
+          listOfAllProducts.add(product);
+    	}
+    	return listOfAllProducts;
+    }
+    public boolean checkProdAlreadyInserted(List l,String lookedFor){
+    	boolean found= false;
+    	for (int i = 0; i < l.size(); i++) {
+			if(lookedFor.equals(l.get(i))){
+			      found=true;	
+			}
+			
+		}
+    	return found;
+    }
+
     public DefaultComboBoxModel buildComboModelLot(int idProd) throws SQLException {
         ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'");
     	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
