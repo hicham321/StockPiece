@@ -341,6 +341,18 @@ public class model {
 		}
     	return v;
     }
+    //this is for getting lists of lot Ids and Lot prix achat 
+    public List<Integer> getIdLot(int idprod) throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT IDLot from Lot WHERE Lot.IDProduit="+"'"+idprod+"'");
+    	List<Integer> l= new ArrayList<>();
+    	int idLotdatabase= 0;
+    	while (rs.next()) {
+    		idLotdatabase= rs.getInt("IDLot");
+            l.add(idLotdatabase);
+		}
+    	
+    	return l;
+    }
  
 	//verify if the register table is empty to allow 
 

@@ -50,8 +50,11 @@ public class Controller {
 	private int returnVal;
 
 	private List<Integer> panelList = new ArrayList<>();
-	
+
 	private Map<String,Integer> idDesignationProdList= new HashMap<>();
+	
+	//this new field is to be debugged intensively later
+	private int id =0;
 
 	private JFileChooser filechooser = new JFileChooser();
 
@@ -60,7 +63,7 @@ public class Controller {
 	private ChangePass changePass= new ChangePass();
 
 	private AjoutDonneInterface ajoutDonneInterface= new AjoutDonneInterface();
-	
+
 	private AjoutProdInterface ajoutProdInterface= new AjoutProdInterface();
 
 	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface ){
@@ -90,8 +93,8 @@ public class Controller {
 		this.changePass.addChangePassListener(new ChangePassActionListener());
 
 		this.ajoutDonneInterface.addAjoutDonneInterface(new AjoutDonneInterfaceListner());
-		
-	    this.ajoutProdInterface.addAjoutProdInterfaceListener(new AjoutProdInterfaceListener());
+
+		this.ajoutProdInterface.addAjoutProdInterfaceListener(new AjoutProdInterfaceListener());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -133,8 +136,8 @@ public class Controller {
 			if(e.getSource()==frame.getListproduit()){
 				try{
 					ResultSet rs= model.listProduitToutResultat();
-                    DefaultTableModel dtm = model.buildTableModel(rs);
-                    frame.getListProduitTable().setModel(dtm);
+					DefaultTableModel dtm = model.buildTableModel(rs);
+					frame.getListProduitTable().setModel(dtm);
 					showFourthCard();
 					panelList.add(4);
 				}catch(SQLException ex){
@@ -144,8 +147,8 @@ public class Controller {
 			if(e.getSource()==frame.getListFactureEntre()){
 				try{
 					ResultSet rs= model.listFactureEntre();
-                    DefaultTableModel dtm = model.buildTableModel(rs);
-                    frame.getListFactureEntreTable().setModel(dtm);
+					DefaultTableModel dtm = model.buildTableModel(rs);
+					frame.getListFactureEntreTable().setModel(dtm);
 					showFifthCard();
 					panelList.add(5);
 				}catch(SQLException ex){
@@ -155,19 +158,19 @@ public class Controller {
 			if (e.getSource()==frame.getListFactureSortie()) {
 				try{
 					ResultSet rs= model.listFactureSortie();
-                    DefaultTableModel dtm = model.buildTableModel(rs);
-                    frame.getListFactureSortieTable().setModel(dtm);
+					DefaultTableModel dtm = model.buildTableModel(rs);
+					frame.getListFactureSortieTable().setModel(dtm);
 					showSixthCard();
 					panelList.add(6);
 				}catch(SQLException ex){
 					ex.printStackTrace();
 				}
-				
+
 			}
 			if (e.getSource()==frame.getZakatCalcButton()) {
 				if(Double.parseDouble(frame.getZakatText().getText())<100 && Double.parseDouble(frame.getZakatText().getText())>0 ){
 					//calculate zakat total
-					
+
 				}
 				else{
 					frame.getZakatText().setText("");
@@ -176,9 +179,9 @@ public class Controller {
 			}
 			if (e.getSource()==frame.getOkAjout()) {
 				//insertion from Jtable code here 
-				
+
 				//settig the JTable to disabled
-				
+
 			}
 
 
@@ -207,31 +210,31 @@ public class Controller {
 			if (e.getSource()==frame.getListFactureTout()) {
 				try{
 					ResultSet rs= model.listFactureTout();
-                    DefaultTableModel dtm = model.buildTableModel(rs);
-                    frame.getListFactureToutTable().setModel(dtm);
+					DefaultTableModel dtm = model.buildTableModel(rs);
+					frame.getListFactureToutTable().setModel(dtm);
 					showSeventhCard();
 					panelList.add(7);
 				}catch(SQLException ex){
 					ex.printStackTrace();
 				}
-				
+
 			}
 			if (e.getSource()==frame.getZakatMenu()) {
 				try{
 					ResultSet rs= model.listProduitZakat();
-                    DefaultTableModel dtm = model.buildTableModel(rs);
-                    frame.getListProduitZakatTable().setModel(dtm);
-                    //TableColumn tcol = frame.getListProduitZakatTable().getColumnModel().getColumn(0);
-                    //frame.getListProduitZakatTable().getColumnModel().removeColumn(tcol);
-                    int[]columnsToBeDeleted= {0,2,2,5};
-                    model.deleteMultipleColumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
-                    //frame.getListProduitZakatTable().setAutoCreateColumnsFromModel(false);
-                    showEighCard();
+					DefaultTableModel dtm = model.buildTableModel(rs);
+					frame.getListProduitZakatTable().setModel(dtm);
+					//TableColumn tcol = frame.getListProduitZakatTable().getColumnModel().getColumn(0);
+					//frame.getListProduitZakatTable().getColumnModel().removeColumn(tcol);
+					int[]columnsToBeDeleted= {0,2,2,5};
+					model.deleteMultipleColumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
+					//frame.getListProduitZakatTable().setAutoCreateColumnsFromModel(false);
+					showEighCard();
 					panelList.add(8);
 				}catch(SQLException ex){
 					ex.printStackTrace();
 				}
-				
+
 			}
 		}
 
@@ -306,16 +309,16 @@ public class Controller {
 			}
 			if (e.getSource()==addingquantity.getOk()) {
 				try{
-				addingquantity.dispose();
-				
-				//code for Jtable insertions
-                DefaultTableModel dtm = new DefaultTableModel();
-                frame.getListProduitAjoutTable().setModel(dtm);
-				
-				
-				enableFrame();
+					addingquantity.dispose();
 
-				//chacking if the input is a number or something else
+					//code for Jtable insertions
+					DefaultTableModel dtm = new DefaultTableModel();
+					frame.getListProduitAjoutTable().setModel(dtm);
+
+
+					enableFrame();
+
+					//chacking if the input is a number or something else
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
@@ -328,7 +331,7 @@ public class Controller {
 			if (e.getSource()==addingquantity.getChoixBtnDesignation()) {
 				addingquantity.getPopmenuProduit().show(addingquantity.getChoixBtnDesignation(), addingquantity.getChoixBtnDesignation().getBounds().x-312, addingquantity.getChoixBtnDesignation().getBounds().y-65 + addingquantity.getChoixBtnDesignation().getBounds().height);
 			}
-			
+
 			//adding Lot
 			if(e.getSource()==addingquantity.getAjouItem()){
 
@@ -336,21 +339,21 @@ public class Controller {
 				disableAddingQuantity();
 			}
 			if(e.getSource()==addingquantity.getSupItem()){
-                //delete the corresponding lot 
+				//delete the corresponding lot 
 				disableAddingQuantity();
 			}
 			if(e.getSource()==addingquantity.getModifieItem()){
 				//modify he corresponding lot
 				disableAddingQuantity();
 			}
-			
+
 			//adding product
 			if (e.getSource()== addingquantity.getAjouItemProd()) {
 				ajoutProdInterface.setVisible(true);
 				disableAddingQuantity();
 			}
 			if (e.getSource()== addingquantity.getModifieItemProd()) {
-				
+
 				ajoutProdInterface.setVisible(true);
 				disableAddingQuantity();
 			}
@@ -358,15 +361,31 @@ public class Controller {
 				//deleting a product from database
 				disableAddingQuantity();
 			}
-			
+
 			if(e.getSource()== addingquantity.getAjoutProduitComboBox()){
 				try{
-				//action when a product gets selected:
-                JComboBox comboBox = (JComboBox) e.getSource();
-                Object selected = comboBox.getSelectedItem();
-				int id = idDesignationProdList.get(selected.toString());
-                DefaultComboBoxModel dcm= model.buildComboModelLot(id);
-                addingquantity.getAjoutLotComboBox().setModel(dcm);
+					//action when a product gets selected:
+					JComboBox comboBox = (JComboBox) e.getSource();
+					Object selected = comboBox.getSelectedItem();
+					id = idDesignationProdList.get(selected.toString());
+					DefaultComboBoxModel dcm= model.buildComboModelLot(id);
+					addingquantity.getAjoutLotComboBox().setModel(dcm);
+					System.out.println(addingquantity.getAjoutProduitComboBox().getSelectedIndex());
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+			}
+			if (e.getSource()== addingquantity.getAjoutLotComboBox()) {
+				try{
+					JComboBox comboBox = (JComboBox) e.getSource();
+					int selected = comboBox.getSelectedIndex();
+					List<Integer> idLotList= model.getIdLot(id);
+					//setting the labels in the addingquantity view to the actual database values from the lot
+					//need to write a query to get the values from db to view
+					addingquantity.getPrixVente().setText("");
+					//the selected Lot id 
+					idLotList.get(selected);
+					
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
@@ -505,8 +524,8 @@ public class Controller {
 				addingquantity.toFront();
 			}
 		}
-		
-		
+
+
 	}
 	//a method for navigating through the panels Uses a list of panel indexes
 
@@ -580,7 +599,7 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 8");	
 	}
-	
+
 	public void enableFrame(){
 		frame.setEnabled(true);
 		frame.toFront();
@@ -588,15 +607,17 @@ public class Controller {
 	public void disableAddingQuantity(){
 		frame.setEnabled(false);
 		addingquantity.setEnabled(false);
-    }
+	}
 	public void enableAddingQuantity(){
 		ajoutProdInterface.dispose();
 		addingquantity.setEnabled(true);
 	}
+
+	//this is to put data from teh database into the combobox
 	public void refreshProductComboBox()throws SQLException{
 		DefaultComboBoxModel dcm= model.buildComboModel();
-        addingquantity.getAjoutProduitComboBox().setModel(dcm);
-        idDesignationProdList= model.getIDproductDesignation();
+		addingquantity.getAjoutProduitComboBox().setModel(dcm);
+		idDesignationProdList= model.getIDproductDesignation();
 	}
 
 }

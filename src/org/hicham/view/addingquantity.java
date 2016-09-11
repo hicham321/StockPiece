@@ -48,7 +48,7 @@ public class addingquantity extends JFrame{
 
 	//these are modified labels to be set to the buy and sell prices and qte Lot and qte globale
 	private JLabel prixAchat = new JLabel("");
-	private JLabel prixVente = new JLabel("");
+	private JLabel prixVente = new JLabel("0");
 	private JLabel qteLot  = new JLabel("");
 	private JLabel qteGlobal = new JLabel("");
 
@@ -231,7 +231,10 @@ public class addingquantity extends JFrame{
 	public void setPrixVente(JLabel prixVente) {
 		this.prixVente = prixVente;
 	}
-
+     
+	public JLabel getPrixVente() {
+		return prixVente;
+	}
 	public void setQteLot(JLabel qteLot) {
 		this.qteLot = qteLot;
 	}
