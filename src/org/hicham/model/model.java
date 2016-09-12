@@ -176,27 +176,22 @@ public class model {
 
 	}
 	//this query is for getting Lot info after executing a search via the combobox
-	public void RechLot(String Nom ){
-		try {
-			String query= "SELECT * from Lot WHERE Mot= '" +Nom +"'" +" and "+"Prenom"+"'"+"'" ;	         	        
-			ResultSet r= this.stmt.executeQuery(query);
+	public List<Double> getSelectedLotRow(int  idLot,int idProd ) throws SQLException{
 
-			while (r.next() ) {
-				String nom = r.getString("Nom");
-				String Referance = r.getString("Referance");
-				double prixachat = r.getDouble("PrixAchat");
-				double Prixvente = r.getDouble("PrixVente");
-				int Date= r.getInt("QTE");
-				Date date = r.getDate("Date");
-
-			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
+		String query= "SELECT * from Lot WHERE Lot.IDLot="+"'"+idLot+"'"+  "and Lot.IDProduit= "+"'"+idProd+"'" ;	         	        
+		ResultSet r= this.stmt.executeQuery(query);
+		List<Double> l = new ArrayList<>();
+		while (r.next() ) {
+			double prixachat = r.getDouble("prixAchat");
+			double Prixvente = r.getDouble("prixVente");
+			int qte= r.getInt("qte");
+			double t= (double) qte;
+			l.add(prixachat);
+			l.add(Prixvente);
+			l.add(t);
 
 		}
-
+		return l;
 	}
 	//this method is to create a table model for the Jtables
 	public static DefaultTableModel buildTableModel(ResultSet rs)

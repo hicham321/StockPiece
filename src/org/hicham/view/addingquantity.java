@@ -115,14 +115,14 @@ public class addingquantity extends JFrame{
 		AutoCompleteDecorator.decorate(ajoutProduitComboBox);
 		ajoutProduitComboBox.setSelectedIndex(0);
 
-		this.ajoutRefmodel.addElement("34");
-		this.ajoutRefmodel.addElement("84784");
+		this.ajoutRefmodel.addElement("");
+		/*this.ajoutRefmodel.addElement("84784");
 		this.ajoutRefmodel.addElement("8747");
 		this.ajoutRefmodel.addElement("12132");
 		this.ajoutRefmodel.addElement("1200998");
 		this.ajoutRefmodel.addElement("3626");
 		this.ajoutRefmodel.addElement("5343");
-		this.ajoutRefmodel.addElement("2346544");
+		this.ajoutRefmodel.addElement("2346544");*/
 
 		AutoCompleteDecorator.decorate(ajoutLotComboBox);
 		ajoutLotComboBox.setSelectedIndex(0);
@@ -196,6 +196,7 @@ public class addingquantity extends JFrame{
         this.modifieItemProd.addActionListener(listner);
         this.supItemProd.addActionListener(listner);
         this.ajoutProduitComboBox.addActionListener(listner);
+        this.ajoutLotComboBox.addActionListener(listner);
 
 
 	}

@@ -370,7 +370,7 @@ public class Controller {
 					id = idDesignationProdList.get(selected.toString());
 					DefaultComboBoxModel dcm= model.buildComboModelLot(id);
 					addingquantity.getAjoutLotComboBox().setModel(dcm);
-					System.out.println(addingquantity.getAjoutProduitComboBox().getSelectedIndex());
+					//System.out.println(addingquantity.getAjoutProduitComboBox().getSelectedIndex());
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
@@ -380,11 +380,12 @@ public class Controller {
 					JComboBox comboBox = (JComboBox) e.getSource();
 					int selected = comboBox.getSelectedIndex();
 					List<Integer> idLotList= model.getIdLot(id);
+					System.out.println(selected);
 					//setting the labels in the addingquantity view to the actual database values from the lot
 					//need to write a query to get the values from db to view
-					addingquantity.getPrixVente().setText("");
+					List<Double>l=model.getSelectedLotRow(idLotList.get(selected),id);
+					addingquantity.getPrixVente().setText(l.get(1).toString());
 					//the selected Lot id 
-					idLotList.get(selected);
 					
 				}catch(Exception ex){
 					ex.printStackTrace();
