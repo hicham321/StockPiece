@@ -323,17 +323,18 @@ public class model {
     }
 
     public DefaultComboBoxModel buildComboModelLot(int idProd) throws SQLException {
-        ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'");
+
+    	ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'");
     	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
-        double prixAchat=0;
-        List<Double> listProd= new ArrayList<>();
-        while (rs.next()) {
-        	prixAchat = rs.getDouble("prixAchat");
-            listProd.add(prixAchat);
-		}
+    	String prixAchat="";
+    	List<String> listProd= new ArrayList<>();
+    	while (rs.next()) {
+    		prixAchat = rs.getString("prixAchat");
+    		listProd.add(prixAchat);
+    	}
     	for (int i = 0; i < listProd.size(); i++) {
-		       v.addElement(listProd.get(i));	
-		}
+    		v.addElement(new MyClass(listProd.get(i)));	
+    	}
     	return v;
     }
     //this is for getting lists of lot Ids and Lot prix achat 
@@ -546,6 +547,20 @@ to a stored salted hash of the password. */
 	public int generateRandomNumber(){
 
 		return 3;
+	}
+
+	public class MyClass{
+
+		private String myName;
+
+		public MyClass(String name){
+			this.myName = name;
+		}
+		@Override
+		public String toString(){
+			return myName;
+		}
+
 	}
 
 
