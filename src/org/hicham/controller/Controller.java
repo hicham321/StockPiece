@@ -312,9 +312,21 @@ public class Controller {
 					addingquantity.dispose();
 
 					//code for Jtable insertions
-					DefaultTableModel dtm = new DefaultTableModel();
-					frame.getListProduitAjoutTable().setModel(dtm);
+					DefaultTableModel dtm = new DefaultTableModel(){ 
+			            String[] columns = {"", "","","","",""}; 
 
+			            @Override 
+			            public int getColumnCount() { 
+			                return columns.length; 
+			            } 
+
+			            @Override 
+			            public String getColumnName(int index) { 
+			                return columns[index]; 
+			            } 
+			        }; 
+					frame.getListProduitAjoutTable().setModel(dtm);
+                    
 
 					enableFrame();
 
@@ -380,9 +392,7 @@ public class Controller {
 					JComboBox comboBox = (JComboBox) e.getSource();
 					int selected = comboBox.getSelectedIndex();
 					List<Integer> idLotList= model.getIdLot(idProd);
-					System.out.println(selected);
 					//setting the labels in the addingquantity view to the actual database values from the lot
-					//need to write a query to get the values from db to view
 					List<Double>l=model.getSelectedLotRow(idLotList.get(selected),idProd);
 					addingquantity.getPrixVente().setText(l.get(1).toString());
 					addingquantity.getPrixAchat().setText(l.get(0).toString());
