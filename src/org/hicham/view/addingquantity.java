@@ -228,7 +228,11 @@ public class addingquantity extends JFrame{
 	public void setPrixAchat(JLabel prixAchat) {
 		this.prixAchat = prixAchat;
 	}
-
+	
+    public JLabel getPrixAchat(){
+    	return this.prixAchat; 
+    }
+    
 	public void setPrixVente(JLabel prixVente) {
 		this.prixVente = prixVente;
 	}
@@ -236,12 +240,12 @@ public class addingquantity extends JFrame{
 	public JLabel getPrixVente() {
 		return prixVente;
 	}
-	public void setQteLot(JLabel qteLot) {
-		this.qteLot = qteLot;
+	public JLabel getQteLot() {
+		return this.qteLot;
 	}
 
-	public void setQteGlobal(JLabel qteGlobal) {
-		this.qteGlobal = qteGlobal;
+	public JLabel getQteGlobal( ) {
+		return this.qteGlobal ;
 	}
 	
 	

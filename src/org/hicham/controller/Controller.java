@@ -54,7 +54,7 @@ public class Controller {
 	private Map<String,Integer> idDesignationProdList= new HashMap<>();
 	
 	//this new field is to be debugged intensively later
-	private int id =0;
+	private int idProd =0;
 
 	private JFileChooser filechooser = new JFileChooser();
 
@@ -367,8 +367,8 @@ public class Controller {
 					//action when a product gets selected:
 					JComboBox comboBox = (JComboBox) e.getSource();
 					Object selected = comboBox.getSelectedItem();
-					id = idDesignationProdList.get(selected.toString());
-					DefaultComboBoxModel dcm= model.buildComboModelLot(id);
+					idProd = idDesignationProdList.get(selected.toString());
+					DefaultComboBoxModel dcm= model.buildComboModelLot(idProd);
 					addingquantity.getAjoutLotComboBox().setModel(dcm);
 					//System.out.println(addingquantity.getAjoutProduitComboBox().getSelectedIndex());
 				}catch(Exception ex){
@@ -379,12 +379,16 @@ public class Controller {
 				try{
 					JComboBox comboBox = (JComboBox) e.getSource();
 					int selected = comboBox.getSelectedIndex();
-					List<Integer> idLotList= model.getIdLot(id);
+					List<Integer> idLotList= model.getIdLot(idProd);
 					System.out.println(selected);
 					//setting the labels in the addingquantity view to the actual database values from the lot
 					//need to write a query to get the values from db to view
-					List<Double>l=model.getSelectedLotRow(idLotList.get(selected),id);
+					List<Double>l=model.getSelectedLotRow(idLotList.get(selected),idProd);
 					addingquantity.getPrixVente().setText(l.get(1).toString());
+					addingquantity.getPrixAchat().setText(l.get(0).toString());
+					addingquantity.getQteLot().setText(l.get(2).toString());
+					int qteGlobal= model.getQteGlobalProd(idProd);
+					addingquantity.getQteGlobal().setText(Integer.toString(qteGlobal));
 					//the selected Lot id 
 					
 				}catch(Exception ex){

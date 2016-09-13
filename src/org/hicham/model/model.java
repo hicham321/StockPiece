@@ -300,6 +300,16 @@ public class model {
 
     	return l;
     }
+    public int getQteGlobalProd(int idProd)throws SQLException{
+    	
+        ResultSet rs = stmt.executeQuery("SELECT QteGlobal from Produit WHERE Produit.IDprod="+"'"+idProd+"'" );
+        int qteGlobal= 0;
+        while(rs.next()){
+        	qteGlobal= rs.getInt("QteGlobal");
+        }
+        return qteGlobal;
+
+    }
     
     public List<String> allProducts()throws SQLException{
     	ResultSet rs = stmt.executeQuery("SELECT designationProduit from Produit ");
