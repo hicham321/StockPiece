@@ -1,13 +1,15 @@
 import javax.swing.UIManager;
-import org.hicham.controller.Controller;
-import org.hicham.model.model;
-import org.hicham.view.AjoutDonneInterface;
-import org.hicham.view.AjoutProdInterface;
-import org.hicham.view.ChangePass;
-import org.hicham.view.Register;
-import org.hicham.view.addingquantity;
-import org.hicham.view.mainFrame; 
+
 import  com.seaglasslookandfeel.*;
+
+import org1.hicham.controller.Controller;
+import org1.hicham.model.model;
+import org1.hicham.view.AjoutDonneInterface;
+import org1.hicham.view.AjoutProdInterface;
+import org1.hicham.view.ChangePass;
+import org1.hicham.view.Register;
+import org1.hicham.view.addingquantity;
+import org1.hicham.view.mainFrame;
 
 
 public class main {
