@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -65,6 +66,8 @@ public class Controller {
 	private AjoutDonneInterface ajoutDonneInterface= new AjoutDonneInterface();
 
 	private AjoutProdInterface ajoutProdInterface= new AjoutProdInterface();
+	
+	private DefaultTableModel tableModelForInsertions= new DefaultTableModel();
 
 	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface ){
 
@@ -111,6 +114,22 @@ public class Controller {
 			}
 
 			if(e.getSource()== frame.getAjoutprodui()){
+
+				 tableModelForInsertions = new DefaultTableModel(){ 
+					String[] columns = {"marge","somme vente", "somme achat","prix Vente",
+							"prix achat","qte","designation"}; 
+
+					@Override 
+					public int getColumnCount() { 
+						return columns.length; 
+					} 
+
+					@Override 
+					public String getColumnName(int index) { 
+						return columns[index]; 
+					} 
+				}; 
+				frame.getListProduitAjoutTable().setModel(tableModelForInsertions);
 				showSecondCard();	
 				//for navigating through panels 
 				panelList.add(2);
@@ -309,25 +328,18 @@ public class Controller {
 			}
 			if (e.getSource()==addingquantity.getOk()) {
 				try{
+
+					//code for JTable insertions
+                    Vector row = new Vector<>();
+                    row.addElement("Column 1"); 
+                    row.addElement("Column 2"); 
+                    row.addElement("Column 3"); 
+                    row.addElement("Column 4"); 
+                    row.addElement("Column 5"); 
+                    row.addElement("Column 6"); 
+                    tableModelForInsertions.addRow(row);
+                    tableModelForInsertions.fireTableDataChanged();
 					addingquantity.dispose();
-
-					//code for Jtable insertions
-					DefaultTableModel dtm = new DefaultTableModel(){ 
-			            String[] columns = {"", "","","","",""}; 
-
-			            @Override 
-			            public int getColumnCount() { 
-			                return columns.length; 
-			            } 
-
-			            @Override 
-			            public String getColumnName(int index) { 
-			                return columns[index]; 
-			            } 
-			        }; 
-					frame.getListProduitAjoutTable().setModel(dtm);
-                    
-
 					enableFrame();
 
 					//chacking if the input is a number or something else
