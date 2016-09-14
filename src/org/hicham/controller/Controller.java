@@ -322,7 +322,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==addingquantity.getAnnule()) {
-				addingquantity.dispose();
+                closeAddinQuantity();
 				enableFrame();
 
 			}
@@ -339,8 +339,8 @@ public class Controller {
                     row.addElement("Column 6"); 
                     tableModelForInsertions.addRow(row);
                     tableModelForInsertions.fireTableDataChanged();
-					addingquantity.dispose();
-					enableFrame();
+                    closeAddinQuantity();
+                    enableFrame();
 
 					//chacking if the input is a number or something else
 				}catch(Exception ex){
@@ -510,11 +510,14 @@ public class Controller {
 				ajoutDonneInterface.dispose();
 				addingquantity.setEnabled(true);
 				enableFrame();
+				FrontAddQuanAndFrame();
+
 			}
 			if (e.getSource()==ajoutDonneInterface.getAnnule()) {
 				ajoutDonneInterface.dispose();
 				addingquantity.setEnabled(true);
 				enableFrame();
+				FrontAddQuanAndFrame();
 			}
 
 		}
@@ -537,8 +540,7 @@ public class Controller {
 						model.insertProd(ajoutProdInterface.getTextProd().getText());
 						refreshProductComboBox();
 						enableAddingQuantity();
-						frame.toFront();
-						addingquantity.toFront();
+						FrontAddQuanAndFrame();
 					}
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -547,8 +549,7 @@ public class Controller {
 			}
 			if(e.getSource()== ajoutProdInterface.getAnnule()){
 				enableAddingQuantity();
-				frame.toFront();
-				addingquantity.toFront();
+				FrontAddQuanAndFrame();
 			}
 		}
 
@@ -638,6 +639,14 @@ public class Controller {
 	public void enableAddingQuantity(){
 		ajoutProdInterface.dispose();
 		addingquantity.setEnabled(true);
+	}
+	public void closeAddinQuantity(){
+		addingquantity.dispose();
+		//addingquantity.getOk().setEnabled(false);
+	}
+	public void FrontAddQuanAndFrame(){
+		frame.toFront();
+		addingquantity.toFront();
 	}
 
 	//this is to put data from teh database into the combobox

@@ -29,7 +29,7 @@ public class Ajout extends JPanel {
 
 	JButton annule = new JButton("الغاء");
 	JButton ok = new JButton("موافقة");
-	JButton ajoutproduit = new JButton();
+	JButton ajoutproduit = new JButton("Ajouté");
 	
 	JLabel prixTotalLab = new JLabel("المجموع الكلي");
 	JLabel prixTotal = new JLabel(" ");
@@ -60,10 +60,10 @@ public class Ajout extends JPanel {
 		
 		listProduitAjoutTable =new JTable(dt);
 		scrolPane= new JScrollPane(listProduitAjoutTable);
-		scrolPane.setBounds(100, 100, 500, 500);
+		scrolPane.setBounds(50, 70, 1250, 470);
 		this.add(scrolPane);
 		
-		//Text fields buttons alnd labels
+		//Text fields buttons and labels
         nomFournisseur.setBounds(200, 20, 100, 20);
         labNomFour.setBounds(310, 20, 100, 20);
         numfact.setBounds(30, 20, 100, 20);
@@ -72,7 +72,7 @@ public class Ajout extends JPanel {
         prixTotal.setBounds(1150, 630, 100, 20);
         annule.setBounds(1230, 580, 100, 30);
 		ok.setBounds(1100, 580, 100, 30);
-		ajoutproduit.setBounds(300, 300, 100, 30);
+		ajoutproduit.setBounds(300, 630, 100, 30);
 
 	}
 
