@@ -58,6 +58,12 @@ public class Controller {
 	
 	//this new field is to be debugged intensively later
 	private int idProd =0;
+	
+	private int idLot=0;
+	
+	private List<Integer>insertedIdProdList= new ArrayList<>();
+	
+	private List<Integer>insertedIdLotList= new ArrayList<>();
 
 	private JFileChooser filechooser = new JFileChooser();
 
@@ -330,21 +336,33 @@ public class Controller {
 			}
 			if (e.getSource()==addingquantity.getOk()) {
 				try{
+					String qteText= addingquantity.getQte().getText();
+					//this code is for the case when we subtract quantity
+					//					if (qteText==""||model.getLotQuantity(idProd, idLot)-Integer.parseInt(qteText)<0 ) {
+					//						JOptionPane.showMessageDialog(null, "Mot de pass ou nom d'utilisateur incorrect");
+					//					}
 
-					//code for JTable insertions
-                    Vector row = new Vector<>();
-                    row.addElement("Column 1"); 
-                    row.addElement("Column 2"); 
-                    row.addElement("Column 3"); 
-                    row.addElement("Column 4"); 
-                    row.addElement("Column 5"); 
-                    row.addElement("Column 6"); 
-                    tableModelForInsertions.addRow(row);
-                    tableModelForInsertions.fireTableDataChanged();
-                    closeAddinQuantity();
-                    enableFrame();
+					if (! model.isNumeric(qteText)|| Integer.parseInt(qteText)<=0 ||"".equals(addingquantity.getAjoutLotComboBox().getSelectedItem())||"".equals(addingquantity.getAjoutProduitComboBox().getSelectedItem())) {
+						JOptionPane.showMessageDialog(null, "ادخل وضعية المنتوج, ادخل المنتوج و وضعيته ");
+					}
+					                  
+					else{
 
-					//chacking if the input is a number or something else
+						//code for JTable insertions
+						Vector row = new Vector<>();
+						row.addElement("Column 1"); 
+						row.addElement("Column 2"); 
+						row.addElement("Column 3"); 
+						row.addElement("Column 4"); 
+						row.addElement("Column 5"); 
+						row.addElement("Column 6"); 
+						tableModelForInsertions.addRow(row);
+						tableModelForInsertions.fireTableDataChanged();
+						//setting the addquantity view components back to default values
+						addingquantity.getQte().setText("0");
+						closeAddinQuantity();
+						enableFrame();
+					}
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
@@ -394,8 +412,7 @@ public class Controller {
 					JComboBox comboBox = (JComboBox) e.getSource();
 					Object selected = comboBox.getSelectedItem();
 					idProd = idDesignationProdList.get(selected.toString());
-					DefaultComboBoxModel dcm= model.buildComboModelLot(idProd);
-					addingquantity.getAjoutLotComboBox().setModel(dcm);
+					refreshLotComboBox();
 					//System.out.println(addingquantity.getAjoutProduitComboBox().getSelectedIndex());
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -407,7 +424,8 @@ public class Controller {
 					int selected = comboBox.getSelectedIndex();
 					List<Integer> idLotList= model.getIdLot(idProd);
 					//setting the labels in the addingquantity view to the actual database values from the lot
-					List<Double>l=model.getSelectedLotRow(idLotList.get(selected),idProd);
+					idLot=idLotList.get(selected);
+					List<Double>l=model.getSelectedLotRow(idLot,idProd);
 					addingquantity.getPrixVente().setText(l.get(1).toString());
 					addingquantity.getPrixAchat().setText(l.get(0).toString());
 					addingquantity.getQteLot().setText(l.get(2).toString());
@@ -666,6 +684,10 @@ public class Controller {
 		DefaultComboBoxModel dcm= model.buildComboModel();
 		addingquantity.getAjoutProduitComboBox().setModel(dcm);
 		idDesignationProdList= model.getIDproductDesignation();
+	}
+	public void refreshLotComboBox()throws SQLException{
+		DefaultComboBoxModel dcm= model.buildComboModelLot(idProd);
+		addingquantity.getAjoutLotComboBox().setModel(dcm);
 	}
 
 }

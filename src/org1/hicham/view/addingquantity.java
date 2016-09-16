@@ -103,27 +103,12 @@ public class addingquantity extends JFrame{
 		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		this.ajoutprodmodel.addElement("");
-		/*this.ajoutprodmodel.addElement("dcd");
-		this.ajoutprodmodel.addElement("fgfg");
-		this.ajoutprodmodel.addElement("dfcvbbcd");
-		this.ajoutprodmodel.addElement("qsdqsd");
-		this.ajoutprodmodel.addElement("klmkjlm");
-		this.ajoutprodmodel.addElement("uioio");
-		this.ajoutprodmodel.addElement("azee");
-		this.ajoutprodmodel.addElement("xwxcxw");*/
 
 		AutoCompleteDecorator.decorate(ajoutProduitComboBox);
 		ajoutProduitComboBox.setSelectedIndex(0);
 
 		this.ajoutRefmodel.addElement("");
-		/*this.ajoutRefmodel.addElement("84784");
-		this.ajoutRefmodel.addElement("8747");
-		this.ajoutRefmodel.addElement("12132");
-		this.ajoutRefmodel.addElement("1200998");
-		this.ajoutRefmodel.addElement("3626");
-		this.ajoutRefmodel.addElement("5343");
-		this.ajoutRefmodel.addElement("2346544");*/
-
+		
 		AutoCompleteDecorator.decorate(ajoutLotComboBox);
 		ajoutLotComboBox.setSelectedIndex(0);
 
@@ -162,6 +147,7 @@ public class addingquantity extends JFrame{
 
 		
 		qte.setBounds(30, 100, 90, 20);
+		qte.setText("0");
 		labqte.setBounds(130, 100, 90, 20);
 		labQteLot.setBounds(300, 250, 90, 20);
 		labQteGlobal.setBounds(300, 280, 90, 20);
@@ -224,7 +210,10 @@ public class addingquantity extends JFrame{
 	public JButton getOk() {
 		return ok;
 	}
-
+	
+	public JTextField getQte() {
+		return qte;
+	}
 	public void setPrixAchat(JLabel prixAchat) {
 		this.prixAchat = prixAchat;
 	}

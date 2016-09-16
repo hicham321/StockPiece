@@ -150,6 +150,17 @@ public class model {
 	}
 	//to add quantity or subtract it from LOT one should write an update query to an already inserted LOt 
 	//it should also modify the global quantity accordingly:
+	public int getLotQuantity(int idProd, int idLot)throws SQLException{
+		
+			String query= "SELECT qte from Lot WHERE Lot.IDLot="+"'"+idLot+"'"+  "and Lot.IDProduit= "+"'"+idProd+"'" ;	         	        
+			ResultSet r= this.stmt.executeQuery(query);
+			int qte=0;
+			while(r.next()){
+				qte= r.getInt("qte");
+			}
+			return qte;		
+	}
+
 	public void addQteLot(int qte, int idLot){
 		try{
 			String query= "UPDATE Lot SET qte =qte + '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
