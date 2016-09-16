@@ -342,7 +342,7 @@ public class Controller {
 					//						JOptionPane.showMessageDialog(null, "Mot de pass ou nom d'utilisateur incorrect");
 					//					}
 
-					if (! model.isNumeric(qteText)|| Integer.parseInt(qteText)<=0 ||"".equals(addingquantity.getAjoutLotComboBox().getSelectedItem())||"".equals(addingquantity.getAjoutProduitComboBox().getSelectedItem())) {
+					if (! model.isInteger(qteText) || Integer.parseInt(qteText)<=0 ||addingquantity.getAjoutLotComboBox().getItemCount()==0||addingquantity.getAjoutProduitComboBox().getItemCount()==0|| addingquantity.getAjoutProduitComboBox().getSelectedIndex()==-1 ||addingquantity.getAjoutLotComboBox().getSelectedIndex()==-1) {
 						JOptionPane.showMessageDialog(null, "ادخل وضعية المنتوج, ادخل المنتوج و وضعيته ");
 					}
 					                  
@@ -360,6 +360,8 @@ public class Controller {
 						tableModelForInsertions.fireTableDataChanged();
 						//setting the addquantity view components back to default values
 						addingquantity.getQte().setText("0");
+						refreshLotComboBox();
+						refreshProductComboBox();
 						closeAddinQuantity();
 						enableFrame();
 					}

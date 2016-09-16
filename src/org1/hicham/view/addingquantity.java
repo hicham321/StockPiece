@@ -62,9 +62,9 @@ public class addingquantity extends JFrame{
 	private JScrollPane ajoutProduitListScrol = new JScrollPane(ajoutProduitComboBox); 
 
 	//this is for the product type
-	final DefaultComboBoxModel ajoutRefmodel = new DefaultComboBoxModel();
+	final DefaultComboBoxModel ajoutLotmodel = new DefaultComboBoxModel();
 
-	final JComboBox ajoutLotComboBox  = new JComboBox(ajoutRefmodel);    
+	final JComboBox ajoutLotComboBox  = new JComboBox(ajoutLotmodel);    
 
 	private JScrollPane ajoutRefListScrol = new JScrollPane(ajoutLotComboBox); 
 	
@@ -107,7 +107,7 @@ public class addingquantity extends JFrame{
 		AutoCompleteDecorator.decorate(ajoutProduitComboBox);
 		ajoutProduitComboBox.setSelectedIndex(0);
 
-		this.ajoutRefmodel.addElement("");
+		this.ajoutLotmodel.addElement("");
 		
 		AutoCompleteDecorator.decorate(ajoutLotComboBox);
 		ajoutLotComboBox.setSelectedIndex(0);
