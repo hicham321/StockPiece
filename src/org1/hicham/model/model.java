@@ -136,7 +136,7 @@ public class model {
 	public void insertLot(double prixAchat,double prixVente,int qte ,int idprod){
 
 		try {
-			String query= "INSERT INTO Lot ( prixAchat,prixVente,qte,IDProduit) VALUES ("+ "'"+prixAchat + "'"+ "," + "'"+ prixVente +"'"+","+ "'"+ qte +"'"+idprod+"'"+")";        	        
+			String query= "INSERT INTO Lot ( prixAchat,prixVente,qte,IDProduit) VALUES ("+ "'"+prixAchat + "'"+ "," + "'"+ prixVente +"'"+","+ "'"+ qte +"'"+","+ "'"+idprod+"'"+")";        	        
 			this.stmt.execute(query);
 			
 		
