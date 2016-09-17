@@ -143,6 +143,21 @@ public class model {
 		}
 
 	}
+	//modify Lot 
+	public void updateLot(double prixAchat, double prixVente, int idProd, int idLot){
+
+		try {
+			String query= "UPDATE Lot SET (prixAchat , prixVente) ='"+ prixAchat +"'" +"'"+prixVente+"'" + "WHERE IDprod= "+"'"+ idProd+"'"+"and IDLot="+"'"+idLot+"'";
+
+		    stmt.execute(query);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+
+		}
+
+	}
 	//to add quantity or subtract it from LOT one should write an update query to an already inserted LOt 
 	//it should also modify the global quantity accordingly:
 	public int getLotQuantity(int idProd, int idLot)throws SQLException{

@@ -31,6 +31,7 @@ import org1.hicham.model.model;
 import org1.hicham.view.AjoutDonneInterface;
 import org1.hicham.view.AjoutProdInterface;
 import org1.hicham.view.ChangePass;
+import org1.hicham.view.InterfaceModifieLot;
 import org1.hicham.view.InterfaceModifieProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
@@ -65,6 +66,8 @@ public class Controller {
 	private List<Integer>insertedIdProdList= new ArrayList<>();
 	
 	private List<Integer>insertedIdLotList= new ArrayList<>();
+	
+	private List<Integer> idLotList= new ArrayList<>();
 
 	private JFileChooser filechooser = new JFileChooser();
 
@@ -78,9 +81,11 @@ public class Controller {
 	
 	private InterfaceModifieProd interfaceModifieProd= new InterfaceModifieProd();
 	
+	private InterfaceModifieLot interfaceModifieLot= new InterfaceModifieLot();
+	
 	private DefaultTableModel tableModelForInsertions= new DefaultTableModel();
 
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd ){
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd,InterfaceModifieLot interfaceModifieLot ){
 
 		this.frame= frame;
 
@@ -95,6 +100,8 @@ public class Controller {
 		this.ajoutDonneInterface=ajoutDonneInterface;
 		
 		this.interfaceModifieProd=interfaceModifieProd;
+		
+		this.interfaceModifieLot= interfaceModifieLot;
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
@@ -113,6 +120,8 @@ public class Controller {
 		this.ajoutProdInterface.addAjoutProdInterfaceListener(new AjoutProdInterfaceListener());
 		
 		this.interfaceModifieProd.addModifieProdInterfaceListener(new ModifieProdInterfaceListener());
+		
+		this.interfaceModifieLot.addInterfaceModifieLotListener(new modifieLotInterfaceListener());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -396,7 +405,22 @@ public class Controller {
 				disableAddingQuantity();
 			}
 			if(e.getSource()==addingquantity.getModifieItem()){
+				try{
 				//modify he corresponding lot
+				List<Double>l=model.getSelectedLotRow(idLot,idProd);
+				
+			    interfaceModifieLot.getPrixAchatText().setText(l.get(0).toString());
+			    interfaceModifieLot.getPrixVenteText().setText(l.get(1).toString());
+			    
+				
+				}catch (Exception ex){
+					ex.printStackTrace();
+				}
+								
+				
+				
+				
+				interfaceModifieLot.setVisible(true);
 				disableAddingQuantity();
 			}
 
@@ -431,7 +455,7 @@ public class Controller {
 				try{
 					JComboBox comboBox = (JComboBox) e.getSource();
 					int selected = comboBox.getSelectedIndex();
-					List<Integer> idLotList= model.getIdLot(idProd);
+				    idLotList= model.getIdLot(idProd);
 					//setting the labels in the addingquantity view to the actual database values from the lot
 					idLot=idLotList.get(selected);
 					List<Double>l=model.getSelectedLotRow(idLot,idProd);
@@ -566,6 +590,40 @@ public class Controller {
 
 		}
 
+	}
+	class modifieLotInterfaceListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource()==interfaceModifieLot.getOk()) {
+				try{
+				//case checks
+				if(!(model.isNumeric(interfaceModifieLot.getPrixAchatText().getText())& (model.isNumeric(interfaceModifieLot.getPrixVenteText().getText()))&(model.isNumeric(interfaceModifieLot.getMargeText().getText())))){
+					JOptionPane.showMessageDialog(null, "ادخل ارقام");
+				}
+				else{
+					//update code 
+					model.updateLot(Double.parseDouble(interfaceModifieLot.getPrixAchatText().getText()), Double.parseDouble(interfaceModifieLot.getPrixVenteText().getText()), idProd, idLot);
+					//closing and housekeeping
+					interfaceModifieLot.dispose();
+					addingquantity.setEnabled(true);
+					refreshLotComboBox();
+					enableFrame();
+					FrontAddQuanAndFrame();
+				}
+				}catch(Exception ex ){
+					ex.printStackTrace();
+				}
+
+			}
+			if (e.getSource()==ajoutDonneInterface.getAnnule()) {
+				interfaceModifieLot.dispose();
+				addingquantity.setEnabled(true);
+				enableFrame();
+				FrontAddQuanAndFrame();
+			}
+
+		}
+		
 	}
 	class AjoutProdInterfaceListener implements ActionListener{
 
