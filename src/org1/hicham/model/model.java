@@ -100,12 +100,7 @@ public class model {
 		try {
 			String query= "UPDATE Produit SET designationProduit ='"+ designation +"'" + "WHERE IDprod= "+"'"+ ID+"'";
 
-			ResultSet r= this.stmt.executeQuery(query);
-
-			/*while (r.next() ) {
-				designation = r.getString("designationProduit");
-
-			}*/
+		    stmt.execute(query);
 
 		} catch (Exception e) {
 			// TODO: handle exception

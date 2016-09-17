@@ -31,6 +31,7 @@ import org1.hicham.model.model;
 import org1.hicham.view.AjoutDonneInterface;
 import org1.hicham.view.AjoutProdInterface;
 import org1.hicham.view.ChangePass;
+import org1.hicham.view.InterfaceModifieProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
 import org1.hicham.view.mainFrame;
@@ -75,9 +76,11 @@ public class Controller {
 
 	private AjoutProdInterface ajoutProdInterface= new AjoutProdInterface();
 	
+	private InterfaceModifieProd interfaceModifieProd= new InterfaceModifieProd();
+	
 	private DefaultTableModel tableModelForInsertions= new DefaultTableModel();
 
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface ){
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd ){
 
 		this.frame= frame;
 
@@ -90,6 +93,8 @@ public class Controller {
 		this.changePass= changePass;
 
 		this.ajoutDonneInterface=ajoutDonneInterface;
+		
+		this.interfaceModifieProd=interfaceModifieProd;
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
@@ -106,6 +111,8 @@ public class Controller {
 		this.ajoutDonneInterface.addAjoutDonneInterface(new AjoutDonneInterfaceListner());
 
 		this.ajoutProdInterface.addAjoutProdInterfaceListener(new AjoutProdInterfaceListener());
+		
+		this.interfaceModifieProd.addModifieProdInterfaceListener(new ModifieProdInterfaceListener());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -399,8 +406,8 @@ public class Controller {
 				disableAddingQuantity();
 			}
 			if (e.getSource()== addingquantity.getModifieItemProd()) {
-
-				ajoutProdInterface.setVisible(true);
+                interfaceModifieProd.getTextProd().setText(addingquantity.getAjoutProduitComboBox().getSelectedItem().toString());
+				interfaceModifieProd.setVisible(true);
 				disableAddingQuantity();
 			}
 			if (e.getSource()== addingquantity.getSupItemProd()) {
@@ -576,7 +583,7 @@ public class Controller {
 						//adding designation of product to database
 						model.insertProd(ajoutProdInterface.getTextProd().getText());
 						refreshProductComboBox();
-						enableAddingQuantity();
+						enableAddingQuantityFromAjout();
 						FrontAddQuanAndFrame();
 					}
 				}catch(Exception ex){
@@ -585,12 +592,36 @@ public class Controller {
 
 			}
 			if(e.getSource()== ajoutProdInterface.getAnnule()){
-				enableAddingQuantity();
+				enableAddingQuantityFromAjout();
 				FrontAddQuanAndFrame();
 			}
 		}
 
 
+	}
+	class ModifieProdInterfaceListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()== interfaceModifieProd.getOk()){
+			try{
+				
+					//modifying designation of product to database
+					model.updateProd(interfaceModifieProd.getTextProd().getText(), idProd);
+					refreshProductComboBox();
+					addingquantity.getAjoutProduitComboBox().setSelectedIndex(idProd-1);
+					enableAddingQuantityFromAjout();
+					FrontAddQuanAndFrame();
+				
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+
+		}
+		if(e.getSource()== interfaceModifieProd.getAnnule()){
+			enableAddingQuantityFromAjout();
+			FrontAddQuanAndFrame();
+		}
+	}
 	}
 	//a method for navigating through the panels Uses a list of panel indexes
 
@@ -673,8 +704,14 @@ public class Controller {
 		frame.setEnabled(false);
 		addingquantity.setEnabled(false);
 	}
-	public void enableAddingQuantity(){
+	
+	
+	public void enableAddingQuantityFromAjout(){
 		ajoutProdInterface.dispose();
+		addingquantity.setEnabled(true);
+	}
+	public void enableAddingQuantityFromModifie(){
+		interfaceModifieProd.dispose();
 		addingquantity.setEnabled(true);
 	}
 	public void closeAddinQuantity(){

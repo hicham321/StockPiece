@@ -7,6 +7,7 @@ import org1.hicham.model.model;
 import org1.hicham.view.AjoutDonneInterface;
 import org1.hicham.view.AjoutProdInterface;
 import org1.hicham.view.ChangePass;
+import org1.hicham.view.InterfaceModifieProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
 import org1.hicham.view.mainFrame;
@@ -31,7 +32,8 @@ public class main {
 		ChangePass ch= new ChangePass();
 		AjoutDonneInterface ai= new AjoutDonneInterface();
 		AjoutProdInterface pi= new AjoutProdInterface();
-		Controller c = new Controller(frame, m, r,a,ch,ai,pi);
+		InterfaceModifieProd mi= new InterfaceModifieProd();
+		Controller c = new Controller(frame, m, r,a,ch,ai,pi,mi);
 		frame.setVisible(true);
 		r.setVisible(true);
 
