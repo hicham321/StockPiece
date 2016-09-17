@@ -113,14 +113,15 @@ public class model {
 	public void deleteProd( int ID){
 
 		try {
-			String query= "DELETE FROM Produit WHERE IDprod = "+"'"+ ID+"'";
-
-			ResultSet r= this.stmt.executeQuery(query);
+			//this query deletes the entire Lots for the corresponding product id
+            String query2="DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ ID+"'";
+		    stmt.execute(query2);
+			//this query deletes the product from the given product id
+			String query= "DELETE FROM Produit WHERE Produit.IDprod = "+"'"+ ID+"'";
+		    stmt.execute(query);
 
 		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-
+               e.printStackTrace();
 		}
 
 	}
@@ -147,7 +148,7 @@ public class model {
 	public void updateLot(double prixAchat, double prixVente, int idProd, int idLot){
 
 		try {
-			String query= "UPDATE Lot SET (prixAchat , prixVente) ='"+ prixAchat +"'" +"'"+prixVente+"'" + "WHERE IDprod= "+"'"+ idProd+"'"+"and IDLot="+"'"+idLot+"'";
+			String query= "UPDATE Lot SET (prixAchat ) ='"+ prixAchat +"'" +","+"(prixVente)="+"'"+prixVente+"'" + "WHERE Lot.IDProduit= "+"'"+ idProd+"'"+" AND Lot.IDLot="+"'"+idLot+"'";
 
 		    stmt.execute(query);
 
