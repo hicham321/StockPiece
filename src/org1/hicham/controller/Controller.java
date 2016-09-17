@@ -529,6 +529,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==ajoutDonneInterface.getOk()) {
+				try{
 				//case checks
 				if(!(model.isNumeric(ajoutDonneInterface.getPrixAchatText().getText())& (model.isNumeric(ajoutDonneInterface.getPrixVenteText().getText()))&(model.isNumeric(ajoutDonneInterface.getMargeText().getText())))){
 					JOptionPane.showMessageDialog(null, "ادخل ارقام");
@@ -540,8 +541,12 @@ public class Controller {
 					//closing and housekeeping
 					ajoutDonneInterface.dispose();
 					addingquantity.setEnabled(true);
+					refreshLotComboBox();
 					enableFrame();
 					FrontAddQuanAndFrame();
+				}
+				}catch(Exception ex ){
+					ex.printStackTrace();
 				}
 
 			}
