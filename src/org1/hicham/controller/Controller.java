@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -33,6 +34,7 @@ import org1.hicham.view.AjoutProdInterface;
 import org1.hicham.view.ChangePass;
 import org1.hicham.view.InterfaceModifieLot;
 import org1.hicham.view.InterfaceModifieProd;
+import org1.hicham.view.InterfaceSuppLot;
 import org1.hicham.view.InterfaceSuppProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
@@ -59,6 +61,9 @@ public class Controller {
 
 	private Map<String,Integer> idDesignationProdList= new HashMap<>();
 	
+	private LinkedHashMap<Integer,Integer> insertedIdLotIdProd= new LinkedHashMap();
+
+	
 	//this new field is to be debugged intensively later
 	private int idProd =0;
 	
@@ -84,11 +89,13 @@ public class Controller {
 	
 	private InterfaceModifieLot interfaceModifieLot= new InterfaceModifieLot();
 	
-	private InterfaceSuppProd  InterfaceSuppProd= new InterfaceSuppProd();
+	private InterfaceSuppProd  interfaceSuppProd= new InterfaceSuppProd();
+	
+	private InterfaceSuppLot interfaceSuppLot= new InterfaceSuppLot();
 	
 	private DefaultTableModel tableModelForInsertions= new DefaultTableModel();
 
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd,InterfaceModifieLot interfaceModifieLot,InterfaceSuppProd  InterfaceSuppProd ){
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd,InterfaceModifieLot interfaceModifieLot,InterfaceSuppProd  InterfaceSuppProd,InterfaceSuppLot interfaceSuppLot ){
 
 		this.frame= frame;
 
@@ -106,7 +113,9 @@ public class Controller {
 		
 		this.interfaceModifieLot= interfaceModifieLot;
 		
-		this.InterfaceSuppProd= InterfaceSuppProd;
+		this.interfaceSuppProd= InterfaceSuppProd;
+		
+		this.interfaceSuppLot =interfaceSuppLot;
 
 		this.register.AddRegisterActionlistner(new RegisterActionListner());
 
@@ -128,7 +137,9 @@ public class Controller {
 		
 		this.interfaceModifieLot.addInterfaceModifieLotListener(new modifieLotInterfaceListener());
 		
-		this.InterfaceSuppProd.addSuppProdInterfaceListener(new SuppProdInterfaceListener());
+		this.interfaceSuppProd.addSuppProdInterfaceListener(new SuppProdInterfaceListener());
+		
+		this.interfaceSuppLot.addSuppLotInterfaceListener(new SuppLotInterfaceListener() );
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -147,8 +158,8 @@ public class Controller {
 			if(e.getSource()== frame.getAjoutprodui()){
 
 				 tableModelForInsertions = new DefaultTableModel(){ 
-					String[] columns = {"marge","somme vente", "somme achat","prix Vente",
-							"prix achat","qte","designation"}; 
+					String[] columns = {"نسبة الربح","مجموع البيع", "مجموع الشراء","ثمن البيع",
+							"ثمن الشراء","الكمية","المنتوج"}; 
 
 					@Override 
 					public int getColumnCount() { 
@@ -372,13 +383,21 @@ public class Controller {
 					else{
 
 						//code for JTable insertions
+						List<Double>l=model.getSelectedLotRow(idLot,idProd);
+						addingquantity.getPrixVente().setText(l.get(1).toString());
+						addingquantity.getPrixAchat().setText(l.get(0).toString());
+						double achatSum= Double.parseDouble(l.get(0).toString()); 
+					    double venteSum= Double.parseDouble(l.get(1).toString());
+		                String marge= "%"+ (100-(100*(achatSum/venteSum)));
 						Vector row = new Vector<>();
-						row.addElement("Column 1"); 
-						row.addElement("Column 2"); 
-						row.addElement("Column 3"); 
-						row.addElement("Column 4"); 
-						row.addElement("Column 5"); 
-						row.addElement("Column 6"); 
+						row.addElement(marge); 
+						row.addElement(venteSum); 
+						row.addElement(achatSum); 
+						row.addElement(l.get(1).toString()); 
+						row.addElement(l.get(0).toString());
+						row.addElement(addingquantity.getQte().getText());
+						row.addElement(addingquantity.getAjoutProduitComboBox().getSelectedItem().toString()); 
+
 						tableModelForInsertions.addRow(row);
 						tableModelForInsertions.fireTableDataChanged();
 						//setting the addquantity view components back to default values
@@ -387,6 +406,10 @@ public class Controller {
 						refreshProductComboBox();
 						closeAddinQuantity();
 						enableFrame();
+			//YOU MUST ADD THE CODE TO GET THE IDPRODUIT AND IDLOT FOR ACTUAL INSERTED VALUES FOR THE JTABLE
+						//Hashmap for inserted products and lots
+						insertedIdLotIdProd.put(idProd, idLot);
+						
 					}
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -409,6 +432,7 @@ public class Controller {
 			}
 			if(e.getSource()==addingquantity.getSupItem()){
 				//delete the corresponding lot 
+				interfaceSuppLot.setVisible(true);
 				disableAddingQuantity();
 			}
 			if(e.getSource()==addingquantity.getModifieItem()){
@@ -418,17 +442,12 @@ public class Controller {
 				
 			    interfaceModifieLot.getPrixAchatText().setText(l.get(0).toString());
 			    interfaceModifieLot.getPrixVenteText().setText(l.get(1).toString());
-			    
-				
+			    interfaceModifieLot.setVisible(true);
+				disableAddingQuantity();
 				}catch (Exception ex){
 					ex.printStackTrace();
 				}
 								
-				
-				
-				
-				interfaceModifieLot.setVisible(true);
-				disableAddingQuantity();
 			}
 
 			//adding product
@@ -443,7 +462,7 @@ public class Controller {
 			}
 			if (e.getSource()== addingquantity.getSupItemProd()) {
 				//deleting a product from database			
-				InterfaceSuppProd.setVisible(true);
+				interfaceSuppProd.setVisible(true);
 				disableAddingQuantity();
 			}
 
@@ -569,21 +588,21 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==ajoutDonneInterface.getOk()) {
 				try{
-				//case checks
-				if(!(model.isNumeric(ajoutDonneInterface.getPrixAchatText().getText())& (model.isNumeric(ajoutDonneInterface.getPrixVenteText().getText()))&(model.isNumeric(ajoutDonneInterface.getMargeText().getText())))){
-					JOptionPane.showMessageDialog(null, "ادخل ارقام");
-				}
-				else{
-					//insertion code 
-					model.insertLot(Double.parseDouble(ajoutDonneInterface.getPrixAchatText().getText()), 
-							Double.parseDouble(ajoutDonneInterface.getPrixVenteText().getText()), 0,idProd);
-					//closing and housekeeping
-					ajoutDonneInterface.dispose();
-					addingquantity.setEnabled(true);
-					refreshLotComboBox();
-					enableFrame();
-					FrontAddQuanAndFrame();
-				}
+					//case checks
+					if(!(model.isNumeric(ajoutDonneInterface.getPrixAchatText().getText())& (model.isNumeric(ajoutDonneInterface.getPrixVenteText().getText()))&(model.isNumeric(ajoutDonneInterface.getMargeText().getText())))){
+						JOptionPane.showMessageDialog(null, "ادخل ارقام");
+					}
+					else{
+						//insertion code 
+						model.insertLot(Double.parseDouble(ajoutDonneInterface.getPrixAchatText().getText()), 
+								Double.parseDouble(ajoutDonneInterface.getPrixVenteText().getText()), 0,idProd);
+						//closing and housekeeping
+						ajoutDonneInterface.dispose();
+						addingquantity.setEnabled(true);
+						refreshLotComboBox();
+						enableFrame();
+						FrontAddQuanAndFrame();
+					}
 				}catch(Exception ex ){
 					ex.printStackTrace();
 				}
@@ -604,20 +623,20 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==interfaceModifieLot.getOk()) {
 				try{
-				//case checks
-				if(!(model.isNumeric(interfaceModifieLot.getPrixAchatText().getText())& (model.isNumeric(interfaceModifieLot.getPrixVenteText().getText()))&(model.isNumeric(interfaceModifieLot.getMargeText().getText())))){
-					JOptionPane.showMessageDialog(null, "ادخل ارقام");
-				}
-				else{
-					//update code 
-					model.updateLot(Double.parseDouble(interfaceModifieLot.getPrixAchatText().getText()), Double.parseDouble(interfaceModifieLot.getPrixVenteText().getText()), idProd, idLot);
-					//closing and housekeeping
-					interfaceModifieLot.dispose();
-					addingquantity.setEnabled(true);
-					refreshLotComboBox();
-					enableFrame();
-					FrontAddQuanAndFrame();
-				}
+					//case checks
+					if(!(model.isNumeric(interfaceModifieLot.getPrixAchatText().getText())& (model.isNumeric(interfaceModifieLot.getPrixVenteText().getText()))&(model.isNumeric(interfaceModifieLot.getMargeText().getText())))){
+						JOptionPane.showMessageDialog(null, "ادخل ارقام");
+					}
+					else{
+						//update code 
+						model.updateLot(Double.parseDouble(interfaceModifieLot.getPrixAchatText().getText()), Double.parseDouble(interfaceModifieLot.getPrixVenteText().getText()), idProd, idLot);
+						//closing and housekeeping
+						interfaceModifieLot.dispose();
+						addingquantity.setEnabled(true);
+						refreshLotComboBox();
+						enableFrame();
+						FrontAddQuanAndFrame();
+					}
 				}catch(Exception ex ){
 					ex.printStackTrace();
 				}
@@ -631,7 +650,31 @@ public class Controller {
 			}
 
 		}
-		
+
+	}
+	class SuppLotInterfaceListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+
+			if(e.getSource()== interfaceSuppLot.getOk()){
+				try{
+
+					//delete selected Lot from database
+					model.deleteLot(idProd, idLot);
+					refreshLotComboBox();
+					enableAddingQuantityFromSuppLot();
+					FrontAddQuanAndFrame();
+
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+
+			}
+			if(e.getSource()== interfaceSuppLot.getAnnule()){
+				enableAddingQuantityFromSuppLot();
+				FrontAddQuanAndFrame();
+			}
+		}
+
 	}
 	class AjoutProdInterfaceListener implements ActionListener{
 
@@ -668,50 +711,50 @@ public class Controller {
 	class ModifieProdInterfaceListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 
-		if(e.getSource()== interfaceModifieProd.getOk()){
-			try{
-				
+			if(e.getSource()== interfaceModifieProd.getOk()){
+				try{
+
 					//modifying designation of product to database
 					model.updateProd(interfaceModifieProd.getTextProd().getText(), idProd);
 					refreshProductComboBox();
 					addingquantity.getAjoutProduitComboBox().setSelectedIndex(idProd-1);
 					enableAddingQuantityFromAjout();
 					FrontAddQuanAndFrame();
-				
-			}catch(Exception ex){
-				ex.printStackTrace();
-			}
 
-		}
-		if(e.getSource()== interfaceModifieProd.getAnnule()){
-			enableAddingQuantityFromAjout();
-			FrontAddQuanAndFrame();
-		}
-	}
-	}
-	class SuppProdInterfaceListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-
-			if(e.getSource()== InterfaceSuppProd.getOk()){
-				try{
-					
-						//modifying designation of product to database
-						model.deleteProd(idProd);
-						refreshProductComboBox();
-						enableAddingQuantityFromSupp();
-						FrontAddQuanAndFrame();
-					
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
 
 			}
-			if(e.getSource()== InterfaceSuppProd.getAnnule()){
+			if(e.getSource()== interfaceModifieProd.getAnnule()){
+				enableAddingQuantityFromAjout();
+				FrontAddQuanAndFrame();
+			}
+		}
+	}
+	class SuppProdInterfaceListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+
+			if(e.getSource()== interfaceSuppProd.getOk()){
+				try{
+
+					//modifying designation of product to database
+					model.deleteProd(idProd);
+					refreshProductComboBox();
+					enableAddingQuantityFromSupp();
+					FrontAddQuanAndFrame();
+
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+
+			}
+			if(e.getSource()== interfaceSuppProd.getAnnule()){
 				enableAddingQuantityFromSupp();
 				FrontAddQuanAndFrame();
 			}
 		}
-		
+
 	}
 	//a method for navigating through the panels Uses a list of panel indexes
 
@@ -794,8 +837,8 @@ public class Controller {
 		frame.setEnabled(false);
 		addingquantity.setEnabled(false);
 	}
-	
-	
+
+
 	public void enableAddingQuantityFromAjout(){
 		ajoutProdInterface.dispose();
 		addingquantity.setEnabled(true);
@@ -805,9 +848,14 @@ public class Controller {
 		addingquantity.setEnabled(true);
 	}
 	public void enableAddingQuantityFromSupp(){
-		InterfaceSuppProd.dispose();
+		interfaceSuppProd.dispose();
 		addingquantity.setEnabled(true);
 	}
+	public void enableAddingQuantityFromSuppLot(){
+		interfaceSuppLot.dispose();
+		addingquantity.setEnabled(true);
+	}
+	
 	public void closeAddinQuantity(){
 		addingquantity.dispose();
 		//addingquantity.getOk().setEnabled(false);

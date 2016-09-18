@@ -82,12 +82,7 @@ public class model {
 			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+ designation+ "'"+","+"'"+ 0+ "'"+","+"'"+ 1+ "'"+")";        	        
 			stmt.execute(query);
 
-//			while (r.next() ) {
-//				designation = r.getString("designationProduit");
-//			}
-
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 
 		}
@@ -103,7 +98,6 @@ public class model {
 		    stmt.execute(query);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 
 		}
@@ -114,14 +108,14 @@ public class model {
 
 		try {
 			//this query deletes the entire Lots for the corresponding product id
-            String query2="DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ ID+"'";
-		    stmt.execute(query2);
+			String query2="DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ ID+"'";
+			stmt.execute(query2);
 			//this query deletes the product from the given product id
 			String query= "DELETE FROM Produit WHERE Produit.IDprod = "+"'"+ ID+"'";
-		    stmt.execute(query);
+			stmt.execute(query);
 
 		} catch (Exception e) {
-               e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
@@ -138,7 +132,6 @@ public class model {
 		
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 
 		}
@@ -153,12 +146,27 @@ public class model {
 		    stmt.execute(query);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 
 		}
 
 	}
+	
+	//Delete Lot
+	public void deleteLot( int idProd, int idLot){
+
+		try {
+			
+			//this query deletes the product from the given product id
+			String query= "DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ idProd+"'"+"AND Lot.IDLot="+"'"+idLot+"'";
+			stmt.execute(query);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	//to add quantity or subtract it from LOT one should write an update query to an already inserted LOt 
 	//it should also modify the global quantity accordingly:
 	public int getLotQuantity(int idProd, int idLot)throws SQLException{
@@ -172,18 +180,19 @@ public class model {
 			return qte;		
 	}
 
-	public void addQteLot(int qte, int idLot){
+	public void addQteLot(int qte,int idProd,int idLot){
 		try{
-			String query= "UPDATE Lot SET qte =qte + '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
-			ResultSet r= stmt.executeQuery(query);
+			String query= "UPDATE Lot SET (qte ) ='qte' + "+ qte +"'"  + "WHERE Lot.IDProduit= "+"'"+ idProd+"'"+" AND Lot.IDLot="+"'"+idLot+"'";
+
+		    stmt.execute(query);
 		}catch(Exception e){
 			System.out.println(e);
 		}
 	}
 	//this query is for substracting quantity
-	public void substractQteLot(int qte, int idLot ){
+	public void substractQteLot(int qte,int idProd, int idLot ){
 		try{
-			String query= "UPDATE Lot SET qte =qte - '"+ qte +"'" + "WHERE IDLot= "+"'"+ idLot+"'";
+			String query= "UPDATE Lot SET (qte ) ='qte' - "+ qte +"'"  + "WHERE Lot.IDProduit= "+"'"+ idProd+"'"+" AND Lot.IDLot="+"'"+idLot+"'";
 			ResultSet r= stmt.executeQuery(query);
 		}catch(Exception e){
 			System.out.println(e);
@@ -451,7 +460,6 @@ public class model {
 		   	    }*/
 
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 	public boolean showingPassWindow(){

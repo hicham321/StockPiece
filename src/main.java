@@ -9,6 +9,7 @@ import org1.hicham.view.AjoutProdInterface;
 import org1.hicham.view.ChangePass;
 import org1.hicham.view.InterfaceModifieLot;
 import org1.hicham.view.InterfaceModifieProd;
+import org1.hicham.view.InterfaceSuppLot;
 import org1.hicham.view.InterfaceSuppProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
@@ -37,7 +38,8 @@ public class main {
 		InterfaceModifieProd mi= new InterfaceModifieProd();
 		InterfaceModifieLot ml= new InterfaceModifieLot();
 		InterfaceSuppProd sp= new InterfaceSuppProd();
-		Controller c = new Controller(frame, m, r,a,ch,ai,pi,mi,ml,sp);
+		InterfaceSuppLot sl= new InterfaceSuppLot();
+		Controller c = new Controller(frame, m, r,a,ch,ai,pi,mi,ml,sp,sl);
 		frame.setVisible(true);
 		r.setVisible(true);
 
