@@ -32,7 +32,7 @@ public class Ajout extends JPanel {
 	JButton ajoutproduit = new JButton("Ajouté");
 	
 	JLabel prixTotalLab = new JLabel("المجموع الكلي");
-	JLabel prixTotal = new JLabel(" ");
+	JLabel prixTotal = new JLabel("0");
 
      
 	public Ajout() {

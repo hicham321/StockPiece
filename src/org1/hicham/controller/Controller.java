@@ -156,25 +156,31 @@ public class Controller {
 			}
 
 			if(e.getSource()== frame.getAjoutprodui()){
+				try{
 
-				 tableModelForInsertions = new DefaultTableModel(){ 
-					String[] columns = {"نسبة الربح","مجموع البيع", "مجموع الشراء","ثمن البيع",
-							"ثمن الشراء","الكمية","المنتوج"}; 
+					tableModelForInsertions = new DefaultTableModel(){ 
+						String[] columns = {"نسبة الربح","مجموع البيع", "مجموع الشراء","ثمن البيع",
+								"ثمن الشراء","الكمية","المنتوج"}; 
 
-					@Override 
-					public int getColumnCount() { 
-						return columns.length; 
-					} 
+						@Override 
+						public int getColumnCount() { 
+							return columns.length; 
+						} 
 
-					@Override 
-					public String getColumnName(int index) { 
-						return columns[index]; 
-					} 
-				}; 
-				frame.getListProduitAjoutTable().setModel(tableModelForInsertions);
-				showSecondCard();	
-				//for navigating through panels 
-				panelList.add(2);
+						@Override 
+						public String getColumnName(int index) { 
+							return columns[index]; 
+						} 
+					}; 
+					frame.getListProduitAjoutTable().setModel(tableModelForInsertions);
+					refreshProductComboBox();
+					refreshLotComboBox();
+					showSecondCard();	
+					//for navigating through panels 
+					panelList.add(2);
+				}catch(Exception ex){
+
+				}
 			}
 			if(e.getSource()==frame.getAjoutproduitButton()) {
 				try{
@@ -239,9 +245,20 @@ public class Controller {
 				}
 			}
 			if (e.getSource()==frame.getOkAjout()) {
-				//insertion from Jtable code here 
+				try{
+					if (model.checkNumFacture(frame.getNumFact().getText())) {
+						JOptionPane.showMessageDialog(null, "هذا الرقم موجود ادخل رقما اخر");
 
-				//settig the JTable to disabled
+					}
+					else{
+					
+					//insertion into Facture code here 
+
+					//settig the JTable to disabled
+					}
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
 
 			}
 

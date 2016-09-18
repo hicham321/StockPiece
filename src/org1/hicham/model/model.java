@@ -199,7 +199,75 @@ public class model {
 		}
 
 	}
-	//this query is for getting Lot info after executing a search via the combobox
+	public void insertFactureFourniss(){
+		try {
+			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+")";        	        
+			stmt.execute(query);
+
+		} catch (Exception e) {
+			System.out.println(e);
+
+		}		
+	}
+	public void insertFactureClient(){
+		try {
+			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+")";        	        
+			stmt.execute(query);
+
+		} catch (Exception e) {
+			System.out.println(e);
+
+		}		
+	}
+    public void deleteFacture(int idFacture, int idProd, int idLot, String typeFac){
+    	try {
+    		//deleting facture only means deleting the quantities in that facture
+    		//this query deletes Facture for it's corresponding id 
+    		String query="DELETE FROM Facture WHERE Facture.IDFac = "+"'"+idFacture+"'";
+			stmt.execute(query);
+			//conditions to sustract or add quantity
+			if ("fournisseur".equals(typeFac)) {
+				//adding quatity query
+			}
+			if ("client".equals(typeFac)) {
+				//adding quatity query
+
+			}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+    	
+    }
+    //this is to get the Facture numbers 
+    public List<String> getFactureNum()throws SQLException{
+
+    	String query = "SELECT  NumFacture FROM Facture ";
+    	ResultSet r= this.stmt.executeQuery(query);
+    	List<String> l = new ArrayList<>();
+    	String s= "";
+    	while (r.next()){
+    		s= r.getString("NumFacture");
+    		l.add(s);	
+    	}
+    	return l;
+    }
+    //this is for comparing between string and list of facture numbers
+    public boolean checkNumFacture(String numFact)throws SQLException{
+    	List<String>l=getFactureNum();
+        boolean equal= false;
+    	for (int i = 0; i < l.size(); i++) {
+    		if (numFact.equals(l.get(i))) {
+                 equal= true;
+    		}
+
+    	}
+        return equal;
+
+    }
+    //this query is for getting Lot info after executing a search via the combobox
 	public List<Double> getSelectedLotRow(int  idLot,int idProd ) throws SQLException{
 
 		String query= "SELECT * from Lot WHERE Lot.IDLot="+"'"+idLot+"'"+  "and Lot.IDProduit= "+"'"+idProd+"'" ;	         	        

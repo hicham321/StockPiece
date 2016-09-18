@@ -181,31 +181,31 @@ public class mainFrame extends JFrame {
 
 	//card2
 
-	public JTextField getNom() {
+	public JTextField getNumFact() {
 		return card2.numfact;
 	}
 
 
-	public void setNom(JTextField nom) {
+	public void setNumFact(JTextField nom) {
 		card2.numfact = nom;
 	}
 
 
-	public JTextField getReferance() {
+	public JTextField getNomFournisseur() {
 		return card2.nomFournisseur;
 	}
 
 
-	public void setReferance(JTextField referance) {
+	public void setNomFournisseur(JTextField referance) {
 		card2.nomFournisseur = referance;
 	}
-	public JLabel getPrixTotalLab() {
-		return card2.prixTotalLab;
+	public JLabel getPrixTotallab() {
+		return card2.prixTotal;
 	}
 
 	//this is the total price for the products 
 	public void setPrixTotalLab(JLabel prixTotalLab) {
-		this.card2.prixTotalLab = prixTotalLab;
+		this.card2.prixTotal = prixTotalLab;
 	}
 
 
