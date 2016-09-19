@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -266,6 +267,38 @@ public class model {
     	}
         return equal;
 
+    }
+    //this queries are for calculated fields
+    //list of idprods to idlots means map where the keys idprod and values lists of lot id
+    //we can then 
+    public LinkedHashMap<Integer, List<Integer>> mapProdLotIds (List<Integer>liProd)throws SQLException{
+    	LinkedHashMap<Integer, List<Integer>> mapProdIdListIdLot= new LinkedHashMap<>();
+    	for(int i= 0; i<liProd.size();i++){
+    		String query= "SELECT qte from Lot WHERE Lot.IDProduit="+"'"+liProd.get(i)+"'" ;
+    		ResultSet rs= this.stmt.executeQuery(query);
+    		List<Integer>l= new ArrayList<>();
+    		int s= 0;
+    		while (rs.next()) {
+    			s=rs.getInt("qte");
+    			l.add(s);
+    		}
+    		mapProdIdListIdLot.put(liProd.get(i), l);
+    	}
+    	return mapProdIdListIdLot;
+    }
+
+    public void UpdateQteGlobale(LinkedHashMap<Integer, List<Integer>> m)throws SQLException{
+    	
+    	for(int i: m.keySet()){
+    		int sum=0;
+    		List<Integer>listLotId=m.get(i);
+    		for (int j = 0; j< listLotId.size();j++) {
+    			sum= sum+listLotId.get(j);
+    		}
+    		//update method 
+    		String query= "UPDATE  Produit  SET ( QteGlobal ) VALUES ("+ "'"+sum+"'"+") WHERE Produit.IDprod="+"'"+i+"'";  
+    		this.stmt.execute(query);
+    	}
     }
     //this query is for getting Lot info after executing a search via the combobox
 	public List<Double> getSelectedLotRow(int  idLot,int idProd ) throws SQLException{

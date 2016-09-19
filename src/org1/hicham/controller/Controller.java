@@ -248,12 +248,14 @@ public class Controller {
 				try{
 					if (model.checkNumFacture(frame.getNumFact().getText())) {
 						JOptionPane.showMessageDialog(null, "هذا الرقم موجود ادخل رقما اخر");
-
+					}
+					if("".equals(frame.getNomFournisseur().getText()) || "".equals(frame.getNumFact().getText())){
+						JOptionPane.showMessageDialog(null, "ادخل اسم الممول و رقم الفاتورة");
 					}
 					else{
 					
 					//insertion into Facture code here 
-
+                    
 					//settig the JTable to disabled
 					}
 				}catch(Exception ex){
@@ -424,8 +426,10 @@ public class Controller {
 						closeAddinQuantity();
 						enableFrame();
 			//YOU MUST ADD THE CODE TO GET THE IDPRODUIT AND IDLOT FOR ACTUAL INSERTED VALUES FOR THE JTABLE
-						//Hashmap for inserted products and lots
+						//Hashmap for inserted products and lots for updating qte in lot
 						insertedIdLotIdProd.put(idProd, idLot);
+						//for updating global quatntity
+						insertedIdProdList.add(idProd);
 						
 					}
 				}catch(Exception ex){
