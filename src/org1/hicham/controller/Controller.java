@@ -253,10 +253,25 @@ public class Controller {
 						JOptionPane.showMessageDialog(null, "ادخل اسم الممول و رقم الفاتورة");
 					}
 					else{
-					
+				           System.out.println(insertedIdLotList);
+
 					//insertion into Facture code here 
-                    
-					//settig the JTable to disabled
+				    for(int i=0;i<insertedIdLotList.size();i++){
+				    	//5 is the index of the column in the ListProduitAjoutTable that contains qte
+				       System.out.println(frame.getListProduitAjoutTable().getModel().getValueAt(i, 5));
+
+			           int qteChange =Integer.valueOf((String) frame.getListProduitAjoutTable().getModel().getValueAt(i, 5));	
+			           //add quantity to Lot table
+			           int insertedLot= insertedIdLotList.get(i);
+			           model.addQteLot(qteChange, insertedLot);
+			           //insert change quantity to change table
+			           model.insertChange(frame.getNumFact().getText(), insertedLot, qteChange);
+			           //update qte Global
+			           
+				    }
+                    //insert facture info:
+
+					//Setting the JTable to disabled and ok button in ajout view to disabled
 					}
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -405,8 +420,8 @@ public class Controller {
 						List<Double>l=model.getSelectedLotRow(idLot,idProd);
 						addingquantity.getPrixVente().setText(l.get(1).toString());
 						addingquantity.getPrixAchat().setText(l.get(0).toString());
-						double achatSum= Double.parseDouble(l.get(0).toString()); 
-					    double venteSum= Double.parseDouble(l.get(1).toString());
+						double achatSum= Double.parseDouble(l.get(0).toString())*Integer.parseInt(addingquantity.getQte().getText()); 
+					    double venteSum= Double.parseDouble(l.get(1).toString())*Integer.parseInt(addingquantity.getQte().getText());
 		                String marge= "%"+ (100-(100*(achatSum/venteSum)));
 						Vector row = new Vector<>();
 						row.addElement(marge); 
@@ -415,7 +430,8 @@ public class Controller {
 						row.addElement(l.get(1).toString()); 
 						row.addElement(l.get(0).toString());
 						row.addElement(addingquantity.getQte().getText());
-						row.addElement(addingquantity.getAjoutProduitComboBox().getSelectedItem().toString()); 
+						row.addElement(addingquantity.getAjoutProduitComboBox().getSelectedItem().toString());
+						//check if quantity subtracted is lower than actual quantity when subtracting
 
 						tableModelForInsertions.addRow(row);
 						tableModelForInsertions.fireTableDataChanged();
@@ -429,6 +445,7 @@ public class Controller {
 						//Hashmap for inserted products and lots for updating qte in lot
 						insertedIdLotIdProd.put(idProd, idLot);
 						//for updating global quatntity
+						insertedIdLotList.add(idLot);
 						insertedIdProdList.add(idProd);
 						
 					}

@@ -80,7 +80,7 @@ public class model {
 	public void insertProd(String designation){
 
 		try {
-			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+ designation+ "'"+","+"'"+ 0+ "'"+","+"'"+ 1+ "'"+")";        	        
+			String query= "INSERT INTO Produit ( designationProduit,QteGlobal ) VALUES ("+ "'"+ designation+ "'"+","+"'"+ 0+ "'"+")";        	        
 			stmt.execute(query);
 
 		} catch (Exception e) {
@@ -170,9 +170,9 @@ public class model {
 
 	//to add quantity or subtract it from LOT one should write an update query to an already inserted LOt 
 	//it should also modify the global quantity accordingly:
-	public int getLotQuantity(int idProd, int idLot)throws SQLException{
+	public int getLotQuantity( int idLot)throws SQLException{
 		
-			String query= "SELECT qte from Lot WHERE Lot.IDLot="+"'"+idLot+"'"+  "and Lot.IDProduit= "+"'"+idProd+"'" ;	         	        
+			String query= "SELECT qte from Lot WHERE Lot.IDLot="+"'"+idLot+"'" ;	         	        
 			ResultSet r= this.stmt.executeQuery(query);
 			int qte=0;
 			while(r.next()){
@@ -181,9 +181,11 @@ public class model {
 			return qte;		
 	}
 
-	public void addQteLot(int qte,int idProd,int idLot){
+	public void addQteLot(int qte,int idLot){
 		try{
-			String query= "UPDATE Lot SET (qte ) ='qte' + "+ qte +"'"  + "WHERE Lot.IDProduit= "+"'"+ idProd+"'"+" AND Lot.IDLot="+"'"+idLot+"'";
+			int changeQte = getLotQuantity(idLot);
+			int sumQte= qte+changeQte;
+			String query= "UPDATE Lot SET (qte ) = "+ "'"+sumQte +"' WHERE Lot.IDLot="+"'"+idLot+"'";
 
 		    stmt.execute(query);
 		}catch(Exception e){
@@ -193,7 +195,9 @@ public class model {
 	//this query is for substracting quantity
 	public void substractQteLot(int qte,int idProd, int idLot ){
 		try{
-			String query= "UPDATE Lot SET (qte ) ='qte' - "+ qte +"'"  + "WHERE Lot.IDProduit= "+"'"+ idProd+"'"+" AND Lot.IDLot="+"'"+idLot+"'";
+			int changeQte = getLotQuantity(idLot);
+			int sumQte= qte-changeQte;
+			String query= "UPDATE Lot SET (qte ) ="+"'"+ sumQte +"'"  + "WHERE Lot.IDLot="+"'"+idLot+"'";
 			ResultSet r= stmt.executeQuery(query);
 		}catch(Exception e){
 			System.out.println(e);
@@ -287,7 +291,7 @@ public class model {
     	return mapProdIdListIdLot;
     }
 
-    public void UpdateQteGlobale(LinkedHashMap<Integer, List<Integer>> m)throws SQLException{
+    public void UpdateQteGlobaleFromList(LinkedHashMap<Integer, List<Integer>> m)throws SQLException{
     	
     	for(int i: m.keySet()){
     		int sum=0;
@@ -299,6 +303,17 @@ public class model {
     		String query= "UPDATE  Produit  SET ( QteGlobal ) VALUES ("+ "'"+sum+"'"+") WHERE Produit.IDprod="+"'"+i+"'";  
     		this.stmt.execute(query);
     	}
+    }
+    public void UpdateQteGlobale(List<Integer>liProd) throws SQLException{
+    	LinkedHashMap<Integer, List<Integer>>m=mapProdLotIds(liProd);
+    	UpdateQteGlobaleFromList(m);
+    }
+    
+    public void insertChange(String idFact, int idLot, int qteChange)throws SQLException{
+    	
+    	String query= "INSERT INTO Produit ( idFact,IdLot,QteChange ) VALUES ("+"'"+idFact+"'"+","+"'"+idLot+"'"+","+"'"+qteChange+"'"+")";        	        
+		stmt.execute(query);
+    	
     }
     //this query is for getting Lot info after executing a search via the combobox
 	public List<Double> getSelectedLotRow(int  idLot,int idProd ) throws SQLException{
