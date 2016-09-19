@@ -204,16 +204,14 @@ public class model {
 		}
 
 	}
-	public void insertFactureFourniss(){
-		try {
-			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+")";        	        
-			stmt.execute(query);
-
-		} catch (Exception e) {
-			System.out.println(e);
-
-		}		
+	public int insertFactureFourniss(String numFact, String nomFourn, String type, String total)throws SQLException{
+			String query= "INSERT INTO Produit ( NumFacture,Nomfournis,Type ,Total ) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+")";        	        
+			int k=stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+	        
+		return k;		
 	}
+	
+	
 	public void insertFactureClient(){
 		try {
 			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+")";        	        
@@ -309,7 +307,7 @@ public class model {
     	UpdateQteGlobaleFromList(m);
     }
     
-    public void insertChange(String idFact, int idLot, int qteChange)throws SQLException{
+    public void insertChange(int idFact, int idLot, int qteChange)throws SQLException{
     	
     	String query= "INSERT INTO Produit ( idFact,IdLot,QteChange ) VALUES ("+"'"+idFact+"'"+","+"'"+idLot+"'"+","+"'"+qteChange+"'"+")";        	        
 		stmt.execute(query);

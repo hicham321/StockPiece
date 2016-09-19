@@ -256,6 +256,8 @@ public class Controller {
 				           System.out.println(insertedIdLotList);
 
 					//insertion into Facture code here 
+				    model.insertFactureFourniss(numFact, nomFourn, type, total);       
+				           
 				    for(int i=0;i<insertedIdLotList.size();i++){
 				    	//5 is the index of the column in the ListProduitAjoutTable that contains qte
 				       System.out.println(frame.getListProduitAjoutTable().getModel().getValueAt(i, 5));
