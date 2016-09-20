@@ -25,6 +25,8 @@ public class ListFactureTout extends JPanel {
 
 
 		listFactureToutTable =new JTable(dt);
+		listFactureToutTable.setAutoCreateRowSorter(true);
+
 
 		this.setLayout(new GroupLayout(this));
 		this.setBackground(Color.decode("#CFDBC5"));

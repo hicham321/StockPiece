@@ -178,10 +178,15 @@ public class Controller {
 					//refresh and setting textfields to empty
 					frame.getNomFournisseur().setText("");
 					frame.getNumFact().setText("");
+					frame.getPrixTotallab().setText("0");
                     insertedIdLotIdProd.clear();
                     insertedIdLotList.clear();
                     insertedIdProdList.clear();
+                    
                     frame.getOkAjout().setEnabled(true);
+                    frame.getNomFournisseur().setEnabled(true);
+                    frame.getNumFact().setEnabled(true);
+
 					refreshProductComboBox();
 					refreshLotComboBox();
 					showSecondCard();	
@@ -264,9 +269,10 @@ public class Controller {
 					else{
 				           System.out.println(insertedIdLotList);
 
-					//insertion into Facture code here 
-				    int idFacture = model.insertFactureFourniss(frame.getNumFact().getText(), frame.getNomFournisseur().getText(), "fournisseur", frame.getPrixTotallab().getText()); 
-				    int idFactur= model.getlastId();
+					//insertion into Facture code here
+				    String date=model.getCurrentDate();       
+				    model.insertFactureFourniss(frame.getNumFact().getText(), frame.getNomFournisseur().getText(), "fournisseur", frame.getPrixTotallab().getText(),date); 
+				    int idFacture= model.getlastId();
 				    System.out.println(frame.getPrixTotallab().getText());
 				    for(int i=0;i<insertedIdLotList.size();i++){
 				    	//5 is the index of the column in the ListProduitAjoutTable that contains qte
@@ -275,13 +281,16 @@ public class Controller {
 			           int insertedLot= insertedIdLotList.get(i);
 			           model.addQteLot(qteChange, insertedLot);
 			           //insert change quantity to change table
-			           model.insertChange(idFactur, insertedLot, qteChange);
+			           model.insertChange(idFacture, insertedLot, qteChange);
 			           
 				    }
                     //update quantity globale
 				    model.UpdateQteGlobale( insertedIdProdList);
 					//Setting the JTable to disabled and ok button in ajout view to disabled
 				    frame.getOkAjout().setEnabled(false);
+				    frame.getNomFournisseur().setEnabled(false);
+				    frame.getNumFact().setEnabled(false);
+
 					}
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -329,7 +338,7 @@ public class Controller {
 					frame.getListProduitZakatTable().setModel(dtm);
 					//TableColumn tcol = frame.getListProduitZakatTable().getColumnModel().getColumn(0);
 					//frame.getListProduitZakatTable().getColumnModel().removeColumn(tcol);
-					int[]columnsToBeDeleted= {0,2,2,5};
+					int[]columnsToBeDeleted= {0,2,2,4};
 					model.deleteMultipleColumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
 					//frame.getListProduitZakatTable().setAutoCreateColumnsFromModel(false);
 					showEighCard();

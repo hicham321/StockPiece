@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -204,8 +206,8 @@ public class model {
 		}
 
 	}
-	public int insertFactureFourniss(String numFact, String nomFourn, String type, String total)throws SQLException{
-			String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+")";        	        
+	public int insertFactureFourniss(String numFact, String nomFourn, String type, String total,String date)throws SQLException{
+			String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ,DateFact) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+"," +"'"+ date+"'"+")";        	        
 			int k=stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
 	        
 		return k;		
@@ -221,7 +223,14 @@ public class model {
 
 		return g;
 	}
-	
+	//to get the current date of Facture:
+	public String getCurrentDate(){
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy MMMM dd");
+	    java.util.Date date = new java.util.Date();
+		String s= dateFormat.format(date);
+		return s;
+	}
 	
 	public void insertFactureClient(){
 		try {
@@ -401,7 +410,6 @@ public class model {
     	return rs;
     }
     public ResultSet listProduitZakat()throws SQLException{
-    	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
         ResultSet rs = stmt.executeQuery("SELECT * from Produit,Lot WHERE Produit.IDprod= Lot.IDProduit and  Lot.qte > 0 ");
 
     	return rs;
