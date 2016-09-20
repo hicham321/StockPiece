@@ -205,10 +205,21 @@ public class model {
 
 	}
 	public int insertFactureFourniss(String numFact, String nomFourn, String type, String total)throws SQLException{
-			String query= "INSERT INTO Produit ( NumFacture,Nomfournis,Type ,Total ) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+")";        	        
+			String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+")";        	        
 			int k=stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
 	        
 		return k;		
+	}
+	//another ethod for getting the last generated key 
+	public int getlastId()throws SQLException{
+		String query= "SELECT MAX(IDFac) FROM Facture ";
+		ResultSet rs= stmt.executeQuery(query);
+		int g= 0;
+		if (rs.next()) {
+			  g = rs.getInt(1);
+			}
+
+		return g;
 	}
 	
 	
@@ -298,7 +309,7 @@ public class model {
     			sum= sum+listLotId.get(j);
     		}
     		//update method 
-    		String query= "UPDATE  Produit  SET ( QteGlobal ) VALUES ("+ "'"+sum+"'"+") WHERE Produit.IDprod="+"'"+i+"'";  
+    		String query= "UPDATE  Produit  SET ( QteGlobal ) = ("+ "'"+sum+"'"+") WHERE Produit.IDprod="+"'"+i+"'";  
     		this.stmt.execute(query);
     	}
     }
@@ -309,7 +320,7 @@ public class model {
     
     public void insertChange(int idFact, int idLot, int qteChange)throws SQLException{
     	
-    	String query= "INSERT INTO Produit ( idFact,IdLot,QteChange ) VALUES ("+"'"+idFact+"'"+","+"'"+idLot+"'"+","+"'"+qteChange+"'"+")";        	        
+    	String query= "INSERT INTO Change ( idFact,IdLot,QteChange ) VALUES ("+"'"+idFact+"'"+","+"'"+idLot+"'"+","+"'"+qteChange+"'"+")";        	        
 		stmt.execute(query);
     	
     }

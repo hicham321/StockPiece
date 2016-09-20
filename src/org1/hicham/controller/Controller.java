@@ -62,6 +62,8 @@ public class Controller {
 	private Map<String,Integer> idDesignationProdList= new HashMap<>();
 	
 	private LinkedHashMap<Integer,Integer> insertedIdLotIdProd= new LinkedHashMap();
+	
+	double totalAchat=0;
 
 	
 	//this new field is to be debugged intensively later
@@ -173,6 +175,13 @@ public class Controller {
 						} 
 					}; 
 					frame.getListProduitAjoutTable().setModel(tableModelForInsertions);
+					//refresh and setting textfields to empty
+					frame.getNomFournisseur().setText("");
+					frame.getNumFact().setText("");
+                    insertedIdLotIdProd.clear();
+                    insertedIdLotList.clear();
+                    insertedIdProdList.clear();
+                    frame.getOkAjout().setEnabled(true);
 					refreshProductComboBox();
 					refreshLotComboBox();
 					showSecondCard();	
@@ -256,24 +265,23 @@ public class Controller {
 				           System.out.println(insertedIdLotList);
 
 					//insertion into Facture code here 
-				    model.insertFactureFourniss(numFact, nomFourn, type, total);       
-				           
+				    int idFacture = model.insertFactureFourniss(frame.getNumFact().getText(), frame.getNomFournisseur().getText(), "fournisseur", frame.getPrixTotallab().getText()); 
+				    int idFactur= model.getlastId();
+				    System.out.println(frame.getPrixTotallab().getText());
 				    for(int i=0;i<insertedIdLotList.size();i++){
 				    	//5 is the index of the column in the ListProduitAjoutTable that contains qte
-				       System.out.println(frame.getListProduitAjoutTable().getModel().getValueAt(i, 5));
-
 			           int qteChange =Integer.valueOf((String) frame.getListProduitAjoutTable().getModel().getValueAt(i, 5));	
 			           //add quantity to Lot table
 			           int insertedLot= insertedIdLotList.get(i);
 			           model.addQteLot(qteChange, insertedLot);
 			           //insert change quantity to change table
-			           model.insertChange(frame.getNumFact().getText(), insertedLot, qteChange);
-			           //update qte Global
+			           model.insertChange(idFactur, insertedLot, qteChange);
 			           
 				    }
-                    //insert facture info:
-
+                    //update quantity globale
+				    model.UpdateQteGlobale( insertedIdProdList);
 					//Setting the JTable to disabled and ok button in ajout view to disabled
+				    frame.getOkAjout().setEnabled(false);
 					}
 				}catch(Exception ex){
 					ex.printStackTrace();
@@ -291,13 +299,11 @@ public class Controller {
 
 		@Override
 		public void menuDeselected(MenuEvent e) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void menuSelected(MenuEvent e) {
-			// TODO Auto-generated method stub
 			if(e.getSource()==frame.getRetour()){
 				showFirstCard();
 				//for going back and forth between layouts
@@ -337,8 +343,6 @@ public class Controller {
 
 		@Override
 		public void menuCanceled(MenuEvent e) {
-			// TODO Auto-generated method stub
-
 		}
 
 	}
@@ -424,6 +428,8 @@ public class Controller {
 						addingquantity.getPrixAchat().setText(l.get(0).toString());
 						double achatSum= Double.parseDouble(l.get(0).toString())*Integer.parseInt(addingquantity.getQte().getText()); 
 					    double venteSum= Double.parseDouble(l.get(1).toString())*Integer.parseInt(addingquantity.getQte().getText());
+					    totalAchat= totalAchat+achatSum;
+					    frame.getPrixTotallab().setText(String.valueOf(totalAchat));
 		                String marge= "%"+ (100-(100*(achatSum/venteSum)));
 						Vector row = new Vector<>();
 						row.addElement(marge); 
@@ -546,7 +552,6 @@ public class Controller {
 
 		@Override
 		public void windowActivated(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 
@@ -554,7 +559,6 @@ public class Controller {
 
 		@Override
 		public void windowClosed(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 
@@ -562,7 +566,6 @@ public class Controller {
 
 		@Override
 		public void windowClosing(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 
@@ -570,7 +573,6 @@ public class Controller {
 
 		@Override
 		public void windowDeactivated(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 
@@ -578,14 +580,12 @@ public class Controller {
 
 		@Override
 		public void windowDeiconified(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 		}
 
 		@Override
 		public void windowIconified(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 
@@ -593,7 +593,6 @@ public class Controller {
 
 		@Override
 		public void windowOpened(WindowEvent e) {
-			// TODO Auto-generated method stub
 			frame.setEnabled(true);
 			System.out.println("this shit executes");
 
