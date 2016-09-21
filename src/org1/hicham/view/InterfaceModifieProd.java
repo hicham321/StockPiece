@@ -17,7 +17,7 @@ public class InterfaceModifieProd extends JFrame{
 	public InterfaceModifieProd(){
 		setResizable(true);
 		setSize(400,200);        
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 
 		JPanel panel = new JPanel();

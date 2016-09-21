@@ -488,6 +488,16 @@ public class model {
 		}
     	return found;
     }
+    public double sumZakat(JTable table, int colNum1, int colNum2 ){
+    	double sum=0;
+    	int rowCount = table.getRowCount();
+    	double produit=0;
+    	for(int i=0;i<rowCount;i++){
+    		produit=(Double) table.getValueAt(i, colNum1)*(Double) table.getValueAt(i, colNum2);
+    		sum=sum+ produit;
+    	}
+    	return sum;
+    }
 
     public DefaultComboBoxModel buildComboModelLot(int idProd) throws SQLException {
 
@@ -540,7 +550,7 @@ public class model {
 		}
 
 	}
-	//return   the password and user name in the database
+	//return the password and user name in the database
 	public String passdatabase(){
 		try{
 			String query= "SELECT pass from Register" ;
@@ -581,18 +591,12 @@ public class model {
 	}
 	public void changepassuser(String user, String pass){
 		try {
-			String query= "UPDATE Register SET ultilisateur= "+ user+","+"pass="+pass+"WHERE ID=1" ;
+            System.out.println("update executed");
+			String query= "UPDATE Register SET utilisateur= "+"'"+ user+"'"+","+"pass="+"'"+pass+"'"+"WHERE Register.ID=1" ;
 
-			ResultSet r= this.stmt.executeQuery(query);
-
-			/*user ="";
-		         pass ="";
-				while (r.next() ) {
-
-		            user = r.getString("Utilisateur");
-		   	    }*/
-
+			this.stmt.execute(query);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public boolean showingPassWindow(){

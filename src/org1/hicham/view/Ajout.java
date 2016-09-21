@@ -29,7 +29,7 @@ public class Ajout extends JPanel {
 
 	JButton annule = new JButton("الغاء");
 	JButton ok = new JButton("موافقة");
-	JButton ajoutproduit = new JButton("Ajouté");
+	JButton ajoutproduit = new JButton("ادخال");
 	
 	JLabel prixTotalLab = new JLabel("المجموع الكلي");
 	JLabel prixTotal = new JLabel("0");
@@ -47,7 +47,7 @@ public class Ajout extends JPanel {
 		this.add(numfact);
 		this.add(labnumfact);
 		this.add(ok);
-		this.add(annule);
+		//this.add(annule);
         this.add(prixTotalLab);
         this.add(ajoutproduit);
         //this is the total price label
@@ -72,7 +72,7 @@ public class Ajout extends JPanel {
         prixTotal.setBounds(1150, 630, 100, 20);
         annule.setBounds(1230, 580, 100, 30);
 		ok.setBounds(1100, 580, 100, 30);
-		ajoutproduit.setBounds(300, 630, 100, 30);
+		ajoutproduit.setBounds(500, 20, 100, 20);
 
 	}
 

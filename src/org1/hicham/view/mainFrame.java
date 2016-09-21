@@ -295,14 +295,13 @@ public class mainFrame extends JFrame {
 		return card8.zakatText;
 	}
 
-	public void setZakatText(JTextField zakatText) {
-		card8.zakatText = zakatText;
+	public JLabel getZakatTotal() {
+		return card8.zakatTotal;
 	}
 
-	public void setZakatTotal(JLabel zakatTotal) {
-		card8.zakatTotal = zakatTotal;
+	public JLabel getZakatFinal() {
+		return card8.zakatFinal;
 	}
-
 	public void setZakatFinal(JLabel zakatFinal) {
 		card8.zakatFinal = zakatFinal;
 	}

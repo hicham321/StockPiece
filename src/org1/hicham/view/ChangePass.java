@@ -33,7 +33,7 @@ public class ChangePass extends JFrame {
 		setTitle("تبديل كلمة السر");
 		setSize(350, 460);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		oldPassTextLabel.setBounds(200, 50, 120, 20);

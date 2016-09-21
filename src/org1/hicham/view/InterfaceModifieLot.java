@@ -27,7 +27,7 @@ public class InterfaceModifieLot extends JFrame {
 		setResizable(true);
 		setSize(400,300);
 		setTitle("modifie lot");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 
 		JPanel panel = new JPanel();

@@ -27,6 +27,7 @@ import javax.swing.table.TableColumn;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
+import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import net.sf.jasperreports.crosstabs.fill.JRPercentageCalculatorFactory.IntegerPercentageCalculator;
 import org1.hicham.model.model;
 import org1.hicham.view.AjoutDonneInterface;
@@ -54,6 +55,8 @@ public class Controller {
 	private Register register = new Register();
 
 	private File file ;
+	
+	String filePath="";
 
 	private int returnVal;
 
@@ -249,15 +252,24 @@ public class Controller {
 
 			}
 			if (e.getSource()==frame.getZakatCalcButton()) {
+				if("".equals(frame.getZakatText().getText())){
+					JOptionPane.showMessageDialog(null, "غلط في الفورمة,ادخل نسبة الزكاة ما بين 0 و 100");
+
+				}
 				if(Double.parseDouble(frame.getZakatText().getText())<100 && Double.parseDouble(frame.getZakatText().getText())>0 ){
 					//calculate zakat total
-
+					double total=Double.parseDouble(frame.getZakatTotal().getText());
+					double percentageZakat= Double.parseDouble(frame.getZakatText().getText());
+					double totalZakat= total*percentageZakat;
+					System.out.println(totalZakat);
+					frame.getZakatFinal().setText(String.valueOf(totalZakat));
 				}
 				else{
 					frame.getZakatText().setText("");
 					JOptionPane.showMessageDialog(null, "غلط في الفورمة,ادخل رقم ما بين 0 و 100");
 				}
-			}
+				}
+			
 			if (e.getSource()==frame.getOkAjout()) {
 				try{
 					if (model.checkNumFacture(frame.getNumFact().getText())) {
@@ -336,9 +348,11 @@ public class Controller {
 					ResultSet rs= model.listProduitZakat();
 					DefaultTableModel dtm = model.buildTableModel(rs);
 					frame.getListProduitZakatTable().setModel(dtm);
-					//TableColumn tcol = frame.getListProduitZakatTable().getColumnModel().getColumn(0);
-					//frame.getListProduitZakatTable().getColumnModel().removeColumn(tcol);
+					int somme=model.sumZakat(frame.getListProduitZakatTable(),2);
+					System.out.println(somme);
 					int[]columnsToBeDeleted= {0,2,2,4};
+					frame.getZakatTotal().setText(String.valueOf(somme));
+					
 					model.deleteMultipleColumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
 					//frame.getListProduitZakatTable().setAutoCreateColumnsFromModel(false);
 					showEighCard();
@@ -365,7 +379,9 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== register.getOk()){
 				try{
-					model.connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+					//read file here
+					//model.connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
+					model.connectio("jdbc:ucanaccess://"+filePath);
 					//model.connectio("jdbc:ucanaccess://C:/Users/pc4u/ddd.accdb");
 					boolean thereispass= model.checkdatabase();
 					System.out.println("database pass "+model.passdatabase().toCharArray());
@@ -613,13 +629,40 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (arg0.getSource()==changePass.getOk()) {
+                //check if the pa
+				String oldUser= changePass.getOldUserText().getText();
+				String oldPass= String.valueOf(changePass.getOldPassText().getPassword());
+				String newUser= changePass.getNewUserText().getText();
+				String newPass= String.valueOf(changePass.getNewPassText().getPassword());
+				//checking
+				if("".equals(oldUser) || "".equals(oldPass)) {
+					//message
+					JOptionPane.showMessageDialog(null, "ادخل كلمة السر و اسم المستعمل ");
+				}
+				if (oldUser.equals(model.usernamedatabase())&& oldPass.equals(model.passdatabase())) {
+				    //update queries
+					model.changepassuser(newUser, newPass);
+					changePass.getOldPassText().setText("");
+					changePass.getNewPassText().setText("");
+					changePass.getOldUserText().setText("");
+					changePass.getNewUserText().setText("");
+					
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "اكلمة السر او اسم المستعمل خاطئ ");
+					
 
+				}
 
 				changePass.dispose();
 				enableFrame();
 
 			}
 			if (arg0.getSource()==changePass.getAnnule()) {
+				changePass.getOldPassText().setText("");
+				changePass.getNewPassText().setText("");
+				changePass.getOldUserText().setText("");
+				changePass.getNewUserText().setText("");
 
 				changePass.dispose();
 				enableFrame();
@@ -922,6 +965,10 @@ public class Controller {
 	public void refreshLotComboBox()throws SQLException{
 		DefaultComboBoxModel dcm= model.buildComboModelLot(idProd);
 		addingquantity.getAjoutLotComboBox().setModel(dcm);
+	}
+	
+	public void setFilePath(String filePath){
+		this.filePath= filePath;
 	}
 
 }
