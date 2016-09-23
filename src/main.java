@@ -32,6 +32,7 @@ import org1.hicham.view.InterfaceSuppLot;
 import org1.hicham.view.InterfaceSuppProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
+import org1.hicham.view.addingquantity2;
 import org1.hicham.view.mainFrame;
 import sun.dc.pr.PathFiller;
 
@@ -52,7 +53,8 @@ public class main {
 		InterfaceModifieLot ml= new InterfaceModifieLot();
 		InterfaceSuppProd sp= new InterfaceSuppProd();
 		InterfaceSuppLot sl= new InterfaceSuppLot();
-		Controller c = new Controller(frame, m, r,a,ch,ai,pi,mi,ml,sp,sl);
+		addingquantity2 a2= new addingquantity2();
+		Controller c = new Controller(frame, m, r,a,ch,ai,pi,mi,ml,sp,sl,a2);
 		//set the file path for the conntroller
 		c.setFilePath(filePath);
 		//show the frames:
@@ -101,7 +103,7 @@ public class main {
 //		}
 //		//check if file is empty or not 
 //		if (FileEmpty) {
-			JOptionPane.showMessageDialog(null, "اختر ملف المعلومات");
+			JOptionPane.showMessageDialog(null, "ااختر قاعدة البيانات");
 
 		    JFileChooser filechooser = new JFileChooser();
 			int returnVal = filechooser.showOpenDialog(null);
@@ -110,7 +112,7 @@ public class main {
 				
 				File Databasefile = filechooser.getSelectedFile();
 				//put a condition on the file Name
-				if ("ddd.accdb".equals(Databasefile.getName())) {
+				if ("stock001.accdb".equals(Databasefile.getName())) {
 					//get relative path to set File path
 					String filePath=Databasefile.getPath();
 					System.out.println(filePath);
@@ -121,7 +123,7 @@ public class main {
 				}
 				else{
 					//writeFile("", classFileInput);
-					JOptionPane.showMessageDialog(null, " ملف المعلومات خاطئ اختر الصحيح. ");
+					JOptionPane.showMessageDialog(null, " قاعدة البيانات خاطئة اعد المحاولة.");
 				}
 				
 			}

@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.MenuListener;
@@ -71,7 +72,6 @@ public class mainFrame extends JFrame {
 	public void addFrameActionListener(ActionListener listner){
 		this.menu.ajoutbase.addActionListener(listner);
 		this.menu.ajoutprodui.addActionListener(listner);
-		this.card1.but.addActionListener(listner);
 		this.menu.listproduit.addActionListener(listner);
 		this.menu.motpass.addActionListener(listner);
 		this.menu.quiter.addActionListener(listner);
@@ -84,6 +84,12 @@ public class mainFrame extends JFrame {
 		this.card2.annule.addActionListener(listner);
 		this.card2.ok.addActionListener(listner);
 		
+		this.card3.ajoutproduit2.addActionListener(listner);
+		this.card3.annule2.addActionListener(listner);
+		this.card3.ok2.addActionListener(listner);
+		
+		
+		
 		//card8(zakat)	
 		this.card8.zakatCalcButton.addActionListener(listner);
 	}
@@ -94,16 +100,6 @@ public class mainFrame extends JFrame {
 		this.menu.listFactureTout.addMenuListener(menListner);
 		this.menu.zakatMenu.addMenuListener(menListner);
 	}
-
-	public JButton getBut() {
-		return card1.but;
-	}
-
-
-	public void setBut(JButton but) {
-		card1.but = but;
-	}
-
 
 	public JMenuItem getAjoutbase() {
 		return menu.ajoutbase;
@@ -209,46 +205,7 @@ public class mainFrame extends JFrame {
 	}
 
 
-	/*public JTextField getPrixAchat() {
-		return card2.prixAchat;
-	}
-
-
-	public void setPrixAchat(JTextField prixAchat) {
-		card2.prixAchat = prixAchat;
-	}
-
-
-	public JTextField getPrixvente() {
-		return card2.prixvente;
-	}
-
-
-	public void setPrixvente(JTextField prixvente) {
-		card2.prixvente = prixvente;
-	}
-
-
-	public JTextField getQte() {
-		return card2.qte;
-	}
-
-
-	public void setQte(JTextField qte) {
-		card2.qte = qte;
-	}
-
-
-	public JTextField getDate() {
-		return card2.date;
-	}
-
-
-	public void setDate(JTextField date) {
-		card2.date = date;
-	}
-	 */
-
+	
 	public JButton getAnnuleAjout() {
 		return card2.annule;
 	}
@@ -308,4 +265,121 @@ public class mainFrame extends JFrame {
 	public JButton getZakatCalcButton() {
 		return card8.zakatCalcButton;
 	}
+	
+	//card3
+	
+	
+	public DefaultTableModel getDt2() {
+		return card3.dt;
+	}
+
+
+	public void setDt2(DefaultTableModel dt) {
+		card3.dt = dt;
+	}
+
+
+	public JTable getListProduitAjoutTable2() {
+		return card3.listProduitAjoutTable;
+	}
+
+
+	public void setListProduitAjoutTable2(JTable listProduitAjoutTable) {
+		card3.listProduitAjoutTable = listProduitAjoutTable;
+	}
+
+
+	
+
+
+	public JTextField getNumfact2() {
+		return card3.numfact;
+	}
+
+
+	public void setNumfact2(JTextField numfact) {
+		card3.numfact = numfact;
+	}
+
+
+	public JLabel getLabnumfact2() {
+		return card3.labnumfact;
+	}
+
+
+	public void setLabnumfact2(JLabel labnumfact) {
+		card3.labnumfact = labnumfact;
+	}
+
+
+	public JTextField getNomFournisseur2() {
+		return card3.nomFournisseur;
+	}
+
+
+	public void setNomFournisseur2(JTextField nomFournisseur) {
+		card3.nomFournisseur = nomFournisseur;
+	}
+
+
+	public JLabel getLabNomFour2() {
+		return card3.labNomFour;
+	}
+
+
+	public void setLabNomFour2(JLabel labNomFour) {
+		card3.labNomFour = labNomFour;
+	}
+
+
+	public JButton getAnnule2() {
+		return card3.annule2;
+	}
+
+
+	public void setAnnule2(JButton annule) {
+		card3.annule2 = annule;
+	}
+
+
+	public JButton getOk2() {
+		return card3.ok2;
+	}
+
+
+	public void setOk2(JButton ok) {
+		card3.ok2 = ok;
+	}
+
+
+	public JButton getAjoutproduit2() {
+		return card3.ajoutproduit2;
+	}
+
+
+	public void setAjoutproduit2(JButton ajoutproduit) {
+		card3.ajoutproduit2 = ajoutproduit;
+	}
+
+
+	public JLabel getPrixTotalLab2() {
+		return card3.prixTotalLab;
+	}
+
+
+	public void setPrixTotalLab2(JLabel prixTotalLab) {
+		card3.prixTotalLab = prixTotalLab;
+	}
+
+
+	public JLabel getPrixTotal2() {
+		return card3.prixTotal;
+	}
+
+
+	public void setPrixTotal2(JLabel prixTotal) {
+		card3.prixTotal = prixTotal;
+	}
+	
+	
 }

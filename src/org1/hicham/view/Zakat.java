@@ -83,7 +83,7 @@ public class Zakat extends JPanel {
 		this.zakatTotalLab.setBounds(1250,600,190,20);
 		this.zakatTotal.setBounds(1000,600,190,20);
 		this.zakatFinalLab.setBounds(1250,650,190,20);
-		this.zakatTotal.setBounds(1000,650,190,20);
+		this.zakatFinal.setBounds(1000,650,190,20);
 
 		this.setVisible(true);
 

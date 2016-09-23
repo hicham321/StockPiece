@@ -113,6 +113,8 @@ public class model {
 			//this query deletes the entire Lots for the corresponding product id
 			String query2="DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ ID+"'";
 			stmt.execute(query2);
+			//delete the Lot from Change table
+			String qyery1= "DELETE FROM Change WHERE Lot.id= ";
 			//this query deletes the product from the given product id
 			String query= "DELETE FROM Produit WHERE Produit.IDprod = "+"'"+ ID+"'";
 			stmt.execute(query);
@@ -212,6 +214,14 @@ public class model {
 	        
 		return k;		
 	}
+	public int insertFactureClient(String numFact, String nomFourn, String type, String total,String date)throws SQLException{
+		    String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ,DateFact) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+"," +"'"+ date+"'"+")";        	        
+			int k=stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+
+
+			return k;		
+			
+	}
 	//another ethod for getting the last generated key 
 	public int getlastId()throws SQLException{
 		String query= "SELECT MAX(IDFac) FROM Facture ";
@@ -232,16 +242,6 @@ public class model {
 		return s;
 	}
 	
-	public void insertFactureClient(){
-		try {
-			String query= "INSERT INTO Produit ( designationProduit,QteGlobal,idFacture ) VALUES ("+ "'"+")";        	        
-			stmt.execute(query);
-
-		} catch (Exception e) {
-			System.out.println(e);
-
-		}		
-	}
     public void deleteFacture(int idFacture, int idProd, int idLot, String typeFac){
     	try {
     		//deleting facture only means deleting the quantities in that facture
@@ -493,7 +493,9 @@ public class model {
     	int rowCount = table.getRowCount();
     	double produit=0;
     	for(int i=0;i<rowCount;i++){
-    		produit=(Double) table.getValueAt(i, colNum1)*(Double) table.getValueAt(i, colNum2);
+    		produit=new Double(table.getValueAt(i, colNum1).toString())*new Double(table.getValueAt(i, colNum2).toString());
+    		System.out.println("first argument "+new Double(table.getValueAt(i, colNum1).toString()));
+    		System.out.println("second argument "+new Double(table.getValueAt(i, colNum2).toString()));
     		sum=sum+ produit;
     	}
     	return sum;

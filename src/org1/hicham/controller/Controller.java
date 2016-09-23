@@ -39,6 +39,7 @@ import org1.hicham.view.InterfaceSuppLot;
 import org1.hicham.view.InterfaceSuppProd;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
+import org1.hicham.view.addingquantity2;
 import org1.hicham.view.mainFrame;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -99,8 +100,33 @@ public class Controller {
 	private InterfaceSuppLot interfaceSuppLot= new InterfaceSuppLot();
 	
 	private DefaultTableModel tableModelForInsertions= new DefaultTableModel();
+	
 
-	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd,InterfaceModifieLot interfaceModifieLot,InterfaceSuppProd  InterfaceSuppProd,InterfaceSuppLot interfaceSuppLot ){
+	
+	
+	//field for destockage
+	private addingquantity2 addingquantity2;
+	
+    private Map<String,Integer> idDesignationProdList2= new HashMap<>();
+	
+	private LinkedHashMap<Integer,Integer> insertedIdLotIdProd2= new LinkedHashMap();
+	
+	double totalAchat2=0;
+	
+    private int idProd2 =0;
+	
+	private int idLot2=0;
+	
+	private List<Integer>insertedIdProdList2= new ArrayList<>();
+	
+	private List<Integer>insertedIdLotList2= new ArrayList<>();
+	
+	private List<Integer> idLotList2= new ArrayList<>();
+
+	private DefaultTableModel tableModelForInsertions2= new DefaultTableModel();
+
+
+	public Controller(mainFrame frame, model model,Register register,addingquantity addingquantity,ChangePass changePass,AjoutDonneInterface ajoutDonneInterface, AjoutProdInterface ajoutProdInterface,InterfaceModifieProd interfaceModifieProd,InterfaceModifieLot interfaceModifieLot,InterfaceSuppProd  InterfaceSuppProd,InterfaceSuppLot interfaceSuppLot,addingquantity2 addingquantity2 ){
 
 		this.frame= frame;
 
@@ -109,6 +135,8 @@ public class Controller {
 		this.register = register;
 
 		this.addingquantity= addingquantity;
+		
+		this.addingquantity2= addingquantity2;
 
 		this.changePass= changePass;
 
@@ -145,6 +173,8 @@ public class Controller {
 		this.interfaceSuppProd.addSuppProdInterfaceListener(new SuppProdInterfaceListener());
 		
 		this.interfaceSuppLot.addSuppLotInterfaceListener(new SuppLotInterfaceListener() );
+		
+		this.addingquantity2.addajoutlistner2(new AjoutActionListner2());
 
 	}
 	//this is the MainFrame action listener it contains listeners for all the panels inside the main frame
@@ -199,6 +229,48 @@ public class Controller {
 
 				}
 			}
+			
+			
+			
+			if(e.getSource()== frame.getSortiproduit()){
+				try{
+
+					tableModelForInsertions2 = new DefaultTableModel(){ 
+						String[] columns = {"نسبة الربح","مجموع البيع", "مجموع الشراء","ثمن البيع",
+								"ثمن الشراء","الكمية","المنتوج"}; 
+
+						@Override 
+						public int getColumnCount() { 
+							return columns.length; 
+						} 
+
+						@Override 
+						public String getColumnName(int index) { 
+							return columns[index]; 
+						} 
+					}; 
+					frame.getListProduitAjoutTable2().setModel(tableModelForInsertions2);
+					//refresh and setting textfields to empty
+					frame.getNomFournisseur2().setText("");
+					frame.getNumfact2().setText("");
+					frame.getPrixTotal2().setText("0");
+                    insertedIdLotIdProd2.clear();
+                    insertedIdLotList2.clear();
+                    insertedIdProdList2.clear();
+                    
+                    frame.getOk2().setEnabled(true);
+                    frame.getNomFournisseur2().setEnabled(true);
+                    frame.getNumfact2().setEnabled(true);
+
+					refreshProductComboBox2();
+					refreshLotComboBox2();
+					showThirdCard();	
+					//for navigating through panels 
+					panelList.add(2);
+				}catch(Exception ex){
+
+				}
+			}
 			if(e.getSource()==frame.getAjoutproduitButton()) {
 				try{
 					refreshProductComboBox();
@@ -209,14 +281,26 @@ public class Controller {
 				}
 
 			}
+			if(e.getSource()==frame.getAjoutproduit2()) {
+				try{
+					refreshProductComboBox2();
+					frame.setEnabled(false);
+					addingquantity2.setVisible(true);
+				}catch(Exception ex ){
+					ex.printStackTrace();
+				}
+
+			}
+			
+			
+			
+			
+			
 			if (e.getSource()==frame.getMotpass()) {
 				frame.setEnabled(false);
 				changePass.setVisible(true);
 			}
-			if(e.getSource()== frame.getSortiproduit()){
-				showThirdCard();
-				panelList.add(3);
-			}
+			
 			if(e.getSource()==frame.getListproduit()){
 				try{
 					ResultSet rs= model.listProduitToutResultat();
@@ -260,7 +344,7 @@ public class Controller {
 					//calculate zakat total
 					double total=Double.parseDouble(frame.getZakatTotal().getText());
 					double percentageZakat= Double.parseDouble(frame.getZakatText().getText());
-					double totalZakat= total*percentageZakat;
+					double totalZakat= (total*percentageZakat)/100;
 					System.out.println(totalZakat);
 					frame.getZakatFinal().setText(String.valueOf(totalZakat));
 				}
@@ -309,6 +393,45 @@ public class Controller {
 				}
 
 			}
+			if (e.getSource()==frame.getOk2()) {
+				try{
+					if (model.checkNumFacture(frame.getNumfact2().getText())) {
+						JOptionPane.showMessageDialog(null, "هذا الرقم موجود ادخل رقما اخر");
+					}
+					if("".equals(frame.getNomFournisseur2().getText()) || "".equals(frame.getNumfact2().getText())){
+						JOptionPane.showMessageDialog(null, "ادخل اسم الممول و رقم الفاتورة");
+					}
+					else{
+				           System.out.println(insertedIdLotList2);
+
+					//insertion into Facture code here
+				    String date=model.getCurrentDate();       
+				    model.insertFactureClient(frame.getNumfact2().getText(), frame.getNomFournisseur2().getText(), "client", frame.getPrixTotal2().getText(),date); 
+				    int idFacture= model.getlastId();
+				    System.out.println(frame.getPrixTotal2().getText());
+				    for(int i=0;i<insertedIdLotList2.size();i++){
+				    	//5 is the index of the column in the ListProduitAjoutTable that contains qte
+			           int qteChange =Integer.valueOf((String) frame.getListProduitAjoutTable2().getModel().getValueAt(i, 5));	
+			           //add quantity to Lot table
+			           int insertedLot= insertedIdLotList2.get(i);          
+			           model.addQteLot(-qteChange, insertedLot);
+			           //insert change quantity to change table
+			           model.insertChange(idFacture, insertedLot, -qteChange);
+			           
+				    }
+                    //update quantity globale
+				    model.UpdateQteGlobale( insertedIdProdList2);
+					//Setting the JTable to disabled and ok button in ajout view to disabled
+				    frame.getOk2().setEnabled(false);
+				    frame.getNomFournisseur2().setEnabled(false);
+				    frame.getNumfact2().setEnabled(false);
+
+					}
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+
+			}
 
 
 		}
@@ -348,9 +471,9 @@ public class Controller {
 					ResultSet rs= model.listProduitZakat();
 					DefaultTableModel dtm = model.buildTableModel(rs);
 					frame.getListProduitZakatTable().setModel(dtm);
-					int somme=model.sumZakat(frame.getListProduitZakatTable(),2);
+					double somme=model.sumZakat(frame.getListProduitZakatTable(),4,6);
 					System.out.println(somme);
-					int[]columnsToBeDeleted= {0,2,2,4};
+					int[]columnsToBeDeleted= {0,1,1,2};
 					frame.getZakatTotal().setText(String.valueOf(somme));
 					
 					model.deleteMultipleColumns(frame.getListProduitZakatTable(),columnsToBeDeleted );
@@ -568,10 +691,113 @@ public class Controller {
 					ex.printStackTrace();
 				}
 			}
+			
+
 
 
 		}
 
+	}
+	class AjoutActionListner2 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource()==addingquantity2.getAnnule2()) {
+                closeAddinQuantity2();
+				enableFrame();
+
+			}
+			if (e.getSource()==addingquantity2.getOk2()) {
+				try{
+					String qteText= addingquantity2.getQte2().getText();
+					
+
+					if (! model.isInteger(qteText) || Integer.parseInt(qteText)<=0 ||addingquantity2.getAjoutLotComboBox2().getItemCount()==0||addingquantity2.getAjoutProduitComboBox2().getItemCount()==0|| addingquantity2.getAjoutProduitComboBox2().getSelectedIndex()==-1 ||addingquantity2.getAjoutLotComboBox2().getSelectedIndex()==-1) {
+						JOptionPane.showMessageDialog(null, "دخل وضعية المنتوج, ادخل المنتوج و وضعيت" )  ;
+					}
+					//this code is for the case when we subtract quantity
+					if (model.getLotQuantity(idLot2)-Integer.parseInt(qteText)<0 ) {
+						JOptionPane.showMessageDialog(null, "االكمية خاطئة");
+					}
+					                  
+					else{
+
+						//code for JTable insertions
+						List<Double>l=model.getSelectedLotRow(idLot2,idProd2);
+						addingquantity2.getPrixVente2().setText(l.get(1).toString());
+						addingquantity2.getPrixAchat2().setText(l.get(0).toString());
+						double achatSum= Double.parseDouble(l.get(0).toString())*Integer.parseInt(addingquantity2.getQte2().getText()); 
+					    double venteSum= Double.parseDouble(l.get(1).toString())*Integer.parseInt(addingquantity2.getQte2().getText());
+					    totalAchat2= totalAchat2+achatSum;
+					    frame.getPrixTotal2().setText(String.valueOf(totalAchat2));
+		                String marge= "%"+ (100-(100*(achatSum/venteSum)));
+						Vector row = new Vector<>();
+						row.addElement(marge); 
+						row.addElement(venteSum); 
+						row.addElement(achatSum); 
+						row.addElement(l.get(1).toString()); 
+						row.addElement(l.get(0).toString());
+						row.addElement(addingquantity2.getQte2().getText());
+						row.addElement(addingquantity2.getAjoutProduitComboBox2().getSelectedItem().toString());
+						//check if quantity subtracted is lower than actual quantity when subtracting
+
+						tableModelForInsertions2.addRow(row);
+						tableModelForInsertions2.fireTableDataChanged();
+						//setting the addquantity view components back to default values
+						addingquantity2.getQte2().setText("0");
+						refreshLotComboBox2();
+						refreshProductComboBox2();
+						closeAddinQuantity2();
+						enableFrame();
+			//YOU MUST ADD THE CODE TO GET THE IDPRODUIT AND IDLOT FOR ACTUAL INSERTED VALUES FOR THE JTABLE
+						//Hashmap for inserted products and lots for updating qte in lot
+						insertedIdLotIdProd2.put(idProd2, idLot2);
+						//for updating global quatntity
+						insertedIdLotList2.add(idLot2);
+						insertedIdProdList2.add(idProd2);
+						
+					}
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+
+			}
+				
+
+			if(e.getSource()== addingquantity2.getAjoutProduitComboBox2()){
+				try{
+					//action when a product gets selected:
+					JComboBox comboBox = (JComboBox) e.getSource();
+					Object selected = comboBox.getSelectedItem();
+					idProd2 = idDesignationProdList2.get(selected.toString());
+					refreshLotComboBox2();
+					//System.out.println(addingquantity.getAjoutProduitComboBox().getSelectedIndex());
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+			}
+			if (e.getSource()== addingquantity2.getAjoutLotComboBox2()) {
+				try{
+					JComboBox comboBox = (JComboBox) e.getSource();
+					int selected = comboBox.getSelectedIndex();
+				    idLotList2= model.getIdLot(idProd2);
+					//setting the labels in the addingquantity view to the actual database values from the lot
+					idLot2=idLotList2.get(selected);
+					List<Double>l=model.getSelectedLotRow(idLot2,idProd2);
+					addingquantity2.getPrixVente2().setText(l.get(1).toString());
+					addingquantity2.getPrixAchat2().setText(l.get(0).toString());
+					addingquantity2.getQteLot2().setText(l.get(2).toString());
+					int qteGlobal= model.getQteGlobalProd(idProd2);
+					addingquantity2.getQteGlobal2().setText(Integer.toString(qteGlobal));
+					//the selected Lot id 
+					
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+			}
+
+
+		}
+		
 	}
 	class WindowListenerForAddingquantity implements WindowListener{
 
@@ -685,6 +911,7 @@ public class Controller {
 					}
 					else{
 						//insertion code 
+						System.out.println(Double.parseDouble(ajoutDonneInterface.getPrixAchatText().getText()));
 						model.insertLot(Double.parseDouble(ajoutDonneInterface.getPrixAchatText().getText()), 
 								Double.parseDouble(ajoutDonneInterface.getPrixVenteText().getText()), 0,idProd);
 						//closing and housekeeping
@@ -829,7 +1056,6 @@ public class Controller {
 			if(e.getSource()== interfaceSuppProd.getOk()){
 				try{
 
-					//modifying designation of product to database
 					model.deleteProd(idProd);
 					refreshProductComboBox();
 					enableAddingQuantityFromSupp();
@@ -924,6 +1150,33 @@ public class Controller {
 		frame.setEnabled(true);
 		frame.toFront();
 	}
+	public void disableAddingQuantity2(){
+		frame.setEnabled(false);
+		addingquantity2.setEnabled(false);
+	}
+	
+	public void closeAddinQuantity2(){
+		addingquantity2.dispose();
+		//addingquantity.getOk().setEnabled(false);
+	}
+	public void FrontAddQuanAndFrame2(){
+		frame.toFront();
+		addingquantity2.toFront();
+	}
+
+	//this is to put data from teh database into the combobox
+	public void refreshProductComboBox2()throws SQLException{
+		DefaultComboBoxModel dcm= model.buildComboModel();
+		addingquantity2.getAjoutProduitComboBox2().setModel(dcm);
+		idDesignationProdList2= model.getIDproductDesignation();
+	}
+	public void refreshLotComboBox2()throws SQLException{
+		DefaultComboBoxModel dcm= model.buildComboModelLot(idProd2);
+		addingquantity2.getAjoutLotComboBox2().setModel(dcm);
+	}
+	
+	
+	
 	public void disableAddingQuantity(){
 		frame.setEnabled(false);
 		addingquantity.setEnabled(false);
