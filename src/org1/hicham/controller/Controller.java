@@ -566,7 +566,7 @@ public class Controller {
 					//					}
 
 					if (! model.isInteger(qteText) || Integer.parseInt(qteText)<=0 ||addingquantity.getAjoutLotComboBox().getItemCount()==0||addingquantity.getAjoutProduitComboBox().getItemCount()==0|| addingquantity.getAjoutProduitComboBox().getSelectedIndex()==-1 ||addingquantity.getAjoutLotComboBox().getSelectedIndex()==-1) {
-						JOptionPane.showMessageDialog(null, "ادخل وضعية المنتوج, ادخل المنتوج و وضعيته ");
+						JOptionPane.showMessageDialog(null, "ادخل الكمية , ادخل المنتوج و وضعيته ");
 					}
 					                  
 					else{
