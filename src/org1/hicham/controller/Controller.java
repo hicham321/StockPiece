@@ -219,10 +219,11 @@ public class Controller {
                     frame.getOkAjout().setEnabled(true);
                     frame.getNomFournisseur().setEnabled(true);
                     frame.getNumFact().setEnabled(true);
-					showSecondCard();	
 
 					refreshProductComboBox();
 					refreshLotComboBox();
+					showSecondCard();	
+
 					//for navigating through panels 
 					panelList.add(2);
 				}catch(Exception ex){
@@ -978,6 +979,10 @@ public class Controller {
 
 					//delete selected Lot from database
 					model.deleteLot(idProd, idLot);
+					//updating global quangtity of a product when deleting
+					List<Integer> li= new ArrayList<>();
+					li.add(idProd);
+					model.UpdateQteGlobale(li);
 					refreshLotComboBox();
 					enableAddingQuantityFromSuppLot();
 					FrontAddQuanAndFrame();
