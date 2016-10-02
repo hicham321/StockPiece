@@ -384,7 +384,7 @@ public class model {
 	//quries to execute for Jtable model listProduit
     public ResultSet listProduitToutResultat()throws SQLException{
     	//connectio("jdbc:ucanaccess://C:/Users/Hicham/ddd.accdb");
-        ResultSet rs = stmt.executeQuery("SELECT * from Lot");
+        ResultSet rs = stmt.executeQuery("SELECT * from Produit , Lot WHERE  Produit.IDprod= Lot.IDProduit and Produit.Deleted= false and Lot.Deleted = false");
 
     	return rs;
     }
