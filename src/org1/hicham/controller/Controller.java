@@ -219,10 +219,10 @@ public class Controller {
                     frame.getOkAjout().setEnabled(true);
                     frame.getNomFournisseur().setEnabled(true);
                     frame.getNumFact().setEnabled(true);
+					showSecondCard();	
 
 					refreshProductComboBox();
 					refreshLotComboBox();
-					showSecondCard();	
 					//for navigating through panels 
 					panelList.add(2);
 				}catch(Exception ex){
@@ -1209,7 +1209,7 @@ public class Controller {
 		addingquantity.toFront();
 	}
 
-	//this is to put data from teh database into the combobox
+	//this is to put data from the database into the combobox
 	public void refreshProductComboBox()throws SQLException{
 		DefaultComboBoxModel dcm= model.buildComboModel();
 		addingquantity.getAjoutProduitComboBox().setModel(dcm);

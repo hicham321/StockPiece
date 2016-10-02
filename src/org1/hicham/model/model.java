@@ -108,16 +108,18 @@ public class model {
 	}
 	//delete product
 	public void deleteProd( int ID){
-
+        //change the deleting process so that the products that are deleted aren't erased from the database completely
+		//but instead mark every deleted item with a flag and avoid in the searching process 
+		//this will beneficial when extracting info for factures that contain products that are already deleted.
 		try {
 			//this query deletes the entire Lots for the corresponding product id
-			String query2="DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ ID+"'";
+//			String query2="DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ ID+"'";
+			String query2= "UPDATE Produit SET (Deleted ) ='true' WHERE Produit.IDprod= "+"'"+ ID+"'";
 			stmt.execute(query2);
-			//delete the Lot from Change table
-			String qyery1= "DELETE FROM Change WHERE Lot.id= ";
-			//this query deletes the product from the given product id
-			String query= "DELETE FROM Produit WHERE Produit.IDprod = "+"'"+ ID+"'";
-			stmt.execute(query);
+			//delete the Lot from Lot  table
+			String query1= "UPDATE Lot SET (Deleted ) ='true' WHERE Lot.IDProduit= "+"'"+ ID+"'";
+			stmt.execute(query1);
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -161,9 +163,10 @@ public class model {
 	public void deleteLot( int idProd, int idLot){
 
 		try {
-			
-			//this query deletes the product from the given product id
-			String query= "DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ idProd+"'"+"AND Lot.IDLot="+"'"+idLot+"'";
+			//update query for changing Deleted, field in database to true
+			//String query= "DELETE FROM Lot WHERE Lot.IDProduit = "+"'"+ idProd+"'"+"AND Lot.IDLot="+"'"+idLot+"'";
+			String query= "UPDATE Lot SET (Deleted ) ='true' WHERE Lot.IDProduit= "+"'"+ idProd+"'"+" AND Lot.IDLot="+"'"+idLot+"'";
+
 			stmt.execute(query);
 
 		} catch (Exception e) {
@@ -296,7 +299,7 @@ public class model {
     public LinkedHashMap<Integer, List<Integer>> mapProdLotIds (List<Integer>liProd)throws SQLException{
     	LinkedHashMap<Integer, List<Integer>> mapProdIdListIdLot= new LinkedHashMap<>();
     	for(int i= 0; i<liProd.size();i++){
-    		String query= "SELECT qte from Lot WHERE Lot.IDProduit="+"'"+liProd.get(i)+"'" ;
+    		String query= "SELECT qte from Lot WHERE Lot.IDProduit="+"'"+liProd.get(i)+"'"+ "and Lot.Deleted='false'" ;
     		ResultSet rs= this.stmt.executeQuery(query);
     		List<Integer>l= new ArrayList<>();
     		int s= 0;
@@ -306,6 +309,7 @@ public class model {
     		}
     		mapProdIdListIdLot.put(liProd.get(i), l);
     	}
+
     	return mapProdIdListIdLot;
     }
 
@@ -428,7 +432,8 @@ public class model {
     
     //this should return a mode that contains each product designation:
     public DefaultComboBoxModel buildComboModel() throws SQLException {
-        ResultSet rs = stmt.executeQuery("SELECT designationProduit from Produit ");
+    	
+        ResultSet rs = stmt.executeQuery("SELECT designationProduit from Produit WHERE Produit.Deleted= false ");
     	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
         String designationProd="";
         List<String> listProd= new ArrayList<>();
@@ -444,7 +449,7 @@ public class model {
     //method for getting selected product Id from product table
     
     public Map<String, Integer> getIDproductDesignation() throws SQLException{
-        ResultSet rs = stmt.executeQuery("SELECT designationProduit,IDprod from Produit ");
+        ResultSet rs = stmt.executeQuery("SELECT designationProduit,IDprod from Produit WHERE Deleted= 'false' ");
     	Map<String,Integer> l= new HashMap();
 
         int idprod= 0;
@@ -503,7 +508,7 @@ public class model {
 
     public DefaultComboBoxModel buildComboModelLot(int idProd) throws SQLException {
 
-    	ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'");
+    	ResultSet rs = stmt.executeQuery("SELECT prixAchat from Lot WHERE Lot.IDProduit="+"'"+idProd+"'" +"and "+"Lot.Deleted='false'");
     	DefaultComboBoxModel v = new DefaultComboBoxModel<>();
     	String prixAchat="";
     	List<String> listProd= new ArrayList<>();
@@ -518,7 +523,7 @@ public class model {
     }
     //this is for getting lists of lot Ids and Lot prix achat 
     public List<Integer> getIdLot(int idprod) throws SQLException{
-        ResultSet rs = stmt.executeQuery("SELECT IDLot from Lot WHERE Lot.IDProduit="+"'"+idprod+"'");
+        ResultSet rs = stmt.executeQuery("SELECT IDLot from Lot WHERE Lot.IDProduit="+"'"+idprod+"'" +"and "+"Lot.Deleted='false'");
     	List<Integer> l= new ArrayList<>();
     	int idLotdatabase= 0;
     	while (rs.next()) {
