@@ -222,7 +222,13 @@ public class mainFrame extends JFrame {
 	public JTable getListProduitAjoutTable() {
 		return card2.listProduitAjoutTable;
 	}
+	public JLabel getCreditLab() {
+		return card2.creditLab;
+	}
 
+	public JTextField getCreditText() {
+		return card2.creditText;
+	}
 	
 	//card4
 	//set and get for ListProduitTable
@@ -379,6 +385,15 @@ public class mainFrame extends JFrame {
 
 	public void setPrixTotal2(JLabel prixTotal) {
 		card3.prixTotal = prixTotal;
+	}
+	
+	public JLabel getCreditLab2() {
+		return card3.creditLab;
+	}
+
+
+	public JTextField getCreditText2() {
+		return card3.creditText;
 	}
 	
 	

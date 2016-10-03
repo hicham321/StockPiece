@@ -33,7 +33,9 @@ public class Ajout extends JPanel {
 	
 	JLabel prixTotalLab = new JLabel("المجموع الكلي");
 	JLabel prixTotal = new JLabel("0");
-
+	
+	JLabel creditLab= new JLabel("الديون");
+    JTextField creditText= new JTextField();
      
 	public Ajout() {
 
@@ -53,6 +55,9 @@ public class Ajout extends JPanel {
         //this is the total price label
         this.add(prixTotal);
         
+        this.add(creditLab);
+        this.add(creditText);
+       
 		this.setBackground(Color.white);
 		this.setVisible(true);
 		this.add(new JSeparator());
@@ -73,7 +78,12 @@ public class Ajout extends JPanel {
         annule.setBounds(1230, 580, 100, 30);
 		ok.setBounds(1100, 580, 100, 30);
 		ajoutproduit.setBounds(500, 20, 100, 20);
+		
+		creditLab.setBounds(140,630 ,100 ,20 );
+		creditText.setBounds(30, 630, 100, 20);
 
 	}
+
+	
 
 }

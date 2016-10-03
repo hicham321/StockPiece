@@ -368,7 +368,7 @@ public class Controller {
 
 					//insertion into Facture code here
 				    String date=model.getCurrentDate();       
-				    model.insertFactureFourniss(frame.getNumFact().getText(), frame.getNomFournisseur().getText(), "fournisseur", frame.getPrixTotallab().getText(),date); 
+				    model.insertFactureFourniss(frame.getNumFact().getText(), frame.getNomFournisseur().getText(), "fournisseur", frame.getPrixTotallab().getText(),date,Double.parseDouble(frame.getCreditText().getText())); 
 				    int idFacture= model.getlastId();
 				    System.out.println(frame.getPrixTotallab().getText());
 				    for(int i=0;i<insertedIdLotList.size();i++){
@@ -407,7 +407,7 @@ public class Controller {
 
 					//insertion into Facture code here
 				    String date=model.getCurrentDate();       
-				    model.insertFactureClient(frame.getNumfact2().getText(), frame.getNomFournisseur2().getText(), "client", frame.getPrixTotal2().getText(),date); 
+				    model.insertFactureClient(frame.getNumfact2().getText(), frame.getNomFournisseur2().getText(), "client", frame.getPrixTotal2().getText(),date,Double.parseDouble(frame.getCreditText2().getText())); 
 				    int idFacture= model.getlastId();
 				    System.out.println(frame.getPrixTotal2().getText());
 				    for(int i=0;i<insertedIdLotList2.size();i++){

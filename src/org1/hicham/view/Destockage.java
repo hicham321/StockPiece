@@ -29,6 +29,9 @@ public class Destockage extends JPanel{
 		
 		JLabel prixTotalLab = new JLabel("المجموع الكلي");
 		JLabel prixTotal = new JLabel("0");
+		
+		JLabel creditLab= new JLabel("الديون");
+	    JTextField creditText= new JTextField();
 
      
 	public Destockage() {
@@ -48,6 +51,9 @@ public class Destockage extends JPanel{
         this.add(ajoutproduit2);
         //this is the total price label
         this.add(prixTotal);
+        
+        this.add(creditLab);
+        this.add(creditText);
         
 		this.setBackground(Color.decode("#CFDBC5"));
 		this.setVisible(true);
@@ -69,8 +75,12 @@ public class Destockage extends JPanel{
         annule2.setBounds(1230, 580, 100, 30);
 		ok2.setBounds(1100, 580, 100, 30);
 		ajoutproduit2.setBounds(500, 20, 100, 20);
+		
+		creditLab.setBounds(140,630 ,100 ,20 );
+		creditText.setBounds(30, 630, 100, 20);
 
 	}
+	
 
 
 }

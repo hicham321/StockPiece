@@ -82,7 +82,7 @@ public class model {
 	public void insertProd(String designation){
 
 		try {
-			String query= "INSERT INTO Produit ( designationProduit,QteGlobal ) VALUES ("+ "'"+ designation+ "'"+","+"'"+ 0+ "'"+")";        	        
+			String query= "INSERT INTO Produit ( designationProduit,QteGlobal , Deleted ) VALUES ("+ "'"+ designation+ "'"+","+"'"+ 0+ "'"+","+"'false')";        	        
 			stmt.execute(query);
 
 		} catch (Exception e) {
@@ -133,7 +133,7 @@ public class model {
 	public void insertLot(double prixAchat,double prixVente,int qte ,int idprod){
 
 		try {
-			String query= "INSERT INTO Lot ( prixAchat,prixVente,qte,IDProduit) VALUES ("+ "'"+prixAchat + "'"+ "," + "'"+ prixVente +"'"+","+ "'"+ qte +"'"+","+ "'"+idprod+"'"+")";        	        
+			String query= "INSERT INTO Lot ( prixAchat,prixVente,qte,IDProduit,Deleted) VALUES ("+ "'"+prixAchat + "'"+ "," + "'"+ prixVente +"'"+","+ "'"+ qte +"'"+","+ "'"+idprod+"'"+" , 'false')";        	        
 			this.stmt.execute(query);
 			
 		
@@ -211,14 +211,14 @@ public class model {
 		}
 
 	}
-	public int insertFactureFourniss(String numFact, String nomFourn, String type, String total,String date)throws SQLException{
-			String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ,DateFact) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+"," +"'"+ date+"'"+")";        	        
+	public int insertFactureFourniss(String numFact, String nomFourn, String type, String total,String date ,double credit)throws SQLException{
+			String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ,DateFact,Credit) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+"," +"'"+ date+"'"+"," +"'"+ credit+"'"+")";        	        
 			int k=stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
 	        
 		return k;		
 	}
-	public int insertFactureClient(String numFact, String nomFourn, String type, String total,String date)throws SQLException{
-		    String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ,DateFact) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+"," +"'"+ date+"'"+")";        	        
+	public int insertFactureClient(String numFact, String nomFourn, String type, String total,String date, double credit)throws SQLException{
+		    String query= "INSERT INTO Facture ( NumFacture,Nomfournis,Type ,Total ,DateFact,Credit) VALUES ("+ "'"+numFact +"'"+"," +"'"+ nomFourn+"'"+","+ "'"+ type+"'"+","+ "'"+ total+"'"+"," +"'"+ date+"'"+"," +"'"+ credit+"'"+")";        	        
 			int k=stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
 
 
