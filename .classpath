@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/jasperreports-3.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/JasperReport Jar Files/jdt-compiler-3.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Hicham/common-lang3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hicham/Downloads/poi-bin-3.15-20160924.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

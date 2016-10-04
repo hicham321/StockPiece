@@ -54,8 +54,8 @@ public class Destockage extends JPanel{
         
         this.add(creditLab);
         this.add(creditText);
-        
-		this.setBackground(Color.decode("#CFDBC5"));
+        this.creditText.setText("0");
+		this.setBackground(Color.decode("#B0E0E6"));
 		this.setVisible(true);
 		this.add(new JSeparator());
 		//Jtable

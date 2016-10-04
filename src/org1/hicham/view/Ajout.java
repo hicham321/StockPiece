@@ -57,7 +57,8 @@ public class Ajout extends JPanel {
         
         this.add(creditLab);
         this.add(creditText);
-       
+        this.creditText.setText("0");
+
 		this.setBackground(Color.white);
 		this.setVisible(true);
 		this.add(new JSeparator());

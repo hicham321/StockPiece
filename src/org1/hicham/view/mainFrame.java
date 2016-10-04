@@ -88,6 +88,8 @@ public class mainFrame extends JFrame {
 		this.card3.annule2.addActionListener(listner);
 		this.card3.ok2.addActionListener(listner);
 		
+		this.card4.excelBut.addActionListener(listner);
+		
 		
 		
 		//card8(zakat)	
@@ -237,6 +239,10 @@ public class mainFrame extends JFrame {
 	public JTable getListProduitTable() {
 		return card4.listProduitTable;
 	}
+	
+	public JButton getExcelBut() {
+		return card4.excelBut;
+	} 
 	//card5
 	public JTable getListFactureEntreTable() {
 		return card5.listFactureFournis;

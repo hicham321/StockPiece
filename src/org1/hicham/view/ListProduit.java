@@ -30,7 +30,8 @@ public class ListProduit extends JPanel{
 
 	JLabel listProduitLabel = new JLabel("لائحة المنتوجات");
 
-
+    public JButton excelBut= new JButton("excel");
+    
 	public ListProduit(){
 
 
@@ -42,7 +43,10 @@ public class ListProduit extends JPanel{
 		listProduitTable.setFillsViewportHeight(true);
 		this.add(listProduitLabel);
 		this.listProduitLabel.setBounds(1250,30,190,20);
-
+        
+		this.add(excelBut);
+		this.excelBut.setBounds(200, 590, 100, 20);
+		
 		listProduitTable =new JTable(dt);
 		scrolPane= new JScrollPane(listProduitTable);
 		scrolPane.setBounds(50, 70, 1250, 470);
@@ -51,7 +55,8 @@ public class ListProduit extends JPanel{
 		this.setVisible(true);
 
 
-	} 
+	}
+	
 
 	//to keep the Jtable separate from the model you can call the Jtable from the controller once you click the view 
 	/*this is how to sort a Jtable (without needing to create other queries)

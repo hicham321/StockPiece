@@ -212,6 +212,7 @@ public class Controller {
 					frame.getNomFournisseur().setText("");
 					frame.getNumFact().setText("");
 					frame.getPrixTotallab().setText("0");
+					frame.getCreditText().setText("0");
                     insertedIdLotIdProd.clear();
                     insertedIdLotList.clear();
                     insertedIdProdList.clear();
@@ -255,6 +256,7 @@ public class Controller {
 					frame.getNomFournisseur2().setText("");
 					frame.getNumfact2().setText("");
 					frame.getPrixTotal2().setText("0");
+					frame.getCreditText2().setText("0");
                     insertedIdLotIdProd2.clear();
                     insertedIdLotList2.clear();
                     insertedIdProdList2.clear();
@@ -310,6 +312,14 @@ public class Controller {
 					showFourthCard();
 					panelList.add(4);
 				}catch(SQLException ex){
+					ex.printStackTrace();
+				}
+			}
+			if(e.getSource()== frame.getExcelBut()){
+				try{
+					File file = new File("excel");
+					model.exportTable(frame.getListProduitTable(), file);
+				}catch(Exception ex){
 					ex.printStackTrace();
 				}
 			}
