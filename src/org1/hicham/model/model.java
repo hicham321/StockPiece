@@ -358,8 +358,7 @@ public class model {
 		return l;
 	}
 	//this method is to create a table model for the Jtables
-	public static DefaultTableModel buildTableModel(ResultSet rs)
-			throws SQLException {
+	public static DefaultTableModel buildTableModel(ResultSet rs)throws SQLException {
 
 		ResultSetMetaData metaData = rs.getMetaData();
 

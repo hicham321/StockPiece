@@ -1,8 +1,11 @@
 package org1.hicham.controller;
 
 import java.awt.CardLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -20,6 +23,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +41,7 @@ import org1.hicham.view.InterfaceModifieLot;
 import org1.hicham.view.InterfaceModifieProd;
 import org1.hicham.view.InterfaceSuppLot;
 import org1.hicham.view.InterfaceSuppProd;
+import org1.hicham.view.MyModel;
 import org1.hicham.view.Register;
 import org1.hicham.view.addingquantity;
 import org1.hicham.view.addingquantity2;
@@ -315,6 +320,17 @@ public class Controller {
 			}
 			if(e.getSource()==frame.getListFactureEntre()){
 				try{
+					frame.getListFactureEntreTable().addMouseListener(new MouseAdapter() {
+					    public void mousePressed(MouseEvent me) {
+					        JTable table =(JTable) me.getSource();
+					        Point p = me.getPoint();
+					        int row = table.rowAtPoint(p);
+					        if (me.getClickCount() == 2) {
+					            //the code here includes showing the corresponding facture:  
+					        	System.out.println("clicking twice works");
+					        }
+					    }
+					});
 					ResultSet rs= model.listFactureEntre();
 					DefaultTableModel dtm = model.buildTableModel(rs);
 					frame.getListFactureEntreTable().setModel(dtm);
