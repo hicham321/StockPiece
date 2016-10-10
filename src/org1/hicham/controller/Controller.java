@@ -191,6 +191,8 @@ public class Controller {
 			}
 
 			if(e.getSource()== frame.getAjoutprodui()){
+				frame.getRootPane().setDefaultButton(frame.getAjoutproduitButton());
+				addingquantity.getRootPane().setDefaultButton(addingquantity.getOk());
 				try{
 
 					tableModelForInsertions = new DefaultTableModel(){ 
@@ -209,18 +211,9 @@ public class Controller {
 					}; 
 					frame.getListProduitAjoutTable().setModel(tableModelForInsertions);
 					//refresh and setting textfields to empty
-					frame.getNomFournisseur().setText("");
-					frame.getNumFact().setText("");
-					frame.getPrixTotallab().setText("0");
-					frame.getCreditText().setText("0");
-                    insertedIdLotIdProd.clear();
-                    insertedIdLotList.clear();
-                    insertedIdProdList.clear();
-                    
-                    frame.getOkAjout().setEnabled(true);
-                    frame.getNomFournisseur().setEnabled(true);
-                    frame.getNumFact().setEnabled(true);
-
+					resetFactureComponents();
+					clearinsertedids();                    
+                    enableFactureComponents();
 					refreshProductComboBox();
 					refreshLotComboBox();
 					showSecondCard();	
@@ -235,6 +228,9 @@ public class Controller {
 			
 			
 			if(e.getSource()== frame.getSortiproduit()){
+				frame.getRootPane().setDefaultButton(frame.getAjoutproduit2());
+				addingquantity2.getRootPane().setDefaultButton(addingquantity2.getOk2());
+
 				try{
 
 					tableModelForInsertions2 = new DefaultTableModel(){ 
@@ -252,19 +248,11 @@ public class Controller {
 						} 
 					}; 
 					frame.getListProduitAjoutTable2().setModel(tableModelForInsertions2);
+					
 					//refresh and setting textfields to empty
-					frame.getNomFournisseur2().setText("");
-					frame.getNumfact2().setText("");
-					frame.getPrixTotal2().setText("0");
-					frame.getCreditText2().setText("0");
-                    insertedIdLotIdProd2.clear();
-                    insertedIdLotList2.clear();
-                    insertedIdProdList2.clear();
-                    
-                    frame.getOk2().setEnabled(true);
-                    frame.getNomFournisseur2().setEnabled(true);
-                    frame.getNumfact2().setEnabled(true);
-
+					resetFactureComponents2();
+                    clearinsertedids2();
+                    enableFactureComponents2();
 					refreshProductComboBox2();
 					refreshLotComboBox2();
 					showThirdCard();	
@@ -319,6 +307,8 @@ public class Controller {
 				try{
 					File file = new File("excel");
 					model.exportTable(frame.getListProduitTable(), file);
+					//HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
+
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
@@ -370,6 +360,7 @@ public class Controller {
 					if (model.checkNumFacture(frame.getNumFact().getText())) {
 						JOptionPane.showMessageDialog(null, "هذا الرقم موجود ادخل رقما اخر");
 					}
+					else{
 					if("".equals(frame.getNomFournisseur().getText()) || "".equals(frame.getNumFact().getText())){
 						JOptionPane.showMessageDialog(null, "ادخل اسم الممول و رقم الفاتورة");
 					}
@@ -380,7 +371,6 @@ public class Controller {
 				    String date=model.getCurrentDate();       
 				    model.insertFactureFourniss(frame.getNumFact().getText(), frame.getNomFournisseur().getText(), "fournisseur", frame.getPrixTotallab().getText(),date,Double.parseDouble(frame.getCreditText().getText())); 
 				    int idFacture= model.getlastId();
-				    System.out.println(frame.getPrixTotallab().getText());
 				    for(int i=0;i<insertedIdLotList.size();i++){
 				    	//5 is the index of the column in the ListProduitAjoutTable that contains qte
 			           int qteChange =Integer.valueOf((String) frame.getListProduitAjoutTable().getModel().getValueAt(i, 5));	
@@ -394,11 +384,9 @@ public class Controller {
                     //update quantity globale
 				    model.UpdateQteGlobale( insertedIdProdList);
 					//Setting the JTable to disabled and ok button in ajout view to disabled
-				    frame.getOkAjout().setEnabled(false);
-				    frame.getNomFournisseur().setEnabled(false);
-				    frame.getNumFact().setEnabled(false);
-
+				    disableFactureComponents();
 					}
+				}
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
@@ -436,6 +424,8 @@ public class Controller {
 				    frame.getOk2().setEnabled(false);
 				    frame.getNomFournisseur2().setEnabled(false);
 				    frame.getNumfact2().setEnabled(false);
+				    frame.getAjoutproduit2().setEnabled(false);
+				    frame.getCreditText2().setEnabled(false);
 
 					}
 				}catch(Exception ex){
@@ -1179,7 +1169,7 @@ public class Controller {
 		addingquantity2.toFront();
 	}
 
-	//this is to put data from teh database into the combobox
+	//this is to put data from the database into the combobox
 	public void refreshProductComboBox2()throws SQLException{
 		DefaultComboBoxModel dcm= model.buildComboModel();
 		addingquantity2.getAjoutProduitComboBox2().setModel(dcm);
@@ -1189,7 +1179,24 @@ public class Controller {
 		DefaultComboBoxModel dcm= model.buildComboModelLot(idProd2);
 		addingquantity2.getAjoutLotComboBox2().setModel(dcm);
 	}
-	
+	public void enableFactureComponents2(){
+		frame.getOk2().setEnabled(true);
+        frame.getNomFournisseur2().setEnabled(true);
+        frame.getNumfact2().setEnabled(true);
+        frame.getAjoutproduit2().setEnabled(true);
+        frame.getCreditText2().setEnabled(true);
+	}
+	public void clearinsertedids2(){
+		insertedIdLotIdProd2.clear();
+        insertedIdLotList2.clear();
+        insertedIdProdList2.clear();
+	}
+	public void resetFactureComponents2(){
+		frame.getNomFournisseur2().setText("");
+		frame.getNumfact2().setText("");
+		frame.getPrixTotal2().setText("0");
+		frame.getCreditText2().setText("0");
+	}
 	
 	
 	public void disableAddingQuantity(){
@@ -1234,7 +1241,32 @@ public class Controller {
 		DefaultComboBoxModel dcm= model.buildComboModelLot(idProd);
 		addingquantity.getAjoutLotComboBox().setModel(dcm);
 	}
-	
+	public void enableFactureComponents(){
+		frame.getOkAjout().setEnabled(true);
+        frame.getNomFournisseur().setEnabled(true);
+        frame.getNumFact().setEnabled(true);
+        frame.getAjoutproduitButton().setEnabled(true);
+        frame.getCreditText().setEnabled(true);
+	}
+	public void disableFactureComponents(){
+		    frame.getOkAjout().setEnabled(false);
+		    frame.getNomFournisseur().setEnabled(false);
+		    frame.getNumFact().setEnabled(false);
+		    frame.getAjoutproduitButton().setEnabled(false);
+		    frame.getCreditText().setEnabled(false);
+	}
+	public void clearinsertedids(){
+		insertedIdLotIdProd.clear();
+        insertedIdLotList.clear();
+        insertedIdProdList.clear();
+	}
+	public void resetFactureComponents(){
+		frame.getNomFournisseur().setText("");
+		frame.getNumFact().setText("");
+		frame.getPrixTotallab().setText("0");
+		frame.getCreditText().setText("0");
+		
+	}
 	public void setFilePath(String filePath){
 		this.filePath= filePath;
 	}
