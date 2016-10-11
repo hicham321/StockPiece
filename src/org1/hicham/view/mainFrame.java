@@ -38,6 +38,8 @@ public class mainFrame extends JFrame {
 	private ListFactureTout card7= new ListFactureTout();
 	
 	private Zakat card8= new Zakat();
+	
+	private FactureHistorique card9= new FactureHistorique();
 
 	//ViewAjoutEnf card3= new ViewAjoutEnf();
 
@@ -63,7 +65,7 @@ public class mainFrame extends JFrame {
 		cards.add(card6, "Card 6");
 		cards.add(card7, "Card 7");
 		cards.add(card8, "Card 8");
-
+        cards.add(card9, "Card 9");
 
 		getContentPane().add(cards); 
         setEnabled(false);
@@ -87,6 +89,10 @@ public class mainFrame extends JFrame {
 		this.card3.ajoutproduit2.addActionListener(listner);
 		this.card3.annule2.addActionListener(listner);
 		this.card3.ok2.addActionListener(listner);
+		
+		this.card9.ajoutproduit3.addActionListener(listner);
+		this.card9.annule3.addActionListener(listner);
+		this.card9.ok3.addActionListener(listner);
 		
 		this.card4.excelBut.addActionListener(listner);
 		
@@ -402,5 +408,53 @@ public class mainFrame extends JFrame {
 		return card3.creditText;
 	}
 	
+	//card9
+	public DefaultTableModel getDt3() {
+		return card9.dt3;
+	}
+
+	public JTable getListProduitAjoutTable3() {
+		return card9.listProduitAjoutTable3;
+	}
+
+	
+	public JTextField getNumfact3() {
+		return card9.numfact3;
+	}
+
+	public JLabel getLabnumfact3() {
+		return card9.labnumfact3;
+	}
+
+	public JTextField getNomFournisseur3() {
+		return card9.nomFournisseur3;
+	}
+
+	public JLabel getLabNomFour3() {
+		return card9.labNomFour3;
+	}
+
+	public JButton getAnnule3() {
+		return card9.annule3;
+	}
+
+	public JButton getOk3() {
+		return card9.ok3;
+	}
+
+	public JButton getAjoutproduit3() {
+		return card9.ajoutproduit3;
+	}
+
+	public JLabel getPrixTotal3() {
+		return card9.prixTotal3;
+	}
+
+	
+
+	public JTextField getCreditText3() {
+		return card9.creditText3;
+	}
+    
 	
 }
