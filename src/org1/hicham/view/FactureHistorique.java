@@ -48,7 +48,8 @@ public class FactureHistorique extends JPanel {
 			this.add(numfact3);
 			this.add(labnumfact3);
 			this.add(ok3);
-			//this.add(annule);
+			this.add(annule3);
+			
 	        this.add(prixTotalLab3);
 	        this.add(ajoutproduit3);
 	        //this is the total price label

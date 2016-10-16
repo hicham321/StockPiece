@@ -49,7 +49,7 @@ public class Ajout extends JPanel {
 		this.add(numfact);
 		this.add(labnumfact);
 		this.add(ok);
-		//this.add(annule);
+		this.add(annule);
         this.add(prixTotalLab);
         this.add(ajoutproduit);
         //this is the total price label

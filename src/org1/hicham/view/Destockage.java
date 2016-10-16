@@ -46,7 +46,7 @@ public class Destockage extends JPanel{
 		this.add(numfact);
 		this.add(labnumfact);
 		this.add(ok2);
-		//this.add(annule);
+		this.add(annule2);
         this.add(prixTotalLab);
         this.add(ajoutproduit2);
         //this is the total price label

@@ -37,6 +37,7 @@ import org1.hicham.model.model;
 import org1.hicham.view.AjoutDonneInterface;
 import org1.hicham.view.AjoutProdInterface;
 import org1.hicham.view.ChangePass;
+import org1.hicham.view.FactureHistorique;
 import org1.hicham.view.InterfaceModifieLot;
 import org1.hicham.view.InterfaceModifieProd;
 import org1.hicham.view.InterfaceSuppLot;
@@ -111,6 +112,8 @@ public class Controller {
 	
 	//field for destockage
 	private addingquantity2 addingquantity2;
+	
+	//for Facture historique
 	
     private Map<String,Integer> idDesignationProdList2= new HashMap<>();
 	
@@ -323,11 +326,31 @@ public class Controller {
 					frame.getListFactureEntreTable().addMouseListener(new MouseAdapter() {
 					    public void mousePressed(MouseEvent me) {
 					        JTable table =(JTable) me.getSource();
-					        Point p = me.getPoint();
-					        int row = table.rowAtPoint(p);
+					        
 					        if (me.getClickCount() == 2) {
+					        	Point p = me.getPoint();
+						        int row = table.rowAtPoint(p);
+						        int id =(int) table.getModel().getValueAt(row,0);
 					            //the code here includes showing the corresponding facture:  
+					        	/*Ninth card methods needed
+					        	 * getDt3()
+					        	getListProduitAjoutTable3()
+					        	getNumfact3()
+					        	getLabnumfact3()
+					        	getNomFournisseur3()
+					        	getLabNomFour3()
+					        	getAnnule3()
+					        	getOk3()
+					        	getAjoutproduit3()
+					        	getPrixTotal3()*/
+					        	
+					        	
+					        	showNinthCard();
 					        	System.out.println("clicking twice works");
+						        System.out.println(id);
+
+					        	//first we need to get the id from the change table from the double click
+					        	
 					        }
 					    }
 					});
@@ -339,6 +362,10 @@ public class Controller {
 				}catch(SQLException ex){
 					ex.printStackTrace();
 				}	
+			}
+			if(e.getSource()==frame.getAnnule3()){
+				
+				
 			}
 			if (e.getSource()==frame.getListFactureSortie()) {
 				try{
@@ -407,6 +434,41 @@ public class Controller {
 					ex.printStackTrace();
 				}
 
+			}
+			if (e.getSource()== frame.getAnnuleAjout()) {
+				try{
+					//code to delete the facture product quantities from the database
+					
+					//read the table and figure out the ids of the products to deduct the facture quantities from these products
+					//we can do this using the facture number which is an identifier and extract the products lots from the change table
+					//after that we should figure if this is a client or fournisseur and act accordingly
+					String factureNumber=frame.getNumFact().getText();
+					int FactureId= model.findIdFromnumFacture(factureNumber);
+					List<List<Integer>>gList=model.getLotIdsChangeFromFacture(factureNumber);
+					List<Integer>listIdLotForChange=gList.get(0);
+					List<Integer>listChangeLot=gList.get(1);
+					for(int i=0;i<listIdLotForChange.size();i++){
+						
+			           int qteChange =listChangeLot.get(i);
+			           //add quantity to Lot table
+			           int insertedLot= listIdLotForChange.get(i);
+			           model.addQteLot(-qteChange, insertedLot);
+			           //insert change quantity to change table
+			           model.insertChange(FactureId, insertedLot, qteChange);
+			           }
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+		        	   
+		           
+		           
+			    
+				
+				
+				//for this we need a way to get the facture from the database using the number of the facture
+				// After that we need to query the change table to get the corresponding lots
+				//since we have the lots and we have the Jtable we need to map each entry to the corresponding map
+				
 			}
 			if (e.getSource()==frame.getOk2()) {
 				try{
@@ -1166,6 +1228,11 @@ public class Controller {
 		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
 		cardLayout.show(frame.cards, "Card 8");	
 	}
+	public void showNinthCard(){
+		CardLayout cardLayout = (CardLayout) frame.cards.getLayout();
+		cardLayout.show(frame.cards, "Card 9");	
+	}
+	
 
 	public void enableFrame(){
 		frame.setEnabled(true);

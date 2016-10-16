@@ -357,6 +357,56 @@ public class model {
 		}
 		return l;
 	}
+	public Map<Object,String> getFactureData(int idFact) throws SQLException{
+		//a join between change and Facture Table 
+		String query= "SELECT * from Facture,Change WHERE Facture.IDFac=change.idFact and Facture.IDFac= "+"'"+idFact+"'" ;	         	        
+		ResultSet r= this.stmt.executeQuery(query);
+		Map< Object , String> map= new LinkedHashMap<>();
+        while(r.next()){
+    	   map.put( r.getInt("IDFac"),"IDFac");
+    	   map.put( r.getString("NumFacture"),"NumFacture");
+    	   map.put( r.getString("Nomfournis"),"Nomfournis");
+    	   map.put( r.getString("Type"),"Type");
+    	   map.put( r.getDouble("Total"),"Total");
+    	   map.put( r.getInt("DateFact"),"DateFact");
+    	   map.put( r.getInt("Credit"), "Credit");
+    	   map.put( r.getInt(""),"");
+    	   map.put( r.getInt(""),"");
+    	   map.put( r.getInt(""),"");
+    	   map.put( r.getInt(""),"");
+        }
+        return map;
+	}
+	//get the ids of lots of the corresponding facture
+	//this also deletes the the current facture and the corresponding changes 
+	public List<List<Integer>> getLotIdsChangeFromFacture(String numFact)throws SQLException{
+		String query= "SELECT * from Facture,Change WHERE Facture.IDFac=change.idFact and Facture.IDFac= "+"'"+numFact+"'" ;
+		String query1="DELETE FROM Facture WHERE Facture.IDFac= "+"'"+numFact+"'";
+		String query2="";
+
+		ResultSet rs = this.stmt.executeQuery(query);
+		List<List<Integer>> grandList= new ArrayList<>();
+		List<Integer> lotId= new ArrayList<>();
+		List<Integer> lotChange= new ArrayList<>();
+		while (rs.next()) {
+			lotId.add(rs.getInt("IdLot"));
+			lotId.add(rs.getInt("QteChange"));
+		}
+		grandList.add(lotId);
+		grandList.add(lotChange);
+        return grandList;
+	}
+	public int findIdFromnumFacture(String numFact)throws SQLException{
+		String query= "SELECT IDFac From Facture WHERE Facture.NumFacture= "+"'"+numFact+"'" ;
+		ResultSet rs = this.stmt.executeQuery(query);
+		int idFact=0;
+       while(rs.next()){
+    	   idFact= rs.getInt("IDFac");
+       }
+		return idFact;
+	}
+	
+	
 	//this method is to create a table model for the Jtables
 	public static DefaultTableModel buildTableModel(ResultSet rs)throws SQLException {
 
