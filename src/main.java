@@ -88,21 +88,14 @@ public class main {
 	public static void main(String[] arguments) throws FileNotFoundException, IOException {
 		
 		SystemLookFeel();
-//		boolean FileEmpty= true;
-//		
-//		InputStream classFileInput = main.class.getResourceAsStream("PathFile");
-//		//OutputStream classFileOut = main.class.getResourceAsStream("PathFile");
-//
-//		//File ClassFile = new File("PathFile");
-//        //load as resource for a jar file
-//		BufferedReader br = new BufferedReader(new InputStreamReader(classFileInput));
+        model m= new model();
 //		//checking if file is not empty
 //		if (!(br.readLine() == null)) {
 //		    System.out.println("No errors, and file not empty");
 //		    FileEmpty= false;
 //		}
 //		//check if file is empty or not 
-//		if (FileEmpty) {
+		if (m.checkFileEmpty(m.getFileLink())) {
 			JOptionPane.showMessageDialog(null, "ااختر قاعدة البيانات");
 
 		    JFileChooser filechooser = new JFileChooser();
@@ -117,7 +110,7 @@ public class main {
 					String filePath=Databasefile.getPath();
 					System.out.println(filePath);
 					//write to file 
-					//writeFile(filePath, classFileInput);
+					m.writeDbPathToFile(filePath, m.getFileLink());
 					//set the  file path to the controller 
 					ShowView(filePath);
 				}
@@ -128,13 +121,14 @@ public class main {
 				
 			}
 
-		//}
-//	       else{
-//			//read from classfile and get the path
-//			String pathTofile=readFile(classFileInput);
-//			System.out.println(pathTofile);
-//			ShowView(pathTofile);
-//		}
+		}
+		else{
+			String dbLink=m.readFile(m.getFileLink());
+			ShowView(dbLink);
+
+			
+		}
+
 	}
 
 }

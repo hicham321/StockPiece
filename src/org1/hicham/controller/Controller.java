@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
@@ -443,10 +444,16 @@ public class Controller {
 					//we can do this using the facture number which is an identifier and extract the products lots from the change table
 					//after that we should figure if this is a client or fournisseur and act accordingly
 					String factureNumber=frame.getNumFact().getText();
+					System.out.println(factureNumber);
 					int FactureId= model.findIdFromnumFacture(factureNumber);
-					List<List<Integer>>gList=model.getLotIdsChangeFromFacture(factureNumber);
-					List<Integer>listIdLotForChange=gList.get(0);
-					List<Integer>listChangeLot=gList.get(1);
+					List<Object>gList=model.getLotIdsChangeFromFacture(factureNumber);
+					List<Integer>listIdLotForChange=(List<Integer>) gList.get(0);
+					List<Integer>listChangeLot=(List<Integer>) gList.get(1);
+					System.out.println(listChangeLot);
+					Set<Integer> setIdProd= (Set<Integer>) gList.get(2);
+					List<Integer>listIdProd = new ArrayList<Integer>();
+					listIdProd.addAll(setIdProd);
+					//this is for subtracting quantityand inserting new information  
 					for(int i=0;i<listIdLotForChange.size();i++){
 						
 			           int qteChange =listChangeLot.get(i);
@@ -456,6 +463,8 @@ public class Controller {
 			           //insert change quantity to change table
 			           model.insertChange(FactureId, insertedLot, qteChange);
 			           }
+				       model.UpdateQteGlobale( listIdProd);
+
 					}catch(Exception ex){
 						ex.printStackTrace();
 					}

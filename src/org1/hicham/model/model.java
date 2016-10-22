@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,9 +23,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.crypto.SecretKey;
@@ -379,21 +382,25 @@ public class model {
 	}
 	//get the ids of lots of the corresponding facture
 	//this also deletes the the current facture and the corresponding changes 
-	public List<List<Integer>> getLotIdsChangeFromFacture(String numFact)throws SQLException{
-		String query= "SELECT * from Facture,Change WHERE Facture.IDFac=change.idFact and Facture.IDFac= "+"'"+numFact+"'" ;
+	public List<Object> getLotIdsChangeFromFacture(String numFact)throws SQLException{
+		//this will be potentially very expencive so exploring alternatives would be best on the long run.
+		String query= "SELECT * from Facture,Change,Lot,Produit WHERE Facture.IDFac=Change.idFact and Change.IdLot=Lot.IDLot and Produit.IDprod=Lot.IDProduit and Facture.IDFac= "+"'"+numFact+"'" ;
 		String query1="DELETE FROM Facture WHERE Facture.IDFac= "+"'"+numFact+"'";
 		String query2="";
 
 		ResultSet rs = this.stmt.executeQuery(query);
-		List<List<Integer>> grandList= new ArrayList<>();
-		List<Integer> lotId= new ArrayList<>();
-		List<Integer> lotChange= new ArrayList<>();
+		List<Object> grandList= new ArrayList<>();
+		List<Integer> lotId= new ArrayList<Integer>();
+		List<Integer> lotChange= new ArrayList<Integer>();
+		Set<Integer> idProd = new HashSet<Integer>();
 		while (rs.next()) {
 			lotId.add(rs.getInt("IdLot"));
 			lotId.add(rs.getInt("QteChange"));
+			idProd.add(rs.getInt("IDprod"));
 		}
 		grandList.add(lotId);
 		grandList.add(lotChange);
+		grandList.add(idProd);
         return grandList;
 	}
 	public int findIdFromnumFacture(String numFact)throws SQLException{
@@ -769,7 +776,7 @@ to a stored salted hash of the password. */
 		}
 		return true;
 	}
-	//this is method that return tru if a string is numeric(integer or decimal) using Regex
+	//this is method that return true if a string is numeric(integer or decimal) using Regex
 	public static boolean isNumeric(String str)
 	{
 	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
@@ -817,6 +824,56 @@ to a stored salted hash of the password. */
         }
         out.close();
     }
+//method to get the file that has link to the database
+	public String getFileLink(){
+		try {
+            //get link for Jar file
+	        File jarPath=new File(model.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+	        //get link for the parent folder of the jar
+	        String propertiesPath=jarPath.getParentFile().getAbsolutePath();
+	       
+	        String linkFilePath=propertiesPath+"/lien.txt";
+	        return linkFilePath;
+	    } catch (Exception e1) {
+	        e1.printStackTrace();
+	        return "false";
+	    }
+	}
+	public boolean checkFileEmpty( String path){
+		//this method checks if a file is empty
+		File file = new File(path);
+		boolean empty = !file.exists() || file.length() == 0;
+        return empty;
+	}
+	
+	public String readFile(String pathFile) throws FileNotFoundException, IOException{
+		BufferedReader br;
+		br = new BufferedReader(new FileReader(pathFile));
+		String x;
+		while ( (x = br.readLine()) != null ) {
+			// printing out each line in the file
+		}    
+		br.close();
+        return x;
+	}
+	public void writeDbPathToFile(String dbPath , String filePath ) throws FileNotFoundException{
+		File file= new File(filePath);
+		//the following regex matches anything
+		String regex = "(.*?)";  // <- changed to work with String.replaceAll()
+		
+		//file reading
+		FileReader fr = new FileReader(file);
+		String s;
+		try {
+		    BufferedReader br = new BufferedReader(fr);
 
+		    while ((s = br.readLine()) != null) {
+		        s.replaceAll(regex, dbPath);
+		    }
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
 
 }
