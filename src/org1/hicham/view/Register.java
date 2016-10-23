@@ -1,4 +1,5 @@
 package org1.hicham.view;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -39,10 +40,11 @@ public class Register extends JFrame{
 		setSize(400,200);        
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
+        
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-
+		panel.setBackground(Color.white);
+ 	
 		bienvenu.setBounds(180, 10, 100, 20);
 		saisielabel.setBounds(130, 20, 150, 20);
 		utilisateurlab.setBounds(300, 45, 100, 20);
