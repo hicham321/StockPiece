@@ -1,5 +1,6 @@
 package org1.hicham.model;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -847,6 +848,7 @@ to a stored salted hash of the password. */
 	}
 	
 	public String readFile(String pathFile) throws FileNotFoundException, IOException{
+		
 		BufferedReader br;
 		br = new BufferedReader(new FileReader(pathFile));
 		String x;
@@ -864,6 +866,20 @@ to a stored salted hash of the password. */
 		//file reading
 		FileReader fr = new FileReader(file);
 		String s;
+		if (checkFileEmpty(getFileLink())) {
+			//write to file (appending to a file)
+			FileWriter fileWriter;
+			try {
+			    fileWriter = new FileWriter(file,true);
+			    BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter);
+			    bufferFileWriter.append(dbPath);
+			    bufferFileWriter.newLine();
+			    bufferFileWriter.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		else{
 		try {
 		    BufferedReader br = new BufferedReader(fr);
 
@@ -873,7 +889,7 @@ to a stored salted hash of the password. */
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
+		}
 	}
 
 }
